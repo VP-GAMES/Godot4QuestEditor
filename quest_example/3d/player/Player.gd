@@ -2,15 +2,17 @@
 # @author Vladimir Petrenko
 extends QuestPlayer3D
 
-export var speed : float = 30
-export var speed_rotation : float = 65
-export var acceleration : float = 15
-export var gravity : float = 0.98
+@export var speed : float = 30
+@export var speed_rotation : float = 3
+@export var gravity : float = 0.98
 
 var velocity : Vector3
-export(String) var attack = "attack"
+@export var attack: String = "attack"
 
-onready var _animationPlayer = $AnimationPlayer as AnimationPlayer
+@onready var _animationPlayer: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	super._ready()
 
 func _physics_process(delta):
 	handle_movement(delta)
@@ -22,12 +24,13 @@ func handle_movement(delta):
 	if Input.is_action_pressed("move_bottom"):
 		direction -= transform.basis.z
 	if Input.is_action_pressed("move_left"):
-		rotation_degrees.y += speed_rotation * delta
+		rotation.y += speed_rotation * delta
 	if Input.is_action_pressed("move_right"):
-		rotation_degrees.y -= speed_rotation * delta
+		rotation.y -= speed_rotation * delta
 	direction = direction.normalized()
-	velocity = velocity.linear_interpolate(direction * speed, acceleration * delta)
-	velocity = move_and_slide(velocity, Vector3.UP)
+	direction = direction * speed
+	motion_velocity = Vector3(direction.x, 0, direction.z)
+	move_and_slide()
 
 func _input(event: InputEvent):
 	if event.is_action_released(attack):

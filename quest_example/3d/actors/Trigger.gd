@@ -1,7 +1,6 @@
 @tool
 extends QuestTrigger3D
 
-@onready var _trigger: Node3D = $Trigger
 @onready var _animationPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:

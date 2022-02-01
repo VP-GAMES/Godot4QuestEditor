@@ -1,6 +1,6 @@
 # 3D Level to demonstrate functionality of QuestEditor : MIT License
 # @author Vladimir Petrenko
-extends Spatial
+extends Node3D
 
 var _questManager
 const _questManagerName = "QuestManager"
@@ -9,12 +9,12 @@ const _localizationManagerName = "LocalizationManager"
 var _inventoryManager
 const _inventoryManagerName = "InventoryManager"
 
-onready var _inventory_button_ui = $CanvasLayer/InventoryButton as TextureButton
-onready var _inventory_ui = $CanvasLayer/Inventory
-onready var _quest_button_ui = $CanvasLayer/QuestButton as TextureButton
-onready var _quest_ui = $CanvasLayer/Quest
-onready var _label_ui = $CanvasLayer/Label as RichTextLabel
-onready var _timer_ui = $CanvasLayer/Timer as Timer
+@onready var _inventory_button_ui = $CanvasLayer/InventoryButton as TextureButton
+@onready var _inventory_ui = $CanvasLayer/Inventory
+@onready var _quest_button_ui = $CanvasLayer/QuestButton as TextureButton
+@onready var _quest_ui = $CanvasLayer/Quest
+@onready var _label_ui = $CanvasLayer/Label as RichTextLabel
+@onready var _timer_ui = $CanvasLayer/Timer as Timer
 
 const _timeout = 3
 const textureSimple = preload("res://quest_example/textures/Quest.png")
@@ -29,11 +29,11 @@ func _ready() -> void:
 	if get_tree().get_root().has_node(_questManagerName):
 		_questManager = get_tree().get_root().get_node(_questManagerName)
 		_questManager.set_player($Player)
-		_questManager.connect("quest_started", self, "_on_quest_started")
-		_questManager.connect("quest_ended", self, "_on_quest_ended")
-	_inventory_button_ui.connect("pressed", self, "_on_inventory_button_pressed")
-	_quest_button_ui.connect("pressed", self, "_on_quest_button_pressed")
-	_timer_ui.connect("timeout", self, "_on_timer_timeout")
+		_questManager.quest_started.connect(_on_quest_started)
+		_questManager.quest_ended.connect(_on_quest_ended)
+	_inventory_button_ui.pressed.connect(_on_inventory_button_pressed)
+	_quest_button_ui.pressed.connect(_on_quest_button_pressed)
+	_timer_ui.timeout.connect(_on_timer_timeout)
 
 func _on_quest_started(_quest: QuestQuest) -> void:
 	_label_ui.show()

@@ -13,5 +13,4 @@ func _ready() -> void:
 	_questManager.set_player(self)
 	if get_tree().get_root().has_node(_inventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(_inventoryManagerName)
-	_questManager.set_player(self)
-	_inventoryManager.set_player(self)
+	_inventoryManager.player = self

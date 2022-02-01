@@ -17,13 +17,13 @@ func _ready() -> void:
 func _on_player_changed() -> void:
 	_check_attention()
 
-func _on_quest_started(_quest: QuestQuest) -> void:
+func _on_quest_started(_p_quest: QuestQuest) -> void:
 	_check_attention()
 
-func _on_quest_ended(_quest: QuestQuest) -> void:
+func _on_quest_ended(_p_quest: QuestQuest) -> void:
 	_check_attention()
 
-func _on_quest_updated(_quest: QuestQuest) -> void:
+func _on_quest_updated(_p_quest: QuestQuest) -> void:
 	_check_attention()
 
 func _check_attention() -> void:

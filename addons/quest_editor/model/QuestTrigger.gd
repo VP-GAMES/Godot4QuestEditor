@@ -35,8 +35,8 @@ signal scene_changed
 var _loaded_scene
 
 func get_loaded_scene():
-	if scene:
-		if not _loaded_scene:
+	if scene != null:
+		if _loaded_scene == null:
 			_loaded_scene =  load(scene).instantiate()
 		return _loaded_scene
 
