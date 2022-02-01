@@ -8,9 +8,9 @@ var _data: QuestData
 
 var dialogue_editor
 
-@onready var _trigger_ui = $HBox/Trigger as LineEdit
-@onready var _start_ui = $HBox/Start as LineEdit
-@onready var _running_ui = $HBox/Running as LineEdit
+@onready var _trigger_ui = $HBox/Trigger
+@onready var _start_ui = $HBox/Start
+@onready var _running_ui = $HBox/Running
 
 func set_data(quest: QuestQuest, data: QuestData) -> void:
 	_data = data
@@ -43,15 +43,15 @@ func _on_trigger_gui_input(event: InputEvent) -> void:
 
 func _fill_trigger_ui_dropdown() -> void:
 	_trigger_ui.clear()
-	_trigger_ui.add_item({"text": "NONE", "value": ""})
+	_trigger_ui.add_item(DropdownItem.new("NONE", ""))
 	for trigger in _data.all_npcs():
-		var item_t = {"text": trigger.name, "value": trigger.uuid}
-		_trigger_ui.add_item(item_t)	
+		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
+		_trigger_ui.add_item(item_t)
 	for trigger in _data.all_destinations():
-		var item_t = {"text": trigger.name, "value": trigger.uuid}
+		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
 		_trigger_ui.add_item(item_t)
 
-func _on_trigger_selection_changed(trigger: Dictionary) -> void:
+func _on_trigger_selection_changed(trigger: DropdownItem) -> void:
 	_quest.quest_trigger = trigger.value
 
 # *** INIT DIALOGUE EDITOR ***
@@ -76,12 +76,12 @@ func _fill_start_ui_dropdown() -> void:
 	if dialogue_editor:
 		var dialogue_data = dialogue_editor.get_data()
 		_start_ui.clear()
-		_start_ui.add_item({"text": "NONE", "value": ""})
+		_start_ui.add_item(DropdownItem.new("NONE", ""))
 		for dialogue in dialogue_data.dialogues:
-			var item_d = {"text": dialogue.name, "value": dialogue.uuid}
+			var item_d = DropdownItem.new(dialogue.name, dialogue.uuid)
 			_start_ui.add_item(item_d)
 
-func _on_start_selection_changed(dialogue: Dictionary) -> void:
+func _on_start_selection_changed(dialogue: DropdownItem) -> void:
 	_quest.quest_start_dialogue = dialogue.value
 
 # *** RUNNING DIALOGUE ***
@@ -92,10 +92,10 @@ func _fill_running_ui_dropdown() -> void:
 	if dialogue_editor:
 		var dialogue_data = dialogue_editor.get_data()
 		_running_ui.clear()
-		_running_ui.add_item({"text": "NONE", "value": ""})
+		_running_ui.add_item(DropdownItem.new("NONE", ""))
 		for dialogue in dialogue_data.dialogues:
-			var item_d = {"text": dialogue.name, "value": dialogue.uuid}
+			var item_d = DropdownItem.new(dialogue.name, dialogue.uuid)
 			_running_ui.add_item(item_d)
 
-func _on_running_selection_changed(quest: Dictionary) -> void:
+func _on_running_selection_changed(quest: DropdownItem) -> void:
 	_quest.quest_running_dialogue = quest.value

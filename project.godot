@@ -72,7 +72,7 @@ _global_script_classes=[{
 "base": "Object",
 "class": &"DropdownItem",
 "language": &"GDScript",
-"path": "res://addons/localization_editor/ui_extensions/dropdown/DropdownItem.gd"
+"path": "res://addons/quest_editor/ui_extensions/dropdown/DropdownItem.gd"
 }, {
 "base": "Resource",
 "class": &"InventoryData",
@@ -214,6 +214,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quest_editor/use/3d/QuestEnemy3D.gd"
 }, {
+"base": "RefCounted",
+"class": &"QuestManagerQuests",
+"language": &"GDScript",
+"path": "res://quest/QuestManagerQuests.gd"
+}, {
+"base": "RefCounted",
+"class": &"QuestManagerTriggers",
+"language": &"GDScript",
+"path": "res://quest/QuestManagerTriggers.gd"
+}, {
 "base": "Area2D",
 "class": &"QuestNPC2D",
 "language": &"GDScript",
@@ -301,6 +311,8 @@ _global_script_class_icons={
 "QuestDestination3D": "",
 "QuestEnemy2D": "",
 "QuestEnemy3D": "",
+"QuestManagerQuests": "",
+"QuestManagerTriggers": "",
 "QuestNPC2D": "",
 "QuestNPC3D": "",
 "QuestPlayer2D": "",
@@ -315,6 +327,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot4QuestEditor"
+run/main_scene="res://quest_example/2d/Level.tscn"
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 
@@ -323,6 +336,7 @@ config/features=PackedStringArray("4.0", "Vulkan Clustered")
 LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
 DialogueManager="*res://addons/dialogue_editor/DialogueManager.gd"
 InventoryManager="*res://addons/inventory_editor/InventoryManager.gd"
+QuestManager="*res://addons/quest_editor/QuestManager.gd"
 
 [dialogue_editor]
 
@@ -330,4 +344,42 @@ dialogues_selected_dialogue="f8991765-0fff-4d5c-b806-f18501d05346"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_editor/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/localization_editor/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_editor/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/localization_editor/plugin.cfg", "res://addons/quest_editor/plugin.cfg")
+
+[input]
+
+move_left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"unicode":0,"echo":false,"script":null)
+]
+}
+move_right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"unicode":0,"echo":false,"script":null)
+]
+}
+move_up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"unicode":0,"echo":false,"script":null)
+]
+}
+move_bottom={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"unicode":0,"echo":false,"script":null)
+]
+}
+action={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"unicode":0,"echo":false,"script":null)
+]
+}
+cancel={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"unicode":0,"echo":false,"script":null)
+]
+}
+attack={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"meta_pressed":false,"command_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"unicode":0,"echo":false,"script":null)
+]
+}

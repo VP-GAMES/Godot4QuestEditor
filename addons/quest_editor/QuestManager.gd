@@ -111,7 +111,7 @@ func get_quest_available_by_delivery_trigger(delivery_trigger: String) -> QuestQ
 	return response_quest
 
 func _precompleted_quest_done(quest: QuestQuest) -> bool:
-	if not quest.precompleted_quest or quest.precompleted_quest.is_empty():
+	if quest.precompleted_quest != null or quest.precompleted_quest.is_empty():
 		return true
 	else:
 		return _data.get_quest_by_uuid(quest.precompleted_quest).state == QuestQuest.QUESTSTATE_DONE

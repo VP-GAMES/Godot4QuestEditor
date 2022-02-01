@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://5srwthqvupbv"]
+
+[ext_resource type="Script" path="res://quest_example/2d/actors/Girl.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cp521iucsiu54" path="res://quest_example/textures/Girl.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://wi43gsr1hbu2" path="res://quest_example/textures/Attention.png" id="3"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1161.09, 457.764)
+
+[node name="Girl" type="Area2D"]
+script = ExtResource( "1" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -230)
+shape = SubResource( "1" )
+
+[node name="Girl" type="Sprite2D" parent="."]
+position = Vector2(0, -220)
+texture = ExtResource( "2" )
+
+[node name="QuestTriggerUUID_69d85fe9-197e-4dd6-b295-00fbec1d6192" type="Node" parent="."]
+
+[node name="Attention" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -700)
+texture = ExtResource( "3" )

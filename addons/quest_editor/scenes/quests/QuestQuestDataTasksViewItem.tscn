@@ -1,64 +1,58 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://b4lfjklyalnk7"]
 
-[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksViewItem.gd" type="Script" id=1]
-[ext_resource path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/quest_editor/icons/Trash.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksViewItem.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://bcia7fs1y13ht" path="res://addons/quest_editor/icons/Trash.png" id="3"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 24.0
-script = ExtResource( 1 )
+script = ExtResource( "1" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Action" type="Label" parent="."]
-margin_top = 5.0
-margin_right = 130.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 130, 0 )
+offset_top = 2.0
+offset_right = 130.0
+offset_bottom = 28.0
+rect_min_size = Vector2(130, 0)
 text = "Action"
 
-[node name="Trigger" parent="." instance=ExtResource( 2 )]
+[node name="Trigger" parent="." instance=ExtResource( "2" )]
 anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 134.0
-margin_right = 379.0
-margin_bottom = 24.0
+offset_left = 134.0
+offset_right = 158.0
 
 [node name="LabelDialogue" type="Label" parent="."]
-margin_left = 383.0
-margin_top = 5.0
-margin_right = 439.0
-margin_bottom = 19.0
+offset_left = 162.0
+offset_top = 2.0
+offset_right = 229.0
+offset_bottom = 28.0
 text = "Dialogue"
 
-[node name="Dialogue" parent="." instance=ExtResource( 2 )]
+[node name="Dialogue" parent="." instance=ExtResource( "2" )]
 anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 443.0
-margin_right = 689.0
-margin_bottom = 24.0
+offset_left = 233.0
+offset_right = 257.0
 
 [node name="LabelQuantity" type="Label" parent="."]
-margin_left = 693.0
-margin_top = 5.0
-margin_right = 748.0
-margin_bottom = 19.0
+offset_left = 261.0
+offset_top = 2.0
+offset_right = 328.0
+offset_bottom = 28.0
 text = "Quantity"
 
 [node name="Quantity" type="LineEdit" parent="."]
-margin_left = 752.0
-margin_right = 998.0
-margin_bottom = 24.0
+offset_left = 332.0
+offset_right = 396.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Del" type="Button" parent="."]
-margin_left = 1002.0
-margin_right = 1024.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 20, 20 )
-icon = ExtResource( 3 )
+offset_left = 400.0
+offset_right = 420.0
+offset_bottom = 31.0
+rect_min_size = Vector2(20, 20)
+icon = ExtResource( "3" )

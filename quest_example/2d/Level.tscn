@@ -1,0 +1,175 @@
+[gd_scene load_steps=24 format=3 uid="uid://cxavm0cu8yw34"]
+
+[ext_resource type="Texture2D" uid="uid://iuau5q5khryk" path="res://quest_example/textures/Background.png" id="1"]
+[ext_resource type="PackedScene" path="res://quest_example/2d/player/Player.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://ckcnageel53q2" path="res://quest_example/textures/BackgroundSide.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c14q4y5kt4jnf" path="res://quest_example/textures/BackgroundLeft.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c7ssm1cvdh6iq" path="res://quest_example/textures/BackgroundRight.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://quest_example/inventory_ui/InventoryUI.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://bv2ceh5gjbvkn" path="res://quest_example/textures/Chest.png" id="7"]
+[ext_resource type="Script" path="res://quest_example/2d/Level.gd" id="8"]
+[ext_resource type="PackedScene" path="res://quest_example/quest_ui/QuestUi.tscn" id="9"]
+[ext_resource type="Texture2D" uid="uid://bec7ilkcdhjig" path="res://quest_example/textures/Quest.png" id="10"]
+[ext_resource type="PackedScene" uid="uid://5srwthqvupbv" path="res://quest_example/2d/actors/Girl.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://quest_example/2d/actors/John.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://quest_example/2d/actors/Destination.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://quest_example/2d/actors/Enemy.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://quest_example/2d/actors/Trigger.tscn" id="15"]
+[ext_resource type="Script" path="res://addons/inventory_editor/InventoryItem2D.gd" id="16"]
+[ext_resource type="PackedScene" path="res://quest_example/2d/actors/Item.tscn" id="17"]
+[ext_resource type="Texture2D" uid="uid://bm7jp74ne8dhb" path="res://quest_example/textures/Fir.png" id="18"]
+[ext_resource type="Script" path="res://quest_example/2d/Item.gd" id="19"]
+[ext_resource type="FontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="20"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(5316.54, 20)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(20, 708.684)
+
+[sub_resource type="Font" id="3"]
+data/0 = ExtResource( "20" )
+
+[node name="Level" type="Node2D"]
+script = ExtResource( "8" )
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(0, 550)
+
+[node name="Background" type="Sprite2D" parent="Background"]
+position = Vector2(3.05945, -321)
+texture = ExtResource( "1" )
+
+[node name="BackgroundLeftEnd" type="Sprite2D" parent="Background"]
+position = Vector2(-1600, -320)
+texture = ExtResource( "4" )
+
+[node name="BackgroundSide" type="Sprite2D" parent="Background"]
+position = Vector2(-3440, -320)
+texture = ExtResource( "3" )
+
+[node name="BackgroundRight3" type="Sprite2D" parent="Background"]
+position = Vector2(1600, -320)
+texture = ExtResource( "5" )
+
+[node name="BackgroundSide2" type="Sprite2D" parent="Background"]
+position = Vector2(3440, -320)
+texture = ExtResource( "3" )
+flip_h = true
+
+[node name="StaticBodyFloor" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBodyFloor"]
+position = Vector2(0, 10)
+shape = SubResource( "1" )
+
+[node name="StaticBodyLeft" type="StaticBody2D" parent="Background"]
+position = Vector2(-2400, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBodyLeft"]
+position = Vector2(0, -300)
+shape = SubResource( "2" )
+
+[node name="StaticBodyRight" type="StaticBody2D" parent="Background"]
+position = Vector2(2400, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBodyRight"]
+position = Vector2(0, -300)
+shape = SubResource( "2" )
+
+[node name="Wood" type="Node2D" parent="."]
+
+[node name="Fir2" type="Sprite2D" parent="Wood"]
+position = Vector2(-1960.51, 398)
+scale = Vector2(0.72, 0.680001)
+texture = ExtResource( "18" )
+
+[node name="Fir3" type="Sprite2D" parent="Wood"]
+position = Vector2(-1836.06, 325.875)
+scale = Vector2(0.72, 1)
+texture = ExtResource( "18" )
+
+[node name="Fir4" type="Sprite2D" parent="Wood"]
+position = Vector2(-2260.33, 361.231)
+scale = Vector2(0.72, 0.840001)
+texture = ExtResource( "18" )
+
+[node name="Fir" type="Sprite2D" parent="Wood"]
+position = Vector2(-2146.08, 325)
+texture = ExtResource( "18" )
+
+[node name="John" parent="." instance=ExtResource( "12" )]
+position = Vector2(2000, 549)
+scale = Vector2(0.2, 0.2)
+
+[node name="Girl" parent="." instance=ExtResource( "11" )]
+position = Vector2(1000, 549)
+scale = Vector2(0.2, 0.2)
+
+[node name="Trigger" parent="." instance=ExtResource( "15" )]
+position = Vector2(-500, 549)
+scale = Vector2(0.25, 0.25)
+
+[node name="QuestTriggerUUID_43ffe1bf-bb34-4ff6-b51a-a9dfee0b96d5" type="Node" parent="Trigger"]
+
+[node name="Destination" parent="." instance=ExtResource( "13" )]
+position = Vector2(-1200, 549)
+scale = Vector2(0.4, 0.4)
+
+[node name="Enemy" parent="." instance=ExtResource( "14" )]
+position = Vector2(-2200, 549)
+scale = Vector2(0.2, 0.2)
+
+[node name="Item" type="Node2D" parent="."]
+visible = false
+script = ExtResource( "19" )
+
+[node name="Item2D" type="Node2D" parent="Item"]
+position = Vector2(-2000, 495)
+script = ExtResource( "16" )
+item_put = "29e273d0-c864-4f32-8511-923ba53a0399"
+to_inventory = "8e526c15-dfbe-478b-b0c9-a05aa8722cb0"
+
+[node name="InventoryItem_29e273d0-c864-4f32-8511-923ba53a0399" parent="Item/Item2D" instance=ExtResource( "17" )]
+
+[node name="Player" parent="." instance=ExtResource( "2" )]
+position = Vector2(0, 549)
+scale = Vector2(0.2, 0.2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryButton" type="TextureButton" parent="CanvasLayer"]
+texture_normal = ExtResource( "7" )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource( "6" )]
+visible = false
+anchor_left = 0.00103468
+anchor_right = 0.00103468
+
+[node name="QuestButton" type="TextureButton" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+texture_normal = ExtResource( "10" )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quest" parent="CanvasLayer" instance=ExtResource( "9" )]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.5
+theme_override_fonts/normal_font = SubResource( "3" )
+bbcode_enabled = true
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]

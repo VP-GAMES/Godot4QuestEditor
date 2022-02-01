@@ -6,7 +6,7 @@ extends VBoxContainer
 var _quest: QuestQuest
 var _data: QuestData
 
-@onready var _quests_dropdown_ui = $HBoxRequerements/Quests as LineEdit
+@onready var _quests_dropdown_ui = $HBoxRequerements/Quests
 @onready var _add_ui = $HBoxRequerementsAdd/Add as Button
 @onready var _requerements_ui = $VBoxRequerementsItems
 
@@ -31,15 +31,15 @@ func _on_gui_input(event: InputEvent) -> void:
 
 func _fill_dropdown() -> void:
 	_quests_dropdown_ui.clear()
-	var item_null = {"text": "NONE", "value": ""}
+	var item_null = DropdownItem.new("NONE", "")
 	_quests_dropdown_ui.add_item(item_null)
 	for quest in _data.quests:
 		if quest != _quest:
-			var item_d = {"text": quest.name, "value": quest.uuid}
+			var item_d = DropdownItem.new(quest.name, quest.uuid)
 			_quests_dropdown_ui.add_item(item_d)
 
-func _on_selection_changed(quest: Dictionary) -> void:
-	_quest.precompleted_quest = quest.value
+func _on_selection_changed(item: DropdownItem) -> void:
+	_quest.precompleted_quest = item.value
 
 func _on_add_pressed() -> void:
 	_quest.add_requerement()

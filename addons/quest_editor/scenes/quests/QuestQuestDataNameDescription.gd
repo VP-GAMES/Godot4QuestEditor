@@ -8,9 +8,9 @@ var _data: QuestData
 var localization_editor
 
 @onready var _uiname_ui = $HBoxName/UIName as LineEdit
-@onready var _dropdown_name_ui = $HBoxName/Dropdown as LineEdit
+@onready var _dropdown_name_ui = $HBoxName/Dropdown
 @onready var _description_ui = $HBoxDescription/Description as TextEdit
-@onready var _dropdown_description_ui = $HBoxDescription/Dropdown as LineEdit
+@onready var _dropdown_description_ui = $HBoxDescription/Dropdown
 
 func set_data(quest: QuestQuest, data: QuestData) -> void:
 	_data = data
@@ -43,7 +43,7 @@ func _fill_dropdown_name_ui() -> void:
 	if _dropdown_name_ui:
 		_dropdown_name_ui.clear()
 		for key in localization_editor.get_data().data.keys:
-			var item = {"text": key.value, "value": key.value}
+			var item = DropdownItem.new(key.value, key.value)
 			_dropdown_name_ui.add_item(item)
 		_dropdown_name_ui.set_selected_by_value(_quest.uiname)
 
@@ -51,7 +51,7 @@ func _fill_dropdown_description_ui() -> void:
 	if _dropdown_description_ui:
 		_dropdown_description_ui.clear()
 		for key in localization_editor.get_data().data.keys:
-			var item = {"text": key.value, "value": key.value}
+			var item = DropdownItem.new(key.value, key.value)
 			_dropdown_description_ui.add_item(item)
 		_dropdown_description_ui.set_selected_by_value(_quest.description)
 
@@ -72,10 +72,10 @@ func _on_uiname_changed(new_text: String) -> void:
 func _on_description_changed() -> void:
 	_quest.change_description(_description_ui.text)
 
-func _on_selection_changed_name(item) -> void:
+func _on_selection_changed_name(item: DropdownItem) -> void:
 	_quest.uiname = item.value
 
-func _on_selection_changed_description(item) -> void:
+func _on_selection_changed_description(item: DropdownItem) -> void:
 	_quest.description = item.value
 
 func _update_view_visibility() -> void:

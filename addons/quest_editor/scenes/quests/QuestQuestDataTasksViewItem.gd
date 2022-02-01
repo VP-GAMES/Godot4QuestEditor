@@ -11,9 +11,9 @@ var dialogue_editor
 var inventory_editor
 
 @onready var _action_ui = $Action as Label
-@onready var _trigger_ui = $Trigger as LineEdit
+@onready var _trigger_ui = $Trigger
 @onready var _label_dialogue_ui = $LabelDialogue as Label
-@onready var _dialogue_ui = $Dialogue as LineEdit
+@onready var _dialogue_ui = $Dialogue
 @onready var _label_quantity_ui = $LabelQuantity as Label
 @onready var _quantity_ui = $Quantity as LineEdit
 @onready var _delete_ui = $Del as Button
@@ -56,7 +56,7 @@ func _on_trigger_gui_input(event: InputEvent) -> void:
 func _fill_trigger_ui_dropdown() -> void:
 	_trigger_ui.clear()
 	for trigger in _data.triggers:
-		var item_t = {"text": trigger.name, "value": trigger.uuid}
+		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
 		_trigger_ui.add_item(item_t)
 	if not inventory_editor:
 		inventory_editor = get_tree().get_root().find_node("InventoryEditor", true, false)
@@ -64,13 +64,13 @@ func _fill_trigger_ui_dropdown() -> void:
 		var data = inventory_editor.get_data()
 		if data:
 			for item in data.all_items():
-				var item_i = {"text": item.name, "value": item.uuid}
+				var item_i = DropdownItem.new(item.name, item.uuid)
 				_trigger_ui.add_item(item_i)
 	if _trigger_ui:
 		_trigger_ui.set_selected_by_value(_task.trigger)
 	_update_view()
 
-func _on_trigger_selection_changed(trigger: Dictionary) -> void:
+func _on_trigger_selection_changed(trigger: DropdownItem) -> void:
 	_task.trigger = trigger.value
 	_update_view()
 
@@ -89,12 +89,13 @@ func _fill_start_ui_dropdown() -> void:
 	if dialogue_editor:
 		var dialogue_data = dialogue_editor.get_data()
 		_dialogue_ui.clear()
-		_dialogue_ui.add_item({"text": "NONE", "value": ""})
+		var item_e = DropdownItem.new("NONE", "")
+		_dialogue_ui.add_item(item_e)
 		for dialogue in dialogue_data.dialogues:
-			var item_d = {"text": dialogue.name, "value": dialogue.uuid}
+			var item_d = DropdownItem.new(dialogue.name, dialogue.uuid)
 			_dialogue_ui.add_item(item_d)
 
-func _on_dialogue_selection_changed(dialogue: Dictionary) -> void:
+func _on_dialogue_selection_changed(dialogue: DropdownItem) -> void:
 	_task.dialogue = dialogue.value
 
 func _on_quantity_text_changed(new_text: String) -> void:
