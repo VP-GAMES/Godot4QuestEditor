@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksView.gd" type="Script" id=1]
+[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksViewItem.tscn" type="PackedScene" id=2]
+
+[node name="VBoxTasksItems" type="VBoxContainer"]
+margin_top = 24.0
+margin_right = 1024.0
+margin_bottom = 48.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" parent="." instance=ExtResource( 2 )]

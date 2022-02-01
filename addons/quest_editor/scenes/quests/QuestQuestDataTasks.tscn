@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasks.gd" type="Script" id=1]
+[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksView.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/quest_editor/icons/Add.png" type="Texture" id=3]
+
+[node name="QuestQuestTasks" type="VBoxContainer"]
+margin_top = 290.0
+margin_right = 1024.0
+margin_bottom = 338.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxTasksAdd" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 20.0
+
+[node name="Add" type="Button" parent="HBoxTasksAdd"]
+margin_right = 22.0
+margin_bottom = 20.0
+icon = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxTasksAdd"]
+margin_left = 26.0
+margin_top = 3.0
+margin_right = 61.0
+margin_bottom = 17.0
+text = "Tasks"
+
+[node name="VBoxTasksItems" parent="." instance=ExtResource( 2 )]

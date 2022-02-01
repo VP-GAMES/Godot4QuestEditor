@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataDelivery.gd" type="Script" id=1]
+[ext_resource path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" type="PackedScene" id=2]
+
+[node name="VBoxDelivery" type="VBoxContainer"]
+margin_top = 350.0
+margin_right = 1024.0
+margin_bottom = 374.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 24.0
+
+[node name="Delivery" type="CheckBox" parent="HBox"]
+margin_right = 130.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 130, 0 )
+text = "Delivery trigger"
+
+[node name="EndTrigger" parent="HBox" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 134.0
+margin_right = 547.0
+margin_bottom = 24.0
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Label" type="Label" parent="HBox"]
+margin_left = 551.0
+margin_top = 5.0
+margin_right = 607.0
+margin_bottom = 19.0
+text = "Dialogue"
+
+[node name="EndDialogue" parent="HBox" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 611.0
+margin_right = 1024.0
+margin_bottom = 24.0

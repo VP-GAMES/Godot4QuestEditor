@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataRewardsView.gd" type="Script" id=1]
+
+[node name="VBoxRewardsItems" type="VBoxContainer"]
+margin_top = 24.0
+margin_right = 1024.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )

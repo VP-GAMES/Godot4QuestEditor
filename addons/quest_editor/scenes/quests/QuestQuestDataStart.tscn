@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataStart.gd" type="Script" id=2]
+
+[node name="QuestQuestStart" type="VBoxContainer"]
+margin_top = 202.0
+margin_right = 1024.0
+margin_bottom = 282.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="HBox"]
+margin_top = 5.0
+margin_right = 130.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 130, 0 )
+text = "Quest trigger"
+
+[node name="Trigger" parent="HBox" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 134.0
+margin_right = 360.0
+margin_bottom = 24.0
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Label2" type="Label" parent="HBox"]
+margin_left = 364.0
+margin_top = 5.0
+margin_right = 451.0
+margin_bottom = 19.0
+text = "Start dialogue"
+
+[node name="Start" parent="HBox" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 455.0
+margin_right = 681.0
+margin_bottom = 24.0
+
+[node name="Label3" type="Label" parent="HBox"]
+margin_left = 685.0
+margin_top = 5.0
+margin_right = 794.0
+margin_bottom = 19.0
+text = "Running dialogue"
+
+[node name="Running" parent="HBox" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 798.0
+margin_right = 1024.0
+margin_bottom = 24.0

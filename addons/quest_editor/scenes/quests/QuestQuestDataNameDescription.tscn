@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataNameDescription.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[node name="QuestQuestNameDescription" type="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 154.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxName" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 30.0
+
+[node name="Label" type="Label" parent="HBoxName"]
+margin_right = 130.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 130, 0 )
+size_flags_vertical = 5
+text = "UIName"
+valign = 1
+
+[node name="UIName" type="LineEdit" parent="HBoxName"]
+margin_left = 134.0
+margin_right = 577.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+
+[node name="Dropdown" parent="HBoxName" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 581.0
+margin_right = 1024.0
+margin_bottom = 30.0
+
+[node name="HBoxDescription" type="HBoxContainer" parent="."]
+margin_top = 34.0
+margin_right = 1024.0
+margin_bottom = 154.0
+
+[node name="Label" type="Label" parent="HBoxDescription"]
+margin_right = 130.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 130, 0 )
+size_flags_vertical = 5
+text = "Description"
+
+[node name="Description" type="TextEdit" parent="HBoxDescription"]
+margin_left = 134.0
+margin_right = 577.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+
+[node name="Dropdown" parent="HBoxDescription" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 581.0
+margin_right = 1024.0
+margin_bottom = 120.0
