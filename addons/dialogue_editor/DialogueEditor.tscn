@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0j0vuui3beql"]
+
+[ext_resource type="Texture2D" uid="uid://wbd762rokpf8" path="res://addons/dialogue_editor/icons/Save.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://dagjo0f1e35mi" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialoguesEditorView.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/actors/DialogueActorsEditorView.tscn" id="3"]
+[ext_resource type="Script" path="res://addons/dialogue_editor/DialogueEditor.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://cr1hvm6iy8dxl" path="res://addons/dialogue_editor/icons/Actor.png" id="4_i5ies"]
+[ext_resource type="PackedScene" uid="uid://cwau5ilrs3ooc" path="res://addons/dialogue_editor/scenes/scenes/DialogueScenesEditorView.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://cfhnywpnjv48p" path="res://addons/dialogue_editor/icons/Scene.png" id="6_aihqj"]
+[ext_resource type="Texture2D" uid="uid://bymgdh4agvaev" path="res://addons/dialogue_editor/icons/Dialogue.png" id="8_5m5ty"]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( "4" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="VBox"]
+offset_right = 1280.0
+offset_bottom = 37.0
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBox" type="HBoxContainer" parent="VBox/Margin"]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 1277.0
+offset_bottom = 34.0
+size_flags_horizontal = 3
+
+[node name="Save" type="Button" parent="VBox/Margin/HBox"]
+offset_right = 20.0
+offset_bottom = 31.0
+rect_min_size = Vector2(20, 20)
+hint_tooltip = "Save"
+icon = ExtResource( "1" )
+
+[node name="Label" type="Label" parent="VBox/Margin/HBox"]
+offset_left = 24.0
+offset_top = 2.0
+offset_right = 102.0
+offset_bottom = 28.0
+text = "Language:"
+
+[node name="Language" type="OptionButton" parent="VBox/Margin/HBox"]
+offset_left = 106.0
+offset_right = 149.0
+offset_bottom = 31.0
+
+[node name="Tabs" type="TabContainer" parent="VBox"]
+offset_top = 41.0
+offset_right = 1280.0
+offset_bottom = 960.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tab_alignment = 0
+
+[node name="Actors" parent="VBox/Tabs" instance=ExtResource( "3" )]
+offset_top = 31.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_tab_icon": ExtResource( "4_i5ies" )
+}
+
+[node name="Scenes" parent="VBox/Tabs" instance=ExtResource( "6" )]
+visible = false
+__meta__ = {
+"_edit_use_anchors_": false,
+"_tab_icon": ExtResource( "6_aihqj" )
+}
+
+[node name="Dialogues" parent="VBox/Tabs" instance=ExtResource( "2" )]
+visible = false
+__meta__ = {
+"_edit_use_anchors_": false,
+"_tab_icon": ExtResource( "8_5m5ty" )
+}

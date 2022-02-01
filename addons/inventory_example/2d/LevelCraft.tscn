@@ -1,0 +1,196 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dgset6q225exm" path="res://addons/inventory_example/textures/Background.png" id="1"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/player/Player.tscn" id="2"]
+[ext_resource type="Script" path="res://addons/inventory_example/2d/Level1.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://yc0j01w34y78" path="res://addons/inventory_example/textures/BackgroundSide.png" id="4"]
+[ext_resource type="Script" path="res://addons/inventory_editor/InventoryItem2D.gd" id="5"]
+[ext_resource type="FontData" uid="uid://dk0uyb3ayyxtk" path="res://addons/inventory_editor/default/fonts/Pangolin-Regular.ttf" id="6"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/Metal.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/RecipeHelmetViking.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/Horn.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/HelmetKnight.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://quest_example/inventory_ui/InventoryUI.tscn" id="13"]
+[ext_resource type="Texture2D" uid="uid://yxnjmxcqgl2u" path="res://addons/inventory_example/textures/inventories/Chest.png" id="14"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/RecipeHelmetKnight.tscn" id="15"]
+[ext_resource type="PackedScene" path="res://addons/inventory_example/2d/items/Gold.tscn" id="16"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1916.35, 60.3882)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(20, 682.404)
+
+[sub_resource type="Font" id="3"]
+data/0 = ExtResource( "6" )
+
+[node name="Level" type="Node2D"]
+script = ExtResource( "3" )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(920, 235)
+texture = ExtResource( "1" )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Floor" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Floor"]
+position = Vector2(0, 350)
+shape = SubResource( "1" )
+
+[node name="Left" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Left"]
+position = Vector2(-870, 0)
+shape = SubResource( "2" )
+
+[node name="Right" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Right"]
+position = Vector2(870, 0)
+shape = SubResource( "2" )
+
+[node name="BackgroundSideRight" type="Sprite2D" parent="Background"]
+position = Vector2(1920, 0)
+texture = ExtResource( "4" )
+flip_h = true
+
+[node name="BackgroundSideLeft" type="Sprite2D" parent="Background"]
+position = Vector2(-1920, 0)
+texture = ExtResource( "4" )
+flip_h = true
+
+[node name="Player" parent="." instance=ExtResource( "2" )]
+position = Vector2(220, 540)
+scale = Vector2(0.2, 0.2)
+
+[node name="CanvasError" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasError"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_color = Color(0.823529, 0.533333, 0.121569, 1)
+theme_override_fonts/font = SubResource( "3" )
+text = "To support dialogues you have to autoload res://addons/dialogue_editor/DialogueManager.gd"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Item2D" type="Node2D" parent="Items"]
+position = Vector2(500, 500)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "97b7c8ba-3c27-4158-9633-11dbd4fefd21"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_97b7c8ba-3c27-4158-9633-11dbd4fefd21" parent="Items/Item2D" instance=ExtResource( "15" )]
+
+[node name="Item2D2" type="Node2D" parent="Items"]
+position = Vector2(600, 400)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "f468cddf-638f-4b2f-9147-a1ceaa0f5c53"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_f468cddf-638f-4b2f-9147-a1ceaa0f5c53" parent="Items/Item2D2" instance=ExtResource( "16" )]
+
+[node name="Item2D3" type="Node2D" parent="Items"]
+position = Vector2(800, 500)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "73cbb965-26a5-4867-9849-9909c096641f"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_73cbb965-26a5-4867-9849-9909c096641f" parent="Items/Item2D3" instance=ExtResource( "8" )]
+
+[node name="Item2D4" type="Node2D" parent="Items"]
+position = Vector2(900, 400)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "424be528-8960-4c74-a96f-229724ebd870"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_424be528-8960-4c74-a96f-229724ebd870" parent="Items/Item2D4" instance=ExtResource( "7" )]
+
+[node name="Item2D5" type="Node2D" parent="Items"]
+position = Vector2(1200, 400)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "bbbbfd43-1f98-4b1a-bf3e-9f7383204803"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_bbbbfd43-1f98-4b1a-bf3e-9f7383204803" parent="Items/Item2D5" instance=ExtResource( "9" )]
+
+[node name="Item2D9" type="Node2D" parent="Items"]
+position = Vector2(1100, 400)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "bbbbfd43-1f98-4b1a-bf3e-9f7383204803"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_bbbbfd43-1f98-4b1a-bf3e-9f7383204803" parent="Items/Item2D9" instance=ExtResource( "9" )]
+
+[node name="Item2D10" type="Node2D" parent="Items"]
+position = Vector2(1100, 500)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "bbbbfd43-1f98-4b1a-bf3e-9f7383204803"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_bbbbfd43-1f98-4b1a-bf3e-9f7383204803" parent="Items/Item2D10" instance=ExtResource( "9" )]
+
+[node name="Item2D6" type="Node2D" parent="Items"]
+position = Vector2(1250, 500)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "424be528-8960-4c74-a96f-229724ebd870"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_424be528-8960-4c74-a96f-229724ebd870" parent="Items/Item2D6" instance=ExtResource( "7" )]
+
+[node name="Item2D7" type="Node2D" parent="Items"]
+position = Vector2(1500, 500)
+script = ExtResource( "5" )
+item_put = "8274191e-eaac-4605-9f3e-f55492b5a4b9"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_8274191e-eaac-4605-9f3e-f55492b5a4b9" parent="Items/Item2D7" instance=ExtResource( "10" )]
+
+[node name="Item2D8" type="Node2D" parent="Items"]
+position = Vector2(1650, 400)
+scale = Vector2(0.2, 0.2)
+script = ExtResource( "5" )
+item_put = "f468cddf-638f-4b2f-9147-a1ceaa0f5c53"
+to_inventory = "e4530fc7-c5d6-41af-9b6e-35249272186a"
+
+[node name="InventoryItem_f468cddf-638f-4b2f-9147-a1ceaa0f5c53" parent="Items/Item2D8" instance=ExtResource( "16" )]
+
+[node name="CanvasInventory" type="CanvasLayer" parent="."]
+
+[node name="InventoryAny" parent="CanvasInventory" instance=ExtResource( "13" )]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 100.0
+offset_right = 0.0
+rect_min_size = Vector2(300, 300)
+
+[node name="CanvasButton" type="CanvasLayer" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasButton"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 100.0
+texture_normal = ExtResource( "14" )
+__meta__ = {
+"_edit_use_anchors_": false
+}

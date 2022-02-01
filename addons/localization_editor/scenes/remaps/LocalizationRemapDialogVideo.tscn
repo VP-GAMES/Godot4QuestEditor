@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b3vp2dngpmd0f"]
+
+[node name="LocalizationRemapVideoDialog" type="Window"]
+
+[node name="VideoPlayer" type="VideoStreamPlayer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

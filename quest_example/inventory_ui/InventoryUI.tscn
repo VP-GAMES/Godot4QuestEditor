@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhu5hq8kx8pov"]
+
+[ext_resource type="Texture2D" uid="uid://ba2q2j3lkloto" path="res://addons/inventory_example/textures/inventories/InventoryBackground.png" id="1"]
+
+[node name="Inventory" type="Control"]
+offset_right = 300.0
+offset_bottom = 300.0
+rect_min_size = Vector2(400, 400)
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( "1" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grid" type="GridContainer" parent="NinePatchRect/Margin"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 390.0
+offset_bottom = 390.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4

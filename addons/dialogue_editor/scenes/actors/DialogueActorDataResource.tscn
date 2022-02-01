@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5oapcp1mwwa1"]
+
+[ext_resource type="Texture2D" uid="uid://dj0dj3apfv7mo" path="res://addons/dialogue_editor/icons/Trash.png" id="1"]
+[ext_resource type="FontData" uid="uid://b70mxl2qgp5dt" path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" id="2"]
+[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataResource.gd" id="3"]
+[ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataPath.tscn" id="5"]
+
+[sub_resource type="Font" id="1"]
+data/0 = ExtResource( "2" )
+
+[sub_resource type="Font" id="Font_qyvkf"]
+data/0 = ExtResource( "2" )
+
+[node name="DialogueActorDataResource" type="HBoxContainer"]
+script = ExtResource( "3" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="LineEdit" parent="."]
+offset_right = 120.0
+offset_bottom = 31.0
+rect_min_size = Vector2(120, 0)
+theme_override_fonts/font = SubResource( "1" )
+placeholder_text = "Name"
+
+[node name="Path" parent="." instance=ExtResource( "5" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 124.0
+offset_right = 176.0
+offset_bottom = 31.0
+theme_override_fonts/font = SubResource( "Font_qyvkf" )
+
+[node name="Del" type="Button" parent="."]
+offset_left = 180.0
+offset_right = 200.0
+offset_bottom = 31.0
+rect_min_size = Vector2(20, 20)
+hint_tooltip = "Delete resource"
+icon = ExtResource( "1" )

@@ -1,0 +1,27 @@
+keys,en,de,ru
+BOY,Boy,Junge,Мальчик
+GIRL,Girl,Mädchen,Девочка
+JOHN,John,Johan,Ваня
+QUEST_HEADER,[center][color=yellow]NO QUEST[/color][/center],[center][color=yellow]KEINE QUEST[/color][/center],[center][color=yellow]КВЕСТА НЕТ[/color][/center]
+QUEST_DESCRIPTION,[center]...[/center],[center]...[/center],[center]...[/center]
+QUEST_START_01,"Hello, do you need help?","Hallo, brauchts du Hilfe?","Привет, тебе нужна помошь?"
+QUEST_START_02,"Yes, please go to the wood and kill 1 enemy, speak with John, trigger switsch and find a hidden item.","Ja, bitte gehe in den Wald, bekämpfe einen Gegner, sprich mit Johan, lege den Schalter um und finde ein verstecktes Item.","Да, пожалуйста сходи в лес, победи врага, поговори с Ваней, переключи выключатель и найди спрятанный предмет."
+QUEST_START_03,"Thank you, i try to do so.","Danke dir, ich versuche es zu erledigen.","Спасибо тебе, я попробую все сделать."
+QUEST_START_04,"Sorry, i have no time.",Entschuldige ich habe leider keine Zeit.,"Извени, но я не могу."
+QUEST_START_05,Good look!,Viel Erfolg!,Успеха!
+QUEST_STARTET,You have already a task.,Du hast bereits eine Aufgabe.,У тебя уже есть задание.
+QUEST_START_NAME,[center][color=yellow]The long search[/color][/center],[center][color=yellow]Die lange Suche[/color][/center],[center][color=yellow]Долгий поиск[/color][/center]
+QUEST_START_DESCRIPTION,"[center]Go to the wood and\nkill 1 enemy,\nspeak with John,\ntrigger switsch\nand\nfind a hidden item.[/center]","[center]Gehe in den Wald, bekämpfe einen Gegner, sprich mit Johan, lege den Schalter um und finde ein verstecktes Item.[/center]","[center]Сходи в лес, победи врага, поговори с Ваней, переключи выключатель и найди спрятанный предмет.[/center]"
+QUEST_SPEACK_JOHN_01,"Hi John, i search for a hidden item!","Hallo Johan, ich suche nach dem verstecktem Item.","Привет Ваня, я ищу спрятанный предмет."
+QUEST_SPEACK_JOHN_02,"Hi, you find a hidden item in a wood.",Du findest das Item in Wald.,Ты найдешь предмет в лесу.
+QUEST_DELIVERY,Thank you for your help. You are the best of the best! Here some rewards.,Danke für Deine Hilfe. Du bist der Beste! Hier ist Deine Belohnung.,Спасибо за твою помошь. Ты супеер. Вот твоя награда. 
+QUEST_STARTED_TEXT,[center]Quest started:[/center],[center]Quest gestartet:[/center],[center]Квест начат:[/center]
+QUEST_ENDED_TEXT,[center]Quest_ended:[/center],[center]Quest beendet:[/center],[center]Квест завершен:[/center]
+ITEM_HEALTH,[center]Restores 10 HP[/center],[center]Heilt 10 HP[/center],[center]Востанавливает 10 HP[/center]
+ITEM_HEALTH_BIG,[center]Restores 25 HP[/center],[center]Heilt 25 HP[/center],[center]Востанавливает 25 HP[/center]
+QUEST_NEXT_NAME,Speak NPC,Sprich mit NPC,Поговори с НПЦ
+QUEST_NEXT_DESCRIPTION,Speak NPC,Sprich mit NPC,Поговори с НПЦ
+QUEST_NEXT_01,"John, can you give me another job?","Johan, kannst du mir eine andere Aufgabe geben?","Ваня, ты можешь дать другое задание?"
+QUEST_NEXT_02,"Yes, please speak with other NPC.","Ja, bitte sprich mit anderem NPC.","Да, пожалуйста ппоговори с другим НПЦ."
+QUEST_NEXT_03,I have to speak with you.,Ich soll mit dir sprechen.,Я должен поговорить с тобой.
+QUEST_NEXT_04,Nice,Schön,Отличсно

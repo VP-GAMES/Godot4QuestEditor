@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://daf0u84hiuhfy"]
+
+[node name="LocalizationRemapDialogFile" type="FileDialog"]
+mode_overrides_title = false
+file_mode = 0

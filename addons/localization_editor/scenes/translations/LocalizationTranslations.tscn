@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfykqid37nnvl"]
+
+[ext_resource type="Script" path="res://addons/localization_editor/scenes/translations/LocalizationTranslations.gd" id="1"]
+
+[node name="LocalizationTranslations" type="Panel"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( "1" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Translations" type="HBoxContainer" parent="Scroll"]
+offset_right = 12.0
+offset_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}

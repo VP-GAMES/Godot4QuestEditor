@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwau5ilrs3ooc"]
+
+[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/scenes/DialogueScenesEditorView.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://o3wba4nt5vjh" path="res://addons/dialogue_editor/scenes/scenes/DialogueScenes.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/scenes/DialogueScenePreview.tscn" id="3"]
+
+[node name="DialogueScenesEditorView" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( "1" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Split" type="HSplitContainer" parent="."]
+offset_right = 1024.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = -297
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scenes" parent="Split" instance=ExtResource( "2" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 209.0
+offset_bottom = 600.0
+rect_clip_content = true
+
+[node name="Preview" parent="Split" instance=ExtResource( "3" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 221.0
+offset_right = 1024.0
+offset_bottom = 600.0

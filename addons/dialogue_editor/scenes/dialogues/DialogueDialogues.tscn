@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjql1jis11282"]
+
+[ext_resource type="Texture2D" uid="uid://cu2mqtk8bruhb" path="res://addons/dialogue_editor/icons/Add.png" id="1"]
+[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialogues.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://6qw5d51fgo8s" path="res://addons/dialogue_editor/icons/Nodes.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://d20i4p406mdnt" path="res://addons/dialogue_editor/icons/Bricks.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cdv72buvehi8b" path="res://addons/dialogue_editor/icons/Play.png" id="5"]
+
+[node name="Panel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( "2" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_bottom = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 1277.0
+offset_bottom = 957.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBox" type="HBoxContainer" parent="Margin/VBox"]
+offset_right = 1274.0
+offset_bottom = 29.0
+
+[node name="Add" type="Button" parent="Margin/VBox/HBox"]
+offset_right = 22.0
+offset_bottom = 29.0
+rect_min_size = Vector2(20, 20)
+hint_tooltip = "Add new dialogue"
+icon = ExtResource( "1" )
+
+[node name="Label" type="Label" parent="Margin/VBox/HBox"]
+offset_left = 26.0
+offset_top = 1.0
+offset_right = 1216.0
+offset_bottom = 27.0
+size_flags_horizontal = 3
+text = "Dialogues"
+
+[node name="Play" type="Button" parent="Margin/VBox/HBox"]
+offset_left = 1220.0
+offset_right = 1242.0
+offset_bottom = 29.0
+rect_min_size = Vector2(20, 20)
+hint_tooltip = "Play actual dialogue"
+icon = ExtResource( "5" )
+
+[node name="Nodes" type="Button" parent="Margin/VBox/HBox"]
+offset_left = 1246.0
+offset_right = 1274.0
+offset_bottom = 29.0
+rect_min_size = Vector2(20, 20)
+hint_tooltip = "Node view"
+toggle_mode = true
+icon = ExtResource( "3" )
+
+[node name="Bricks" type="Button" parent="Margin/VBox/HBox"]
+visible = false
+rect_min_size = Vector2(20, 20)
+hint_tooltip = "Briks view"
+toggle_mode = true
+icon = ExtResource( "4" )
+
+[node name="HSeparator" type="HSeparator" parent="Margin/VBox"]
+offset_top = 33.0
+offset_right = 1274.0
+offset_bottom = 37.0
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/VBox"]
+offset_top = 41.0
+offset_right = 1274.0
+offset_bottom = 954.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogues" type="VBoxContainer" parent="Margin/VBox/Scroll"]
+offset_right = 1274.0
+offset_bottom = 913.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

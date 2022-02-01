@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://o3wba4nt5vjh"]
+
+[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/scenes/DialogueScenes.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cu2mqtk8bruhb" path="res://addons/dialogue_editor/icons/Add.png" id="2"]
+[ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/scenes/DialogueScenesVBox.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://chhe1dy2ak2ln" path="res://addons/dialogue_editor/scenes/scenes/DialogueSceneUI.tscn" id="4"]
+
+[node name="Panel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( "1" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_bottom = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 1277.0
+offset_bottom = 957.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBox" type="HBoxContainer" parent="Margin/VBox"]
+offset_right = 1274.0
+offset_bottom = 31.0
+
+[node name="Add" type="Button" parent="Margin/VBox/HBox"]
+offset_right = 20.0
+offset_bottom = 31.0
+rect_min_size = Vector2(20, 20)
+hint_tooltip = "Add new scene"
+icon = ExtResource( "2" )
+
+[node name="Label" type="Label" parent="Margin/VBox/HBox"]
+offset_left = 24.0
+offset_top = 2.0
+offset_right = 77.0
+offset_bottom = 28.0
+text = "Scenes"
+
+[node name="HSeparator" type="HSeparator" parent="Margin/VBox"]
+offset_top = 35.0
+offset_right = 1274.0
+offset_bottom = 39.0
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/VBox"]
+offset_top = 43.0
+offset_right = 1274.0
+offset_bottom = 954.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scenes" parent="Margin/VBox/Scroll" instance=ExtResource( "3" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1274.0
+offset_bottom = 911.0
+
+[node name="DialogueSceneUI" parent="Margin/VBox/Scroll/Scenes" instance=ExtResource( "4" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1274.0
+offset_bottom = 31.0

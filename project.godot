@@ -8,8 +8,242 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Area2D",
+"class": &"Dialogue2D",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/DialogueDialogue2D.gd"
+}, {
+"base": "Area3D",
+"class": &"Dialogue3D",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/DialogueDialogue3D.gd"
+}, {
+"base": "Resource",
+"class": &"DialogueActor",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/model/DialogueActor.gd"
+}, {
+"base": "Resource",
+"class": &"DialogueData",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/model/DialogueData.gd"
+}, {
+"base": "Resource",
+"class": &"DialogueDialogue",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/model/DialogueDialogue.gd"
+}, {
+"base": "EditorProperty",
+"class": &"DialogueDialogueInspectorEditor",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/inspectors/DialogueMangerDialoguesInspectorPluginEditor.gd"
+}, {
+"base": "RefCounted",
+"class": &"DialogueDialogues",
+"language": &"GDScript",
+"path": "res://dialogue/DialogueDialogues.gd"
+}, {
+"base": "Resource",
+"class": &"DialogueEmpty",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/model/DialogueEmpty.gd"
+}, {
+"base": "RefCounted",
+"class": &"DialogueEvents",
+"language": &"GDScript",
+"path": "res://dialogue/DialogueEvents.gd"
+}, {
+"base": "Resource",
+"class": &"DialogueNode",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/model/DialogueNode.gd"
+}, {
+"base": "PanelContainer",
+"class": &"DialoguePanelSentence",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/scenes/dialogues/nodes_view/nodes/node_sentence/PanelSentence.gd"
+}, {
+"base": "Resource",
+"class": &"DialogueSentence",
+"language": &"GDScript",
+"path": "res://addons/dialogue_editor/model/DialogueSentence.gd"
+}, {
+"base": "Object",
+"class": &"DropdownItem",
+"language": &"GDScript",
+"path": "res://addons/localization_editor/ui_extensions/dropdown/DropdownItem.gd"
+}, {
+"base": "Resource",
+"class": &"InventoryData",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/model/InventoryData.gd"
+}, {
+"base": "EditorProperty",
+"class": &"InventoryInspectorEditorInventory",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/InventoryInspectorPluginEditorInventory.gd"
+}, {
+"base": "EditorProperty",
+"class": &"InventoryInspectorEditorItem",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/InventoryInspectorPluginEditorItem.gd"
+}, {
+"base": "EditorProperty",
+"class": &"InventoryInspectorEditorType",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/InventoryInspectorPluginEditorType.gd"
+}, {
+"base": "Resource",
+"class": &"InventoryInventories",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/InventoryManagerInventories.gd"
+}, {
+"base": "Resource",
+"class": &"InventoryInventory",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/model/InventoryInventory.gd"
+}, {
+"base": "Resource",
+"class": &"InventoryItem",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/model/InventoryItem.gd"
+}, {
+"base": "RefCounted",
+"class": &"InventoryManagerInventory",
+"language": &"GDScript",
+"path": "res://inventory/InventoryManagerInventory.gd"
+}, {
+"base": "RefCounted",
+"class": &"InventoryManagerItem",
+"language": &"GDScript",
+"path": "res://inventory/InventoryManagerItem.gd"
+}, {
+"base": "InventoryItem",
+"class": &"InventoryRecipe",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/model/InventoryRecipe.gd"
+}, {
+"base": "Resource",
+"class": &"InventoryType",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/model/InventoryType.gd"
+}, {
+"base": "Control",
+"class": &"InventoryUI",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/ui/InventoryInventoryUI.gd"
+}, {
+"base": "Node2D",
+"class": &"Item2D",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/InventoryItem2D.gd"
+}, {
+"base": "Node3D",
+"class": &"Item3D",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/InventoryItem3D.gd"
+}, {
+"base": "TextureRect",
+"class": &"ItemUI",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/ui/InventoryItemUI.gd"
+}, {
+"base": "Resource",
+"class": &"LocalizationData",
+"language": &"GDScript",
+"path": "res://addons/localization_editor/model/LocalizationData.gd"
+}, {
+"base": "RefCounted",
+"class": &"LocalizationKeys",
+"language": &"GDScript",
+"path": "res://localization/LocalizationKeys.gd"
+}, {
+"base": "Object",
+"class": &"LocalizationLocaleSingle",
+"language": &"GDScript",
+"path": "res://addons/localization_editor/model/LocalizationLocaleSingle.gd"
+}, {
+"base": "Object",
+"class": &"LocalizationLocalesList",
+"language": &"GDScript",
+"path": "res://addons/localization_editor/model/LocalizationLocalesList.gd"
+}, {
+"base": "RefCounted",
+"class": &"LocalizationPlaceholders",
+"language": &"GDScript",
+"path": "res://localization/LocalizationPlaceholders.gd"
+}, {
+"base": "Resource",
+"class": &"LocalizationPlaceholdersData",
+"language": &"GDScript",
+"path": "res://addons/localization_editor/model/LocalizationPlaceholdersData.gd"
+}, {
+"base": "Resource",
+"class": &"LocalizationSave",
+"language": &"GDScript",
+"path": "res://addons/localization_editor/model/LocalizationSave.gd"
+}, {
+"base": "Node",
+"class": &"UUID",
+"language": &"GDScript",
+"path": "res://addons/localization_editor/uuid/uuid.gd"
+}]
+_global_script_class_icons={
+"Dialogue2D": "",
+"Dialogue3D": "",
+"DialogueActor": "res://addons/dialogue_editor/icons/Actor.png",
+"DialogueData": "",
+"DialogueDialogue": "res://addons/dialogue_editor/icons/Dialogue.png",
+"DialogueDialogueInspectorEditor": "",
+"DialogueDialogues": "",
+"DialogueEmpty": "",
+"DialogueEvents": "",
+"DialogueNode": "res://addons/dialogue_editor/icons/Node.png",
+"DialoguePanelSentence": "",
+"DialogueSentence": "res://addons/dialogue_editor/icons/Sentence.png",
+"DropdownItem": "",
+"InventoryData": "",
+"InventoryInspectorEditorInventory": "",
+"InventoryInspectorEditorItem": "",
+"InventoryInspectorEditorType": "",
+"InventoryInventories": "",
+"InventoryInventory": "",
+"InventoryItem": "",
+"InventoryManagerInventory": "",
+"InventoryManagerItem": "",
+"InventoryRecipe": "",
+"InventoryType": "",
+"InventoryUI": "",
+"Item2D": "",
+"Item3D": "",
+"ItemUI": "",
+"LocalizationData": "",
+"LocalizationKeys": "",
+"LocalizationLocaleSingle": "",
+"LocalizationLocalesList": "",
+"LocalizationPlaceholders": "",
+"LocalizationPlaceholdersData": "",
+"LocalizationSave": "",
+"UUID": ""
+}
+
 [application]
 
-config/name="Godot 4 Quest Editor"
+config/name="Godot4QuestEditor"
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
+
+[autoload]
+
+LocalizationManager="*res://addons/localization_editor/LocalizationManager.gd"
+DialogueManager="*res://addons/dialogue_editor/DialogueManager.gd"
+InventoryManager="*res://addons/inventory_editor/InventoryManager.gd"
+
+[dialogue_editor]
+
+dialogues_selected_dialogue="f8991765-0fff-4d5c-b806-f18501d05346"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_editor/plugin.cfg", "res://addons/inventory_editor/plugin.cfg", "res://addons/localization_editor/plugin.cfg")

@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcx3xsm5yseo6"]
+
+[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/nodes/node_sentence/PanelSentence.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cf8spgpdsxfdb" path="res://addons/dialogue_editor/ui_extensions/dropdown/Dropdown.tscn" id="2"]
+
+[node name="PanelSentence" type="PanelContainer"]
+script = ExtResource( "1" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+offset_right = 176.0
+offset_bottom = 66.0
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+offset_right = 176.0
+offset_bottom = 31.0
+
+[node name="Remove" type="Button" parent="VBox/HBox"]
+offset_right = 24.0
+offset_bottom = 31.0
+rect_min_size = Vector2(24, 24)
+text = "-"
+
+[node name="Event" type="Button" parent="VBox/HBox"]
+offset_left = 28.0
+offset_right = 52.0
+offset_bottom = 31.0
+rect_min_size = Vector2(24, 24)
+toggle_mode = true
+
+[node name="Select" type="CheckBox" parent="VBox/HBox"]
+offset_left = 56.0
+offset_right = 80.0
+offset_bottom = 31.0
+
+[node name="Text" type="LineEdit" parent="VBox/HBox"]
+offset_left = 84.0
+offset_right = 148.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="Dropdown" parent="VBox/HBox" instance=ExtResource( "2" )]
+anchor_right = 0.0
+offset_left = 152.0
+offset_right = 176.0
+
+[node name="HBoxEvent" type="HBoxContainer" parent="VBox"]
+offset_top = 35.0
+offset_right = 176.0
+offset_bottom = 66.0
+
+[node name="Label" type="Label" parent="VBox/HBoxEvent"]
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 27.0
+rect_min_size = Vector2(52, 0)
+
+[node name="EventText" type="LineEdit" parent="VBox/HBoxEvent"]
+offset_left = 56.0
+offset_right = 176.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
