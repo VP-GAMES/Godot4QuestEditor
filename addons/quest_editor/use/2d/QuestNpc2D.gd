@@ -68,20 +68,20 @@ func _on_body_entered(body: Node) -> void:
 
 func _on_body_exited(body: Node) -> void:
 	inside = false
-	if dialogueManager:
+	if dialogueManager != null:
 		if dialogueManager.is_started():
 			dialogueManager.cancel_dialogue()
 
 func _input(event: InputEvent):
-	if inside and dialogueManager:
+	if inside and dialogueManager != null:
 		if event.is_action_released(activate) and not dialogueManager.is_started():
 			var trigger = questManager.get_trigger_by_ui_uuid(_uuid)
 			_quest = questManager.get_quest_available_by_start_trigger(trigger.uuid)
 			if not questManager.is_quest_started():
-				if _quest:
+				if _quest != null:
 					_start_quest_and_dialogue()
 			else:
-				if _quest:
+				if _quest != null:
 					if _quest.tasks_done() and _quest.is_quest_delivery_dialogue() and not dialogueManager.is_started():
 						if _quest.delivery_trigger == trigger.uuid:
 							dialogueManager.start_dialogue(_quest.delivery_dialogue)
@@ -93,7 +93,7 @@ func _input(event: InputEvent):
 					_quest = questManager.started_quest()
 					var task_trigger = questManager.get_trigger_by_ui_uuid(_uuid)
 					var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
-					if task and task.dialogue and not task.dialogue.is_empty():
+					if task != null and task.dialogue != null and not task.dialogue.is_empty():
 						dialogueManager.start_dialogue(task.dialogue)
 		if event.is_action_released(activate):
 				dialogueManager.next_sentence()

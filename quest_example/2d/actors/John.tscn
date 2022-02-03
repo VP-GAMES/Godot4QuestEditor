@@ -1,26 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://ca4pk6fh04tt7"]
 
-[ext_resource path="res://quest_example/2d/actors/John.gd" type="Script" id=1]
-[ext_resource path="res://quest_example/textures/John.png" type="Texture" id=2]
-[ext_resource path="res://quest_example/textures/Attention.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://quest_example/2d/actors/John.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://vaiykiu877ht" path="res://quest_example/textures/John.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://wi43gsr1hbu2" path="res://quest_example/textures/Attention.png" id="3"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 580.544, 228.882 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1161.09, 457.764)
 
 [node name="John" type="Area2D"]
-script = ExtResource( 1 )
+script = ExtResource( "1" )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -230 )
-shape = SubResource( 1 )
+position = Vector2(0, -230)
+shape = SubResource( "1" )
 
-[node name="John" type="Sprite" parent="."]
-position = Vector2( 0, -220 )
-texture = ExtResource( 2 )
+[node name="John" type="Sprite2D" parent="."]
+position = Vector2(0, -220)
+texture = ExtResource( "2" )
 
 [node name="QuestTriggerUUID_eaf855c0-96bb-4e99-8ba4-4db19746f7de" type="Node" parent="."]
 
-[node name="Attention" type="Sprite" parent="."]
+[node name="Attention" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 0, -700 )
-texture = ExtResource( 3 )
+position = Vector2(0, -700)
+texture = ExtResource( "3" )

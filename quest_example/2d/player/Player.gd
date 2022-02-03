@@ -16,6 +16,8 @@ func _physics_process(delta: float) -> void:
 	_velocity.y += gravity * delta
 	var is_jump_interrupted: = Input.is_action_just_released("move_up") and _velocity.y < 0.0
 	var direction: = get_direction()
+	if direction.x != 0:
+		_direction = direction.x > 0
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	motion_velocity = _velocity
 	move_and_slide()

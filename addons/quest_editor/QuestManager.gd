@@ -63,7 +63,7 @@ func end_quest(quest: QuestQuest) -> void:
 
 func get_task_and_update_quest_state(quest: QuestQuest, trigger_uuid: String, add_quantity = 0):
 	var task = quest.update_task_state(trigger_uuid, add_quantity)
-	if task and task.done == true:
+	if task != null and task.done == true:
 		quest.check_state()
 		if quest.state == QuestQuest.QUESTSTATE_DONE:
 			call_rewards_methods(quest)
@@ -77,7 +77,7 @@ func get_quest_trigger_by_ui_uuid(trigger_ui: String) -> QuestTrigger:
 
 func get_trigger_by_ui_uuid(trigger_ui: String) -> QuestTrigger:
 	for trigger in _data.triggers:
-		if trigger.scene:
+		if trigger.scene != null:
 			var scene =  trigger.get_loaded_scene()
 			if scene.has_method("get_uuid"):
 				var trigger_uuid = scene.get_uuid()
