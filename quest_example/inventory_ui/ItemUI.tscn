@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://do5m1vbsy45nd"]
 
 [ext_resource type="PackedScene" uid="uid://1txirr45vbrf" path="res://addons/inventory_editor/ui/InventoryItemUIIcon.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://c6w8yf24vtcwj" path="res://addons/inventory_example/textures/inventories/InventoryBackgroundItem.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://ya7b5mfi041h" path="res://quest_example/textures/InventoryBackgroundItem.png" id="1_j2lmm"]
 [ext_resource type="Script" path="res://quest_example/inventory_ui/ItemUI.gd" id="2_2uk36"]
 
 [node name="ItemBg" type="TextureRect"]
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( "2" )
+texture = ExtResource( "1_j2lmm" )
 ignore_texture_size = true
 script = ExtResource( "2_2uk36" )
 __meta__ = {

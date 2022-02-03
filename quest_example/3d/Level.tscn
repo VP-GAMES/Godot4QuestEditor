@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bv2ceh5gjbvkn" path="res://quest_example/textures/Chest.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bec7ilkcdhjig" path="res://quest_example/textures/Quest.png" id="4"]
 [ext_resource type="Script" path="res://quest_example/3d/Level.gd" id="5"]
-[ext_resource type="PackedScene" path="res://quest_example/quest_ui/QuestUi.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dy2a2b505um0t" path="res://quest_example/quest_ui/QuestUi.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bhu5hq8kx8pov" path="res://quest_example/inventory_ui/InventoryUI.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://quest_example/3d/actors/Destination.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://quest_example/3d/actors/Enemy.tscn" id="9"]
