@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhu5hq8kx8pov"]
+[gd_scene load_steps=4 format=3 uid="uid://bhu5hq8kx8pov"]
 
 [ext_resource type="Texture2D" uid="uid://ba2q2j3lkloto" path="res://addons/inventory_example/textures/inventories/InventoryBackground.png" id="1"]
+[ext_resource type="Script" path="res://quest_example/inventory_ui/InventoryUI.gd" id="1_mqn1i"]
+[ext_resource type="PackedScene" uid="uid://do5m1vbsy45nd" path="res://quest_example/inventory_ui/ItemUI.tscn" id="2_jqccn"]
 
 [node name="Inventory" type="Control"]
 offset_right = 300.0
 offset_bottom = 300.0
 rect_min_size = Vector2(400, 400)
+script = ExtResource( "1_mqn1i" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+inventory = ""
+Item = ExtResource( "2_jqccn" )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_right = 1.0
