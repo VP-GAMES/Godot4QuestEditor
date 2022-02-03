@@ -7,7 +7,6 @@ var _trigger: QuestTrigger
 var _data: QuestData
 
 @onready var _type_ui = $HBoxType/Type as Label
-@onready var _put_ui = $HBoxPath/Put as TextureRect
 @onready var _path_ui = $HBoxPath/Path as LineEdit
 @onready var _open_ui = $HBoxPath/Open as Button
 @onready var _preview_ui = $VBoxPreview as VBoxContainer
@@ -43,7 +42,6 @@ func _on_preview_ui_resized() -> void:
 func _selection_changed() -> void:
 	_trigger = _data.selected_trigger()
 	if _trigger:
-		_put_ui.set_data(_trigger, _data)
 		_path_ui.set_data(_trigger, _data)
 		_init_connections_trigger()
 	_draw_view()

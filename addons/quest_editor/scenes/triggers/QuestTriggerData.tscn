@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmp5x2k03ooxp"]
+[gd_scene load_steps=6 format=3 uid="uid://cmp5x2k03ooxp"]
 
 [ext_resource type="Texture2D" uid="uid://dg0ldtvtoiia3" path="res://addons/quest_editor/icons/File.png" id="1"]
 [ext_resource type="Script" path="res://addons/quest_editor/scenes/triggers/QuestTriggerData.gd" id="2"]
-[ext_resource type="PackedScene" path="res://addons/quest_editor/scenes/triggers/QuestTriggerPath.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://addons/quest_editor/scenes/triggers/QuestTriggerPathPut.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cavnmixnsholv" path="res://addons/quest_editor/scenes/triggers/QuestTriggerPath.tscn" id="3"]
 [ext_resource type="FontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="4_y5rjy"]
 
 [sub_resource type="Font" id="1"]
@@ -24,14 +23,14 @@ offset_right = 1024.0
 offset_bottom = 26.0
 
 [node name="Label" type="Label" parent="HBoxType"]
-offset_right = 110.0
+offset_right = 85.0
 offset_bottom = 26.0
-rect_min_size = Vector2(110, 0)
+rect_min_size = Vector2(85, 0)
 text = "Type"
 
 [node name="Type" type="Label" parent="HBoxType"]
-offset_left = 114.0
-offset_right = 157.0
+offset_left = 89.0
+offset_right = 132.0
 offset_bottom = 26.0
 text = "NULL"
 
@@ -47,15 +46,10 @@ offset_bottom = 28.0
 rect_min_size = Vector2(85, 0)
 text = "Scene"
 
-[node name="Put" parent="HBoxPath" instance=ExtResource( "4" )]
-offset_left = 89.0
-offset_right = 109.0
-offset_bottom = 31.0
-
 [node name="Path" parent="HBoxPath" instance=ExtResource( "3" )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 113.0
+offset_left = 89.0
 offset_right = 1000.0
 offset_bottom = 31.0
 theme_override_fonts/font = SubResource( "1" )
