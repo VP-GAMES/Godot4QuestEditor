@@ -110,8 +110,6 @@ scale = Vector2(0.2, 0.2)
 position = Vector2(-500, 549)
 scale = Vector2(0.25, 0.25)
 
-[node name="QuestTriggerUUID_43ffe1bf-bb34-4ff6-b51a-a9dfee0b96d5" type="Node" parent="Trigger"]
-
 [node name="Destination" parent="." instance=ExtResource( "13" )]
 position = Vector2(-1200, 549)
 scale = Vector2(0.4, 0.4)

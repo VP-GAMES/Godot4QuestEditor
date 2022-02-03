@@ -312,7 +312,7 @@ func _save_data_quests() -> void:
 	file.open(default_path + "QuestManagerQuests.gd", File.WRITE)
 	var source_code = "# List of created quests for QuestManger to use in source code: MIT License\n"
 	source_code += AUTHOR
-	source_code += "tool\n"
+	source_code += "@tool\n"
 	source_code += "class_name QuestManagerQuests\n\n"
 	for quest in quests:
 		var namePrepared = quest.name.replace(" ", "")
@@ -335,7 +335,7 @@ func _save_data_triggers() -> void:
 	file.open(default_path + "QuestManagerTriggers.gd", File.WRITE)
 	var source_code = "# List of created triggers for QuestManger to use in source code: MIT License\n"
 	source_code += AUTHOR
-	source_code += "tool\n"
+	source_code += "@tool\n"
 	source_code += "class_name QuestManagerTriggers\n\n"
 	for trigger in triggers:
 		var namePrepared = trigger.name.replace(" ", "")

@@ -33,9 +33,9 @@ func _on_translation_changed() -> void:
 	_quest_text_update()
 
 func _quest_text_update() -> void:
-	if _quest:
-		_header_ui.bbcode_text = _localizationManager.tr(_quest.uiname)
-		_description_ui.bbcode_text = _localizationManager.tr(_quest.description)
+	if _quest != null:
+		_header_ui.parse_bbcode(_localizationManager.tr(_quest.uiname))
+		_description_ui.parse_bbcode(_localizationManager.tr(_quest.description))
 	else:
-		_header_ui.bbcode_text = _localizationManager.tr(LocalizationKeys.QUEST_HEADER)
-		_description_ui.bbcode_text = _localizationManager.tr(LocalizationKeys.QUEST_DESCRIPTION)
+		_header_ui.parse_bbcode(_localizationManager.tr(LocalizationKeys.QUEST_HEADER))
+		_description_ui.parse_bbcode(_localizationManager.tr(LocalizationKeys.QUEST_DESCRIPTION))
