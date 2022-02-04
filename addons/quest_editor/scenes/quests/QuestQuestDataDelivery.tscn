@@ -10,28 +10,28 @@ __meta__ = {
 }
 
 [node name="HBox" type="HBoxContainer" parent="."]
-offset_right = 273.0
+offset_right = 287.0
 offset_bottom = 31.0
 
 [node name="Delivery" type="CheckBox" parent="HBox"]
-offset_right = 146.0
+offset_right = 160.0
 offset_bottom = 31.0
-rect_min_size = Vector2(130, 0)
+rect_min_size = Vector2(160, 0)
 text = "Delivery trigger"
 
 [node name="EndTrigger" parent="HBox" instance=ExtResource( "2" )]
 anchor_right = 0.0
-offset_left = 150.0
-offset_right = 174.0
+offset_left = 164.0
+offset_right = 188.0
 
 [node name="Label" type="Label" parent="HBox"]
-offset_left = 178.0
+offset_left = 192.0
 offset_top = 2.0
-offset_right = 245.0
+offset_right = 259.0
 offset_bottom = 28.0
 text = "Dialogue"
 
 [node name="EndDialogue" parent="HBox" instance=ExtResource( "2" )]
 anchor_right = 0.0
-offset_left = 249.0
-offset_right = 273.0
+offset_left = 263.0
+offset_right = 287.0

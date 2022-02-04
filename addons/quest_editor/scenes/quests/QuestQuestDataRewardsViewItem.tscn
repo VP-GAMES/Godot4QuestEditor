@@ -1,49 +1,47 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cf1rpopspmecs"]
 
-[ext_resource path="res://addons/quest_editor/icons/Trash.png" type="Texture" id=1]
-[ext_resource path="res://addons/quest_editor/scenes/quests/QuestQuestDataRewardsViewItem.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://bcia7fs1y13ht" path="res://addons/quest_editor/icons/Trash.png" id="1"]
+[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRewardsViewItem.gd" id="2"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 24.0
 size_flags_horizontal = 3
-script = ExtResource( 2 )
+script = ExtResource( "2" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="."]
-margin_top = 5.0
-margin_right = 130.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 130, 0 )
+offset_top = 2.0
+offset_right = 160.0
+offset_bottom = 28.0
+rect_min_size = Vector2(160, 0)
 text = "Player method"
 
 [node name="Method" type="LineEdit" parent="."]
-margin_left = 134.0
-margin_right = 538.0
-margin_bottom = 24.0
+offset_left = 164.0
+offset_right = 228.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
 
 [node name="Label3" type="Label" parent="."]
-margin_left = 542.0
-margin_top = 5.0
-margin_right = 589.0
-margin_bottom = 19.0
+offset_left = 232.0
+offset_top = 2.0
+offset_right = 290.0
+offset_bottom = 28.0
 text = "Params"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Params" type="LineEdit" parent="."]
-margin_left = 593.0
-margin_right = 998.0
-margin_bottom = 24.0
+offset_left = 294.0
+offset_right = 358.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
 
 [node name="Del" type="Button" parent="."]
-margin_left = 1002.0
-margin_right = 1024.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 20, 20 )
-icon = ExtResource( 1 )
+offset_left = 362.0
+offset_right = 382.0
+offset_bottom = 31.0
+rect_min_size = Vector2(20, 20)
+icon = ExtResource( "1" )

@@ -12,38 +12,38 @@ __meta__ = {
 
 [node name="Action" type="Label" parent="."]
 offset_top = 2.0
-offset_right = 130.0
+offset_right = 160.0
 offset_bottom = 28.0
-rect_min_size = Vector2(130, 0)
+rect_min_size = Vector2(160, 0)
 text = "Action"
 
 [node name="Trigger" parent="." instance=ExtResource( "2" )]
 anchor_right = 0.0
-offset_left = 134.0
-offset_right = 158.0
+offset_left = 164.0
+offset_right = 188.0
 
 [node name="LabelDialogue" type="Label" parent="."]
-offset_left = 162.0
+offset_left = 192.0
 offset_top = 2.0
-offset_right = 229.0
+offset_right = 259.0
 offset_bottom = 28.0
 text = "Dialogue"
 
 [node name="Dialogue" parent="." instance=ExtResource( "2" )]
 anchor_right = 0.0
-offset_left = 233.0
-offset_right = 257.0
+offset_left = 263.0
+offset_right = 287.0
 
 [node name="LabelQuantity" type="Label" parent="."]
-offset_left = 261.0
+offset_left = 291.0
 offset_top = 2.0
-offset_right = 328.0
+offset_right = 358.0
 offset_bottom = 28.0
 text = "Quantity"
 
 [node name="Quantity" type="LineEdit" parent="."]
-offset_left = 332.0
-offset_right = 396.0
+offset_left = 362.0
+offset_right = 426.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
 __meta__ = {
@@ -51,8 +51,8 @@ __meta__ = {
 }
 
 [node name="Del" type="Button" parent="."]
-offset_left = 400.0
-offset_right = 420.0
+offset_left = 430.0
+offset_right = 450.0
 offset_bottom = 31.0
 rect_min_size = Vector2(20, 20)
 icon = ExtResource( "3" )
