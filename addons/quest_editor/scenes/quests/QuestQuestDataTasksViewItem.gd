@@ -59,7 +59,9 @@ func _fill_trigger_ui_dropdown() -> void:
 		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
 		_trigger_ui.add_item(item_t)
 	if not inventory_editor:
-		inventory_editor = get_tree().get_root().find_node("InventoryEditor", true, false)
+		var inventoryEditorPath = "../../../../../../../../../../InventoryEditor"
+		if has_node(inventoryEditorPath):
+			inventory_editor = get_node(inventoryEditorPath)
 	if inventory_editor:
 		var data = inventory_editor.get_data()
 		if data:
@@ -80,7 +82,9 @@ func _on_dialogue_gui_input(event: InputEvent) -> void:
 
 func _fill_dialogue_ui_dropdown() -> void:
 	if not dialogue_editor:
-		dialogue_editor = get_tree().get_root().find_node("DialogueEditor", true, false)
+		var dialogueEditorPath = "../../../../../../../../../../DialogueEditor"
+		if has_node(dialogueEditorPath):
+			dialogue_editor = get_node(dialogueEditorPath)
 	if dialogue_editor and _data:
 		_fill_start_ui_dropdown()
 		_dialogue_ui.set_selected_by_value(_task.dialogue)

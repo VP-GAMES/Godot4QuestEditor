@@ -7,7 +7,6 @@ class_name DialogueDialogueInspectorEditor
 const Dropdown = preload("res://addons/dialogue_editor/ui_extensions/dropdown/Dropdown.tscn")
 
 var updating = false
-var dialogue_editor
 var dropdown = Dropdown.instantiate()
 var _data: DialogueData
 
@@ -19,7 +18,7 @@ func set_data(data: DialogueData) -> void:
 func _init():
 	add_child(dropdown)
 	add_focusable(dropdown)
-	dropdown.connect("selection_changed", _on_selection_changed)
+	dropdown.selection_changed.connect(_on_selection_changed)
 
 func _update_dropdown() -> void:
 	dropdown.clear()
@@ -37,9 +36,3 @@ func _update_property():
 	updating = true
 	dropdown.set_selected_by_value(new_value)
 	updating = false
-
-func item_by_uuid(uuid: String) -> DropdownItem:
-	for dialogue in _data.dialogues:
-		if dialogue.uuid == uuid:
-			return DropdownItem.new(dialogue.name, dialogue.uuid)
-	return null

@@ -28,7 +28,9 @@ func _process(delta: float) -> void:
 
 func _dropdown_ui_init() -> void:
 	if localization_editor == null:
-		localization_editor = get_tree().get_root().find_node("LocalizationEditor", true, false)
+		var localizationEditorPath = "../../../../../../LocalizationEditor"
+		if has_node(localizationEditorPath):
+			localization_editor = get_node(localizationEditorPath)
 	if localization_editor != null:
 		var data = localization_editor.get_data()
 		if data:

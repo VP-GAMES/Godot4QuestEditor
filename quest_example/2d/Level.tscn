@@ -140,20 +140,19 @@ scale = Vector2(0.2, 0.2)
 offset_right = 70.0
 offset_bottom = 70.0
 texture_normal = ExtResource( "7" )
-expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource( "6" )]
 visible = false
+rect_min_size = Vector2(300, 300)
 anchor_left = 0.00103468
 anchor_right = 0.00103468
 offset_left = 68.9405
 offset_top = 70.0
 offset_right = 368.94
 offset_bottom = 370.0
-rect_min_size = Vector2(300, 300)
 inventory = "8e526c15-dfbe-478b-b0c9-a05aa8722cb0"
 
 [node name="QuestButton" type="TextureButton" parent="CanvasLayer"]
@@ -162,7 +161,6 @@ anchor_right = 1.0
 offset_left = -70.0
 offset_bottom = 70.0
 texture_normal = ExtResource( "10" )
-expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

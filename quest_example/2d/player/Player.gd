@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	if direction.x != 0:
 		_direction = direction.x > 0
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	motion_velocity = _velocity
+	velocity = _velocity
 	move_and_slide()
 
 func get_direction() -> Vector2:
@@ -33,13 +33,13 @@ func calculate_move_velocity(
 		speed_param: Vector2,
 		is_jump_interrupted: bool
 	) -> Vector2:
-	var velocity: = linear_velocity
-	velocity.x = speed_param.x * direction.x
+	var l_velocity: = linear_velocity
+	l_velocity.x = speed_param.x * direction.x
 	if direction.y != 0.0:
-		velocity.y = speed_param.y * direction.y
+		l_velocity.y = speed_param.y * direction.y
 	if is_jump_interrupted:
-		velocity.y = 0.0
-	return velocity
+		l_velocity.y = 0.0
+	return l_velocity
 
 func _input(event: InputEvent):
 	if event.is_action_released(attack):

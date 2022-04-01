@@ -6,7 +6,6 @@ extends QuestPlayer3D
 @export var speed_rotation : float = 3
 @export var gravity : float = 0.98
 
-var velocity : Vector3
 @export var attack: String = "attack"
 
 @onready var _animationPlayer: AnimationPlayer = $AnimationPlayer
@@ -29,7 +28,7 @@ func handle_movement(delta):
 		rotation.y -= speed_rotation * delta
 	direction = direction.normalized()
 	direction = direction * speed
-	motion_velocity = Vector3(direction.x, 0, direction.z)
+	velocity = Vector3(direction.x, 0, direction.z)
 	move_and_slide()
 
 func _input(event: InputEvent):

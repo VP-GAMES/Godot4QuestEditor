@@ -61,7 +61,9 @@ func _process(delta: float) -> void:
 
 func _dialogue_editor_init() -> void:
 	if not dialogue_editor:
-		dialogue_editor = get_tree().get_root().find_node("DialogueEditor", true, false)
+		var dialogueEditorPath = "../../../../../../../../DialogueEditor"
+		if has_node(dialogueEditorPath):
+			dialogue_editor = get_node(dialogueEditorPath)
 	if dialogue_editor and _data:
 		_fill_start_ui_dropdown()
 		_start_ui.set_selected_by_value(_quest.quest_start_dialogue)

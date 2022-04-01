@@ -1,9 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture2D"
+type="CompressedTexture2D"
 uid="uid://dob6kvdq3q3to"
-path="res://.godot/imported/Cancel.svg-0f54962fbebce4a0ac6eed4cb509bab4.stex"
+path="res://.godot/imported/Cancel.svg-0f54962fbebce4a0ac6eed4cb509bab4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/inventory_editor/ui_extensions/dropdown/Cancel.svg"
-dest_files=["res://.godot/imported/Cancel.svg-0f54962fbebce4a0ac6eed4cb509bab4.stex"]
+dest_files=["res://.godot/imported/Cancel.svg-0f54962fbebce4a0ac6eed4cb509bab4.ctex"]
 
 [params]
 
@@ -29,7 +29,7 @@ roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
-process/HDR_as_SRGB=false
+process/hdr_as_srgb=false
 process/size_limit=0
 detect_3d/compress_to=1
 svg/scale=1.0

@@ -34,7 +34,9 @@ func _process(delta: float) -> void:
 
 func _dropdown_ui_init() -> void:
 	if not localization_editor:
-		localization_editor = get_tree().get_root().find_node("LocalizationEditor", true, false)
+		var localizationEditorPath = "../../../../../../../../../LocalizationEditor"
+		if has_node(localizationEditorPath):
+			localization_editor = get_node(localizationEditorPath)
 	if localization_editor:
 		var data = localization_editor.get_data()
 		if data:
@@ -52,7 +54,8 @@ func _fill_dropdown_description_ui() -> void:
 		_dropdown_description_ui.clear()
 		for key in localization_editor.get_data().data.keys:
 			_dropdown_description_ui.add_item_as_string(key.value)
-		_dropdown_description_ui.set_selected_by_value(_item.description)
+		if _item and not _item.description.is_empty():
+			_dropdown_description_ui.set_selected_by_value(_item.description)
 
 func _init_connections() -> void:
 	if not _data.type_selection_changed.is_connected(_on_type_selection_changed):

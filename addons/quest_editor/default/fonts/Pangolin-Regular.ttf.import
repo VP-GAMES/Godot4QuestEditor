@@ -18,6 +18,7 @@ msdf_pixel_range=8
 msdf_size=48
 force_autohinter=false
 hinting=1
+subpixel_positioning=1
 oversampling=0.0
 compress=true
 opentype_feature_overrides={}

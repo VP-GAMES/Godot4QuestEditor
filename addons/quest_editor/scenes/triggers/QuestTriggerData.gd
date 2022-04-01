@@ -77,9 +77,11 @@ func _update_preview2D() -> void:
 		_2D_viewport_ui.remove_child(child)
 		child.queue_free()
 	if _trigger != null and _trigger.scene != null:
-		var scene = load(_trigger.scene).instantiate()
-		scene.position = Vector2(_preview_ui.rect_size.x / 2, _preview_ui.rect_size.y / 2)
-		_2D_viewport_ui.add_child(scene)
+		var res = load(_trigger.scene)
+		if res != null:
+			var scene = res.instantiate()
+			scene.position = Vector2(_preview_ui.rect_size.x / 2, _preview_ui.rect_size.y / 2)
+			_2D_viewport_ui.add_child(scene)
 
 func _update_preview3D() -> void:
 	for child in _3D_viewport_ui.get_children():
