@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://1txirr45vbrf"]
 
 [ext_resource type="Script" path="res://addons/inventory_editor/ui/InventoryItemUIIcon.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://dk0uyb3ayyxtk" path="res://addons/inventory_editor/default/fonts/Pangolin-Regular.ttf" id="2"]
+[ext_resource type="FontFile" uid="uid://cdde3vjtr4fr8" path="res://addons/inventory_editor/default/fonts/Pangolin-Regular.ttf" id="2"]
 [ext_resource type="PackedScene" path="res://addons/inventory_editor/ui/PopupDescription.tscn" id="3"]
 
 [node name="Icon" type="TextureRect"]

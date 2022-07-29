@@ -65,7 +65,7 @@ func _on_body_entered(body: Node) -> void:
 				_quest = questManager.started_quest()
 				var task_trigger = questManager.get_trigger_by_ui_uuid(_uuid)
 				var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
-				if task.dialogue and not task.dialogue.is_empty():
+				if task and task.dialogue and not task.dialogue.is_empty():
 					dialogueManager.start_dialogue(task.dialogue)
 					dialogueManager.next_sentence()
 
