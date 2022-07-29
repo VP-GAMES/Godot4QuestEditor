@@ -110,7 +110,7 @@ func _update_view() -> void:
 	_dropdown_ui_draw()
 	_event_box_ui_draw()
 	_event_text_ui_draw()
-	rect_size = Vector2.ZERO
+	size = Vector2.ZERO
 
 func _remove_ui_draw() -> void:
 	_remove_ui.visible = _node.sentences.size() > 1
@@ -144,9 +144,9 @@ func _event_text_ui_draw() -> void:
 func _draw():
 	if _sentence.has("event_visible") and _sentence.event_visible:
 		var stylebox = get_theme_stylebox("panel", "PanelContainer")
-		var x = _event_ui.rect_position.x + _event_ui.rect_size.x / 2 + stylebox.content_margin_left
-		var y = _event_ui.rect_position.y +_remove_ui.rect_size.y / 2 + stylebox.content_margin_top
-		var x_end = _remove_ui.rect_size.x + _event_ui.rect_position.x + stylebox.content_margin_left * 2
-		var y_end = _remove_ui.rect_size.y +  _event_text_ui.rect_size.y / 2 + stylebox.content_margin_top * 2
+		var x = _event_ui.position.x + _event_ui.size.x / 2 + stylebox.content_margin_left
+		var y = _event_ui.position.y +_remove_ui.size.y / 2 + stylebox.content_margin_top
+		var x_end = _remove_ui.size.x + _event_ui.position.x + stylebox.content_margin_left * 2
+		var y_end = _remove_ui.size.y +  _event_text_ui.size.y / 2 + stylebox.content_margin_top * 2
 		draw_line(Vector2(x, y), Vector2(x, y_end), Color.WHITE, 2)
 		draw_line(Vector2(x, y_end), Vector2(x_end, y_end), Color.WHITE, 2)

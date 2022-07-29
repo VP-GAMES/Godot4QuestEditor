@@ -20,14 +20,14 @@ offset_bottom = 31.0
 [node name="Remove" type="Button" parent="VBox/HBox"]
 offset_right = 24.0
 offset_bottom = 31.0
-rect_min_size = Vector2(24, 24)
+min_size = Vector2(24, 24)
 text = "-"
 
 [node name="Event" type="Button" parent="VBox/HBox"]
 offset_left = 28.0
 offset_right = 52.0
 offset_bottom = 31.0
-rect_min_size = Vector2(24, 24)
+min_size = Vector2(24, 24)
 toggle_mode = true
 
 [node name="Select" type="CheckBox" parent="VBox/HBox"]
@@ -55,7 +55,7 @@ offset_bottom = 66.0
 offset_top = 4.0
 offset_right = 52.0
 offset_bottom = 27.0
-rect_min_size = Vector2(52, 0)
+min_size = Vector2(52, 0)
 
 [node name="EventText" type="LineEdit" parent="VBox/HBoxEvent"]
 offset_left = 56.0

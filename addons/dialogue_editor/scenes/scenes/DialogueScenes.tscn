@@ -43,7 +43,7 @@ offset_bottom = 31.0
 [node name="Add" type="Button" parent="Margin/VBox/HBox"]
 offset_right = 20.0
 offset_bottom = 31.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Add new scene"
 icon = ExtResource( "2" )
 

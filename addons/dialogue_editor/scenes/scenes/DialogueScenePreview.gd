@@ -56,7 +56,7 @@ func _draw_view() -> void:
 		_loaded_scene = LoadedScene.instantiate()
 		_add_reference_rect()
 		var display_size = _data.setting_display_size()
-		var default_size = rect_size
+		var default_size = size
 		var scale = min(default_size.x / display_size.x, default_size.y / display_size.y)
 		_loaded_scene.set_custom_minimum_size(display_size)
 		if scale < 1:

@@ -16,7 +16,7 @@ offset_bottom = 31.0
 [node name="Delivery" type="CheckBox" parent="HBox"]
 offset_right = 160.0
 offset_bottom = 31.0
-rect_min_size = Vector2(160, 0)
+min_size = Vector2(160, 0)
 text = "Delivery trigger"
 
 [node name="EndTrigger" parent="HBox" instance=ExtResource( "2" )]

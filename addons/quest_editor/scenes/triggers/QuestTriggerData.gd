@@ -80,7 +80,7 @@ func _update_preview2D() -> void:
 		var res = load(_trigger.scene)
 		if res != null:
 			var scene = res.instantiate()
-			scene.position = Vector2(_preview_ui.rect_size.x / 2, _preview_ui.rect_size.y / 2)
+			scene.position = Vector2(_preview_ui.size.x / 2, _preview_ui.size.y / 2)
 			_2D_viewport_ui.add_child(scene)
 
 func _update_preview3D() -> void:

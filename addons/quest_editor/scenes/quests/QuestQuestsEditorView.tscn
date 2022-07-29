@@ -23,7 +23,7 @@ split_offset = -297
 
 [node name="Quests" parent="Split" instance=ExtResource( 2 )]
 margin_right = 209.0
-rect_clip_content = true
+clip_content = true
 
 [node name="QuestData" parent="Split" instance=ExtResource( 3 )]
 anchor_right = 0.0

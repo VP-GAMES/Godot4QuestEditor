@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/nodes/node_sentence/NodeSentence.gd" id="2"]
 
 [node name="NodeSentence" type="GraphNode"]
-rect_min_size = Vector2(300, 0)
+min_size = Vector2(300, 0)
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
@@ -88,7 +88,7 @@ __meta__ = {
 [node name="Add" type="Button" parent="PanelActor/HBox"]
 offset_right = 24.0
 offset_bottom = 31.0
-rect_min_size = Vector2(24, 24)
+min_size = Vector2(24, 24)
 text = "+"
 
 [node name="Label" type="Label" parent="PanelActor/HBox"]
@@ -144,7 +144,7 @@ offset_bottom = 291.0
 offset_left = 57.0
 offset_right = 207.0
 offset_bottom = 150.0
-rect_min_size = Vector2(150, 150)
+min_size = Vector2(150, 150)
 ignore_texture_size = true
 stretch_mode = 5
 __meta__ = {

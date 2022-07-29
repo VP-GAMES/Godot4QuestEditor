@@ -107,8 +107,8 @@ func _build_popup_delete_nodes() -> void:
 	_popup_ui.add_item("Clear All", 4)
 
 func _calc_popup_position() -> Vector2:
-	var pos_x = _graph_ui.rect_global_position.x + _mouse_position.x
-	var pos_y = _graph_ui.rect_global_position.y + _mouse_position.y
+	var pos_x = _graph_ui.global_position.x + _mouse_position.x
+	var pos_y = _graph_ui.global_position.y + _mouse_position.y
 	return Vector2(pos_x, pos_y)
 
 func _input(event: InputEvent) -> void:

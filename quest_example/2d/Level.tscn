@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cxavm0cu8yw34"]
+[gd_scene load_steps=23 format=3 uid="uid://cxavm0cu8yw34"]
 
 [ext_resource type="Texture2D" uid="uid://iuau5q5khryk" path="res://quest_example/textures/Background.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://o4igatbe5g7f" path="res://quest_example/2d/player/Player.tscn" id="2"]
@@ -19,16 +19,13 @@
 [ext_resource type="PackedScene" path="res://quest_example/2d/actors/Item.tscn" id="17"]
 [ext_resource type="Texture2D" uid="uid://bm7jp74ne8dhb" path="res://quest_example/textures/Fir.png" id="18"]
 [ext_resource type="Script" path="res://quest_example/2d/Item.gd" id="19"]
-[ext_resource type="FontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="20"]
+[ext_resource type="FontFile" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="20"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(5316.54, 20)
 
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(20, 708.684)
-
-[sub_resource type="Font" id="3"]
-data/0 = ExtResource( "20" )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( "8" )
@@ -146,7 +143,7 @@ __meta__ = {
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource( "6" )]
 visible = false
-rect_min_size = Vector2(300, 300)
+min_size = Vector2(300, 300)
 anchor_left = 0.00103468
 anchor_right = 0.00103468
 offset_left = 68.9405
@@ -179,7 +176,7 @@ visible = false
 anchor_top = 0.1
 anchor_right = 1.0
 anchor_bottom = 0.5
-theme_override_fonts/normal_font = SubResource( "3" )
+theme_override_fonts/normal_font = ExtResource( "20" )
 bbcode_enabled = true
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]

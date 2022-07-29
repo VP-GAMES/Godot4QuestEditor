@@ -418,6 +418,5 @@ func resize_texture(t: Texture, size: Vector2):
 		var texture = t.get_data()
 		if size.x > 0 && size.y > 0:
 			texture.resize(size.x, size.y)
-		itex = ImageTexture.new()
-		itex.create_from_image(texture)
+		itex = ImageTexture.create_from_image(texture)
 	return itex
