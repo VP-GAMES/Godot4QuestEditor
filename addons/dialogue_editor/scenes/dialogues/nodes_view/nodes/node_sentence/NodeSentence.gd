@@ -109,7 +109,7 @@ func _update_view() -> void:
 	_sentences_draw_view()
 	_slots_draw()
 	position_offset = _node.position
-	rect_size = Vector2.ZERO
+	size = Vector2.ZERO
 
 func _scenes_ui_fill_and_draw() -> void:
 	_scenes_ui.clear()

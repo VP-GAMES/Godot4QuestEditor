@@ -14,7 +14,7 @@ __meta__ = {
 offset_top = 2.0
 offset_right = 160.0
 offset_bottom = 28.0
-rect_min_size = Vector2(160, 0)
+min_size = Vector2(160, 0)
 text = "Player method"
 
 [node name="Method" type="LineEdit" parent="."]
@@ -43,5 +43,5 @@ size_flags_horizontal = 3
 offset_left = 362.0
 offset_right = 382.0
 offset_bottom = 31.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 icon = ExtResource( "1" )

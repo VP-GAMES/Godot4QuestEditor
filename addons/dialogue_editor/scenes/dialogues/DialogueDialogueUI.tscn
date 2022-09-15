@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialogueUI.gd" type="Script" id=1]
-[ext_resource path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" type="DynamicFontFile" id=2]
 [ext_resource path="res://addons/dialogue_editor/icons/Trash.png" type="Texture" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 2 )
 
 [node name="DialogueActorUI" type="MarginContainer"]
 anchor_right = 1.0
@@ -40,12 +37,12 @@ __meta__ = {
 margin_right = 998.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 
 [node name="Del" type="Button" parent="HBox"]
 margin_left = 1002.0
 margin_right = 1024.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 20, 20 )
+min_size = Vector2( 20, 20 )
 hint_tooltip = "Delete actor"
 icon = ExtResource( 3 )

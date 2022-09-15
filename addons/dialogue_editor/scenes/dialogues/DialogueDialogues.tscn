@@ -44,7 +44,7 @@ offset_bottom = 29.0
 [node name="Add" type="Button" parent="Margin/VBox/HBox"]
 offset_right = 22.0
 offset_bottom = 29.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Add new dialogue"
 icon = ExtResource( "1" )
 
@@ -60,7 +60,7 @@ text = "Dialogues"
 offset_left = 1220.0
 offset_right = 1242.0
 offset_bottom = 29.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Play actual dialogue"
 icon = ExtResource( "5" )
 
@@ -68,14 +68,14 @@ icon = ExtResource( "5" )
 offset_left = 1246.0
 offset_right = 1274.0
 offset_bottom = 29.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Node view"
 toggle_mode = true
 icon = ExtResource( "3" )
 
 [node name="Bricks" type="Button" parent="Margin/VBox/HBox"]
 visible = false
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Briks view"
 toggle_mode = true
 icon = ExtResource( "4" )

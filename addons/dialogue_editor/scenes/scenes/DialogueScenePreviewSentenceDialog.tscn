@@ -38,7 +38,7 @@ size_flags_horizontal = 3
 offset_top = 2.0
 offset_right = 50.0
 offset_bottom = 28.0
-rect_min_size = Vector2(50, 0)
+min_size = Vector2(50, 0)
 text = "Actor"
 
 [node name="Actor" type="OptionButton" parent="Margin/VBox/HBoxName"]
@@ -57,7 +57,7 @@ size_flags_horizontal = 3
 offset_top = 2.0
 offset_right = 59.0
 offset_bottom = 28.0
-rect_min_size = Vector2(50, 0)
+min_size = Vector2(50, 0)
 text = "Texture"
 
 [node name="Textures" type="OptionButton" parent="Margin/VBox/HBoxTexture"]
@@ -75,7 +75,7 @@ offset_bottom = 170.0
 offset_left = 587.0
 offset_right = 687.0
 offset_bottom = 100.0
-rect_min_size = Vector2(100, 100)
+min_size = Vector2(100, 100)
 size_flags_horizontal = 3
 texture = ExtResource( "1" )
 ignore_texture_size = true
@@ -94,7 +94,7 @@ offset_bottom = 31.0
 [node name="Add" type="Button" parent="Margin/VBox/VBoxAdd/HBoxAdd"]
 offset_right = 20.0
 offset_bottom = 31.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 icon = ExtResource( "2" )

@@ -45,7 +45,7 @@ size_flags_horizontal = 3
 [node name="Save" type="Button" parent="VBox/Margin/HBox"]
 offset_right = 20.0
 offset_bottom = 31.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Save"
 icon = ExtResource( "2" )
 
@@ -53,7 +53,7 @@ icon = ExtResource( "2" )
 offset_left = 24.0
 offset_right = 44.0
 offset_bottom = 31.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Reset questdata"
 icon = ExtResource( "5" )
 

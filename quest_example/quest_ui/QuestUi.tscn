@@ -34,7 +34,7 @@ offset_bottom = 374.0
 [node name="Header" type="RichTextLabel" parent="NinePatchRect/Margin/VBox"]
 offset_right = 374.0
 offset_bottom = 30.0
-rect_min_size = Vector2(0, 30)
+min_size = Vector2(0, 30)
 size_flags_horizontal = 3
 text = "[center][color=yellow]NO QUEST[/color][/center]"
 bbcode_enabled = true

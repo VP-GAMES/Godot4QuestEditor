@@ -46,7 +46,7 @@ text = "Name"
 offset_left = 1208.0
 offset_right = 1232.0
 offset_bottom = 31.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Create or edit example sentence"
 icon = ExtResource( "4" )
 
@@ -54,7 +54,7 @@ icon = ExtResource( "4" )
 offset_left = 1236.0
 offset_right = 1256.0
 offset_bottom = 31.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Open dialog scene in 2D"
 icon = ExtResource( "1" )
 
@@ -62,6 +62,6 @@ icon = ExtResource( "1" )
 offset_left = 1260.0
 offset_right = 1280.0
 offset_bottom = 31.0
-rect_min_size = Vector2(20, 20)
+min_size = Vector2(20, 20)
 hint_tooltip = "Delete dialog scene"
 icon = ExtResource( "2" )
