@@ -26,16 +26,16 @@ func _init_styles() -> void:
 	_path_ui_style_resource.set_bg_color(Color("#192e59"))
 
 func _init_connections() -> void:
-	if not _actor.is_connected("resource_path_changed", _on_resource_path_changed):
-		assert(_actor.connect("resource_path_changed", _on_resource_path_changed) == OK)
-	if not is_connected("focus_entered", _on_focus_entered):
-		assert(connect("focus_entered", _on_focus_entered) == OK)
-	if not is_connected("focus_exited", _on_focus_exited):
-		assert(connect("focus_exited", _on_focus_exited) == OK)
-	if not is_connected("text_changed", _path_value_changed):
-		assert(connect("text_changed", _path_value_changed) == OK)
-	if not is_connected("gui_input", _on_gui_input):
-		assert(connect("gui_input", _on_gui_input) == OK)
+	if not _actor.resource_path_changed.is_connected(_on_resource_path_changed):
+		assert(_actor.resource_path_changed.connect(_on_resource_path_changed) == OK)
+	if not focus_entered.is_connected(_on_focus_entered):
+		assert(focus_entered.connect(_on_focus_entered) == OK)
+	if not focus_exited.is_connected(_on_focus_exited):
+		assert(focus_exited.connect(_on_focus_exited) == OK)
+	if not text_changed.is_connected(_path_value_changed):
+		assert(text_changed.connect(_path_value_changed) == OK)
+	if not gui_input.is_connected(_on_gui_input):
+		assert(gui_input.connect(_on_gui_input) == OK)
 
 func _on_resource_path_changed(resource) -> void:
 	if _resource == resource:
@@ -76,8 +76,8 @@ func _on_gui_input(event: InputEvent) -> void:
 					file_dialog.add_filter("*." + extension)
 				var root = get_tree().get_root()
 				root.add_child(file_dialog)
-				assert(file_dialog.connect("file_selected", _path_value_changed) == OK)
-				assert(file_dialog.get_cancel_button().connect("pressed", _on_popup_hide, [root, file_dialog]) == OK)
+				assert(file_dialog.file_selected.connect(_path_value_changed) == OK)
+				assert(file_dialog.get_cancel_button().pressed.connect(_on_popup_hide.bind(root, file_dialog)) == OK)
 				file_dialog.popup_centered()
 
 func _on_popup_hide(root, dialog) -> void:
@@ -99,7 +99,7 @@ func _drop_data(position, data) -> void:
 func _check_path_ui() -> void:
 	if not _data.resource_exists(_resource):
 		set("custom_styles/normal", _path_ui_style_resource)
-		hint_tooltip =  "Your resource path: \"" + _resource.path + "\" does not exists"
+		tooltip_text =  "Your resource path: \"" + _resource.path + "\" does not exists"
 	else:
 		set("custom_styles/normal", null)
-		hint_tooltip =  ""
+		tooltip_text =  ""

@@ -19,8 +19,8 @@ func _ready() -> void:
 	_init_connections()
 
 func _init_connections() -> void:
-	if not _split_ui.is_connected("dragged", _on_split_dragged):
-		assert(_split_ui.connect("dragged", _on_split_dragged) == OK)
+	if not _split_ui.dragged.is_connected(_on_split_dragged):
+		assert(_split_ui.dragged.connect(_on_split_dragged) == OK)
 
 func _process(delta):
 	if _split_viewport_size != size.x:

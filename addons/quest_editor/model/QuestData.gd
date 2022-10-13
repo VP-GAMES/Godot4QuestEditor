@@ -280,8 +280,7 @@ func reset() -> void:
 
 # ***** LOAD SAVE *****
 func init_data() -> void:
-	var file = File.new()
-	if file.file_exists(PATH_TO_SAVE):
+	if FileAccess.file_exists(PATH_TO_SAVE):
 		var resource = ResourceLoader.load(PATH_TO_SAVE) as QuestData
 		if resource.quests and not resource.quests.is_empty():
 			quests = resource.quests
@@ -292,24 +291,23 @@ func init_data() -> void:
 var _path_to_save = "user://QuestsSave.res"
 
 func reset_saved_user_data() -> void:
-	print("REMOVE USER SAVED DATA")
-	var dir = Directory.new()
-	if dir.file_exists(_path_to_save):
-		dir.remove(_path_to_save)
+	print("REMOVE USER SAVED DATA: ", _path_to_save)
+	var directory:= DirAccess.open(_path_to_save) 
+	directory.remove(_path_to_save)
+	print("REMOVE")
 
 func save(update_script_classes = false) -> void:	
-	ResourceSaver.save(PATH_TO_SAVE, self)
+	ResourceSaver.save(self, PATH_TO_SAVE)
 	_save_data_quests()
 	_save_data_triggers()
 	if update_script_classes:
 		_editor.get_editor_interface().get_resource_filesystem().update_script_classes()
 
 func _save_data_quests() -> void:
-	var directory = Directory.new()
+	var directory:= DirAccess.open(default_path)
 	if not directory.dir_exists(default_path):
 		directory.make_dir(default_path)
-	var file = File.new()
-	file.open(default_path + "QuestManagerQuests.gd", File.WRITE)
+	var file = FileAccess.open(default_path + "QuestManagerQuests.gd", FileAccess.WRITE)
 	var source_code = "# List of created quests for QuestManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "@tool\n"
@@ -328,11 +326,10 @@ func _save_data_quests() -> void:
 	file.close()
 
 func _save_data_triggers() -> void:
-	var directory = Directory.new()
+	var directory:= DirAccess.open(default_path)
 	if not directory.dir_exists(default_path):
 		directory.make_dir(default_path)
-	var file = File.new()
-	file.open(default_path + "QuestManagerTriggers.gd", File.WRITE)
+	var file = FileAccess.open(default_path + "QuestManagerTriggers.gd", FileAccess.WRITE)
 	var source_code = "# List of created triggers for QuestManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "@tool\n"
@@ -409,8 +406,7 @@ func file_extension(value: String):
 	return value.substr(index + 1)
 
 func resource_exists(resource_path) -> bool:
-	var file = File.new()
-	return file.file_exists(resource_path)
+	return FileAccess.file_exists(resource_path)
 
 func resize_texture(t: Texture, size: Vector2):
 	var itex = t
@@ -418,5 +414,6 @@ func resize_texture(t: Texture, size: Vector2):
 		var texture = t.get_data()
 		if size.x > 0 && size.y > 0:
 			texture.resize(size.x, size.y)
-		itex = ImageTexture.create_from_image(texture)
+		itex = ImageTexture.new()
+		itex.create_from_image(texture)
 	return itex

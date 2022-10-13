@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cxavm0cu8yw34"]
+[gd_scene load_steps=22 format=3 uid="uid://cxavm0cu8yw34"]
 
 [ext_resource type="Texture2D" uid="uid://iuau5q5khryk" path="res://quest_example/textures/Background.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://o4igatbe5g7f" path="res://quest_example/2d/player/Player.tscn" id="2"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" path="res://quest_example/2d/actors/Item.tscn" id="17"]
 [ext_resource type="Texture2D" uid="uid://bm7jp74ne8dhb" path="res://quest_example/textures/Fir.png" id="18"]
 [ext_resource type="Script" path="res://quest_example/2d/Item.gd" id="19"]
-[ext_resource type="FontFile" uid="uid://xg6rkm7rciai" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="20"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(5316.54, 20)
@@ -140,6 +139,7 @@ texture_normal = ExtResource("7")
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("6")]
 visible = false
+layout_mode = 3
 anchor_left = 0.00103468
 anchor_right = 0.00103468
 offset_left = 68.9405
@@ -149,27 +149,33 @@ offset_bottom = 370.0
 inventory = "8e526c15-dfbe-478b-b0c9-a05aa8722cb0"
 
 [node name="QuestButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -70.0
-offset_bottom = 70.0
+offset_left = -102.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = 101.0
+grow_horizontal = 0
 texture_normal = ExtResource("10")
 
 [node name="Quest" parent="CanvasLayer" instance=ExtResource("9")]
 visible = false
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -364.0
 offset_top = 70.0
 offset_right = -64.0
 offset_bottom = 370.0
+grow_horizontal = 0
 
 [node name="Label" type="RichTextLabel" parent="CanvasLayer"]
 visible = false
+anchors_preset = -1
 anchor_top = 0.1
 anchor_right = 1.0
 anchor_bottom = 0.5
-theme_override_fonts/normal_font = ExtResource("20")
 bbcode_enabled = true
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]

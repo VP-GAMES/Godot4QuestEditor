@@ -2,7 +2,8 @@
 # @author Vladimir Petrenko
 @tool
 extends Resource
-class_name DialogueActor, "res://addons/dialogue_editor/icons/Actor.png"
+class_name DialogueActor
+@icon("res://addons/dialogue_editor/icons/Actor.png")
 
 # ***** EDITOR_PLUGIN BOILERPLATE *****
 var _editor
@@ -151,5 +152,4 @@ func _filename_only(value: String) -> String:
 	return value.substr(first + 1, second - first - 1)
 
 func resource_exists(resource) -> bool:
-	var file = File.new()
-	return file.file_exists(resource.path)
+	return FileAccess.file_exists(resource.path)

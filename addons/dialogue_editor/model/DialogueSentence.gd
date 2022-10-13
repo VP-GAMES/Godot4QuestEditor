@@ -2,7 +2,8 @@
 # @author Vladimir Petrenko
 @tool
 extends Resource
-class_name DialogueSentence, "res://addons/dialogue_editor/icons/Sentence.png"
+class_name DialogueSentence
+@icon("res://addons/dialogue_editor/icons/Sentence.png")
 
 @export var scene: String = ""
 @export var actor: Resource # DialogueActor

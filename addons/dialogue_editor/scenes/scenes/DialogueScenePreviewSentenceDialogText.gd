@@ -18,10 +18,10 @@ func set_data(index: int, scene) -> void:
 	_draw_view()
 
 func _init_connections() -> void:
-	if not _text_ui.is_connected("text_changed", _on_text_changed):
-		_text_ui.connect("text_changed", _on_text_changed)
-	if not _delete_ui.is_connected("pressed", _on_delete_pressed):
-		_delete_ui.connect("pressed", _on_delete_pressed)
+	if not _text_ui.text_changed.is_connected(_on_text_changed):
+		_text_ui.text_changed.connect(_on_text_changed)
+	if not _delete_ui.pressed.is_connected(_on_delete_pressed):
+		_delete_ui.pressed.connect(_on_delete_pressed)
 
 func _on_text_changed(new_text: String) -> void:
 	if _scene.has("preview") and _scene["preview"].has("texts"):

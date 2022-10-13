@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bgniem16ye77c"
+uid="uid://b70mxl2qgp5dt"
 path="res://.godot/imported/Pangolin-Regular.ttf-8b4c49494f98e29bc2b963dcc28cc268.fontdata"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Pangolin-Regular.ttf-8b4c49494f98e29bc2b963dc
 [params]
 
 Rendering=null
-antialiased=true
+antialiasing=1
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8

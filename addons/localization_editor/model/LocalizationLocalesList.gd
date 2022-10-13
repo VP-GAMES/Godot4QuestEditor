@@ -3,7 +3,7 @@
 extends Object
 class_name LocalizationLocalesList
 
-static func locales() -> Array[LocalizationLocaleSingle]:
+static func locales() -> Array: #[LocalizationLocaleSingle]:
 	return [
 		LocalizationLocaleSingle.new("aa", "Afar"),
 		LocalizationLocaleSingle.new("aa_DJ", "Afar (Djibouti)"),
@@ -385,6 +385,8 @@ static func label_by_code(code: String) -> String:
 
 static func has_code(code: String) -> bool:
 	for locale in LocalizationLocalesList.locales():
-		if locale.code == code:
+		var locale_code_lower = locale.code.to_lower()
+		var code_lower = code.to_lower()
+		if locale_code_lower.contains(code_lower):
 			return true
 	return false

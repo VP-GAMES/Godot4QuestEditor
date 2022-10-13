@@ -18,12 +18,12 @@ func set_data(data: DialogueData) -> void:
 	_update_view()
 
 func _init_connections() -> void:
-	if not _add_ui.is_connected("pressed", _add_pressed):
-		assert(_add_ui.connect("pressed", _add_pressed) == OK)
-	if not _data.is_connected("scene_added", _on_scene_added):
-		assert(_data.connect("scene_added", _on_scene_added) == OK)
-	if not _data.is_connected("scene_removed", _on_scene_removed):
-		assert(_data.connect("scene_removed", _on_scene_removed) == OK)
+	if not _add_ui.pressed.is_connected(_add_pressed):
+		assert(_add_ui.pressed.connect(_add_pressed) == OK)
+	if not _data.scene_added.is_connected(_on_scene_added):
+		assert(_data.scene_added.connect(_on_scene_added) == OK)
+	if not _data.scene_removed.is_connected(_on_scene_removed):
+		assert(_data.scene_removed.connect(_on_scene_removed) == OK)
 
 func _on_scene_added(scene) -> void:
 	_update_view()
@@ -54,8 +54,8 @@ func _add_pressed() -> void:
 	file_dialog.add_filter("*.tscn")
 	var root = get_tree().get_root()
 	root.add_child(file_dialog)
-	assert(file_dialog.connect("file_selected", _add_scene_resource) == OK)
-	assert(file_dialog.connect("close_requested", _on_popup_hide, [root, file_dialog]) == OK)
+	assert(file_dialog.file_selected.connect(_add_scene_resource) == OK)
+	assert(file_dialog.close_requested.connect(_on_popup_hide.bind(root, file_dialog)) == OK)
 	file_dialog.popup_centered(Vector2i(500, 300))
 
 func _add_scene_resource(resource_value) -> void:

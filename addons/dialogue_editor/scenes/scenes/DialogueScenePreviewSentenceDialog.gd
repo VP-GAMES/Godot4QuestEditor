@@ -45,18 +45,18 @@ func _check_scene() -> void:
 		_scene["preview"].erase("texture_uuid")
 
 func _init_connections() -> void:
-	if not _actor_ui.is_connected("item_selected", _on_item_actor_selected):
-		_actor_ui.connect("item_selected", _on_item_actor_selected)
-	if not _textures_ui.is_connected("item_selected", _on_item_textures_selected):
-		_textures_ui.connect("item_selected", _on_item_textures_selected)
-	if not _buttons_add_ui.is_connected("pressed", _on_add_pressed):
-		_buttons_add_ui.connect("pressed", _on_add_pressed)
-	if not _clear_ui.is_connected("pressed", _on_clear_pressed):
-		_clear_ui.connect("pressed", _on_clear_pressed)
-	if not _close_ui.is_connected("pressed", _on_close_pressed):
-		_close_ui.connect("pressed", _on_close_pressed)
-	if not is_connected("close_requested", _on_hide):
-		connect("close_requested", _on_hide)
+	if not _actor_ui.item_selected.is_connected(_on_item_actor_selected):
+		_actor_ui.item_selected.connect(_on_item_actor_selected)
+	if not _textures_ui.item_selected.is_connected(_on_item_textures_selected):
+		_textures_ui.item_selected.connect(_on_item_textures_selected)
+	if not _buttons_add_ui.pressed.is_connected(_on_add_pressed):
+		_buttons_add_ui.pressed.connect(_on_add_pressed)
+	if not _clear_ui.pressed.is_connected(_on_clear_pressed):
+		_clear_ui.pressed.connect(_on_clear_pressed)
+	if not _close_ui.pressed.is_connected(_on_close_pressed):
+		_close_ui.pressed.connect(_on_close_pressed)
+	if not close_requested.is_connected(_on_hide):
+		close_requested.connect(_on_hide)
 
 func _on_item_actor_selected(index: int) -> void:
 	if index > 0:
@@ -160,7 +160,7 @@ func _draw_texts() -> void:
 			var text_ui = DialogueScenePreviewSentenceDialogText.instantiate()
 			_text_vbox_ui.add_child(text_ui)
 			text_ui.set_data(index, _scene)
-			text_ui.connect("delete_action", _on_delete_action)
+			text_ui.delete_action.connect(_on_delete_action)
 		set_size(Vector2(min_size.x, min_size.y + 34 * _scene["preview"]["texts"].size()))
 
 func _on_delete_action() -> void:

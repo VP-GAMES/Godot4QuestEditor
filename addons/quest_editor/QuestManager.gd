@@ -16,14 +16,13 @@ var _data_loaded = false
 const _path_to_save = "user://QuestsSave.res"
 
 func _init() -> void:
-	var file = File.new()
-	if file.file_exists(_path_to_save):
+	if FileAccess.file_exists(_path_to_save):
 		_data.PATH_TO_SAVE = _path_to_save
 	if not _data_loaded:
 		load_data()
 
 func load_data() -> void:
-	_data = ResourceLoader.load(_data.PATH_TO_SAVE) as QuestData
+	_data = ResourceLoader.load(_data.PATH_TO_SAVE) as QuestData	
 
 func save_data() -> void:
 	_data.PATH_TO_SAVE = _path_to_save
@@ -31,6 +30,7 @@ func save_data() -> void:
 
 func reset_data() -> void:
 	_data.reset()
+	save_data()
 
 func set_player(player) -> void:
 	_player = player

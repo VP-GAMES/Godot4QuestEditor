@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cedctbw2y05t"]
+[gd_scene load_steps=7 format=3 uid="uid://cedctbw2y05t"]
 
 [ext_resource type="FontFile" uid="uid://b70mxl2qgp5dt" path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" id="1"]
 [ext_resource type="StyleBox" path="res://addons/dialogue_editor/default/styles/style_base.tres" id="2"]

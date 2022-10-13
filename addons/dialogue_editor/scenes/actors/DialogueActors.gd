@@ -16,12 +16,12 @@ func set_data(data: DialogueData) -> void:
 	_update_view()
 
 func _init_connections() -> void:
-	if not _add_ui.is_connected("pressed", _on_add_pressed):
-		assert(_add_ui.connect("pressed", _on_add_pressed) == OK)
-	if not _data.is_connected("actor_added", _on_actor_added):
-		assert(_data.connect("actor_added", _on_actor_added) == OK)
-	if not _data.is_connected("actor_removed", _on_actor_removed):
-		assert(_data.connect("actor_removed", _on_actor_removed) == OK)
+	if not _add_ui.pressed.is_connected(_on_add_pressed):
+		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+	if not _data.actor_added.is_connected(_on_actor_added):
+		assert(_data.actor_added.connect(_on_actor_added) == OK)
+	if not _data.actor_removed.is_connected(_on_actor_removed):
+		assert(_data.actor_removed.connect(_on_actor_removed) == OK)
 
 func _on_add_pressed() -> void:
 	_data.add_actor()

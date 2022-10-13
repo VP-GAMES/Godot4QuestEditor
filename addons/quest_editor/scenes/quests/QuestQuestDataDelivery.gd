@@ -20,7 +20,6 @@ func set_data(quest: QuestQuest, data: QuestData) -> void:
 	_delivery_ui.button_pressed = _quest.delivery
 	_trigger_ui.set_selected_by_value(_quest.delivery_trigger)
 	_dialogue_ui.set_selected_by_value(_quest.delivery_dialogue)
-	_on_delivery_pressed()
 
 func _init_connections() -> void:
 	if not _delivery_ui.pressed.is_connected(_on_delivery_pressed):
@@ -35,8 +34,8 @@ func _init_connections() -> void:
 		_dialogue_ui.selection_changed.connect(_on_dialogue_selection_changed)
 
 func _on_delivery_pressed() -> void:
-	_trigger_ui.set_disabled(_delivery_ui.button_pressed)
-	_dialogue_ui.set_disabled(_delivery_ui.button_pressed)
+	_trigger_ui.set_disabled(not _delivery_ui.button_pressed)
+	_dialogue_ui.set_disabled(not _delivery_ui.button_pressed)
 	_quest.delivery = _delivery_ui.button_pressed
 	if not _delivery_ui.button_pressed:
 		_quest.delivery_trigger = ""
@@ -53,7 +52,7 @@ func _fill_trigger_ui_dropdown() -> void:
 	_trigger_ui.add_item(DropdownItem.new("NONE", ""))
 	for trigger in _data.all_npcs():
 		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
-		_trigger_ui.add_item(item_t)	
+		_trigger_ui.add_item(item_t)
 	for trigger in _data.all_destinations():
 		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
 		_trigger_ui.add_item(item_t)

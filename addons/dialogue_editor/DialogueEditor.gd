@@ -45,20 +45,20 @@ func _dropdown_ui_init() -> void:
 	if localization_editor:
 		var data = localization_editor.get_data()
 		if data:
-			if not data.is_connected("data_changed", _on_localization_data_changed):
-				data.connect("data_changed", _on_localization_data_changed)
-			if not data.is_connected("data_key_value_changed", _on_localization_data_changed):
-				data.connect("data_key_value_changed", _on_localization_data_changed)
+			if not data.data_changed.is_connected(_on_localization_data_changed):
+				data.data_changed.connect(_on_localization_data_changed)
+			if not data.data_key_value_changed.is_connected(_on_localization_data_changed):
+				data.data_key_value_changed.connect(_on_localization_data_changed)
 			_on_localization_data_changed()
 
 func _on_localization_data_changed() -> void:
 	init_languages()
 
 func _init_connections() -> void:
-	if not _save_ui.is_connected("pressed", _on_save_data):
-		assert(_save_ui.connect("pressed", _on_save_data) == OK)
-	if not _tabs_ui.is_connected("tab_changed", _on_tab_changed):
-		assert(_tabs_ui.connect("tab_changed", _on_tab_changed) == OK)
+	if not _save_ui.pressed.is_connected(_on_save_data):
+		assert(_save_ui.pressed.connect(_on_save_data) == OK)
+	if not _tabs_ui.tab_changed.is_connected(_on_tab_changed):
+		assert(_tabs_ui.tab_changed.connect(_on_tab_changed) == OK)
 
 func get_data() -> DialogueData:
 	return _data
@@ -98,8 +98,8 @@ func init_languages() -> void:
 		if _locales[i] in _data.get_locale():
 			index = i
 	_languages_ui.select(index)
-	if not _languages_ui.is_connected("item_selected", _on_item_selected):
-		assert(_languages_ui.connect("item_selected", _on_item_selected) == OK)
+	if not _languages_ui.item_selected.is_connected(_on_item_selected):
+		assert(_languages_ui.item_selected.connect(_on_item_selected) == OK)
 
 func _on_item_selected(index: int) -> void:
 	_data.set_locale(_locales[index])

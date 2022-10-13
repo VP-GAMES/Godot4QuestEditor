@@ -47,10 +47,10 @@ func _dropdown_ui_init() -> void:
 	if localization_editor:
 		var data = localization_editor.get_data()
 		if data:
-			if not data.is_connected("data_changed", _on_localization_data_changed):
-				data.connect("data_changed", _on_localization_data_changed)
-			if not data.is_connected("data_key_value_changed", _on_localization_data_changed):
-				data.connect("data_key_value_changed", _on_localization_data_changed)
+			if not data.data_changed.is_connected(_on_localization_data_changed):
+				data.data_changed.connect(_on_localization_data_changed)
+			if not data.data_key_value_changed.is_connected(_on_localization_data_changed):
+				data.data_key_value_changed.connect(_on_localization_data_changed)
 			_on_localization_data_changed()
 
 func _on_localization_data_changed() -> void:
@@ -61,18 +61,18 @@ func _on_localization_data_changed() -> void:
 		_dropdown_ui.set_selected_by_value(_sentence.text)
 
 func _init_connections() -> void:
-	if not _remove_ui.is_connected("pressed", _on_remove_sentence_pressed):
-		assert(_remove_ui.connect("pressed", _on_remove_sentence_pressed) == OK)
-	if not _select_ui.is_connected("pressed", _on_select_sentence_pressed):
-		assert(_select_ui.connect("pressed", _on_select_sentence_pressed) == OK)
-	if not _text_ui.is_connected("text_changed", _on_text_changed):
-		assert(_text_ui.connect("text_changed", _on_text_changed) == OK)
-	if not _event_text_ui.is_connected("text_changed", _on_event_text_changed):
-		assert(_event_text_ui.connect("text_changed", _on_event_text_changed) == OK)
-	if not _event_ui.is_connected("pressed", _on_select_event_pressed):
-		assert(_event_ui.connect("pressed", _on_select_event_pressed) == OK)
-	if not _node.is_connected("sentence_event_changed", _on_sentence_event_changed):
-		assert(_node.connect("sentence_event_changed", _on_sentence_event_changed) == OK)
+	if not _remove_ui.pressed.is_connected(_on_remove_sentence_pressed):
+		assert(_remove_ui.pressed.connect(_on_remove_sentence_pressed) == OK)
+	if not _select_ui.pressed.is_connected(_on_select_sentence_pressed):
+		assert(_select_ui.pressed.connect(_on_select_sentence_pressed) == OK)
+	if not _text_ui.text_changed.is_connected(_on_text_changed):
+		assert(_text_ui.text_changed.connect(_on_text_changed) == OK)
+	if not _event_text_ui.text_changed.is_connected(_on_event_text_changed):
+		assert(_event_text_ui.text_changed.connect(_on_event_text_changed) == OK)
+	if not _event_ui.pressed.is_connected(_on_select_event_pressed):
+		assert(_event_ui.pressed.connect(_on_select_event_pressed) == OK)
+	if not _node.sentence_event_changed.is_connected(_on_sentence_event_changed):
+		assert(_node.sentence_event_changed.connect(_on_sentence_event_changed) == OK)
 	if _data.setting_localization_editor_enabled():
 		if not _dropdown_ui.selection_changed.is_connected(_on_selection_changed):
 			assert(_dropdown_ui.selection_changed.connect(_on_selection_changed) == OK)

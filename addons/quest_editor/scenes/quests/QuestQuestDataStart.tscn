@@ -17,7 +17,7 @@ offset_bottom = 31.0
 offset_top = 2.0
 offset_right = 160.0
 offset_bottom = 28.0
-min_size = Vector2(160, 0)
+rect_min_size = Vector2(160, 0)
 text = "Quest trigger"
 
 [node name="Trigger" parent="HBox" instance=ExtResource( "1" )]

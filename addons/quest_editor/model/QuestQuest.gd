@@ -33,6 +33,7 @@ signal state_changed(state)
 @export var quest_start_dialogue: String = ""
 @export var quest_running_dialogue: String = ""
 # * TASKS
+@export var linear: bool = false
 @export var tasks: Array
 # * DELIVERY
 @export var delivery: bool = false
@@ -146,6 +147,16 @@ func get_task(trigger_uuid: String):
 			return task
 	return null
 
+func get_task_bevore(trigger_uuid: String):
+	var index = 0
+	for task in tasks:
+		if task.trigger == trigger_uuid:
+			if index == 0:
+				return null
+			return tasks[index]
+		index += 1
+	return null
+
 func has_task(trigger_uuid: String) -> bool:
 	for task in tasks:
 		if task.trigger == trigger_uuid:
@@ -249,3 +260,24 @@ func reset() -> void:
 		task.quantity_now = 0
 		task.done = false
 	delivery_done = false
+
+func print_data() -> void:
+	print("*** QUEST: ", name, " UUID: ", uuid, " ***")
+	print("UINAME: ", uiname, "DESCRIPTION: ", description)
+	print("STATE: ", state)
+	print("** REQUEREMENT **")
+	print("PRECOMPLETED QUEST: ", precompleted_quest)
+	print("REQUEREMENTS: ", requerements)
+	print("** DIALOGUE TRIGGER **")
+	print("QUEST TRIGGER: ", quest_trigger)
+	print("QUEST START DIALOGUE: ", quest_start_dialogue)
+	print("QUEST RUNNING DIALOGUE: ", quest_running_dialogue)
+	print("** TASKS **")
+	print(tasks)
+	print("** DELIVERY **")
+	print("DELIVERY: ", delivery)
+	print("DELIVERY DONE: ", delivery_done)
+	print("DELIVERY TRIGGER: ", delivery_trigger)
+	print("DELIVERY DIALOGUE: ", delivery_dialogue)
+	print("** REWARDS **")
+	print(rewards)

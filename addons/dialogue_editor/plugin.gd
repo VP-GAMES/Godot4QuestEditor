@@ -18,7 +18,7 @@ func _enter_tree():
 	add_autoload_singleton("DialogueManager", "res://addons/dialogue_editor/DialogueManager.gd")
 	_dialogue_editor = DialogueMain.instantiate()
 	_dialogue_editor.name = "DialogueEditor"
-	get_editor_interface().get_editor_main_control().add_child(_dialogue_editor)
+	get_editor_interface().get_editor_main_screen().add_child(_dialogue_editor)
 	_dialogue_editor.set_editor(self)
 	_make_visible(false)
 	add_custom_type("Dialogue2D", "Area2D", DialogueDialogue2D, DialogueIcon)

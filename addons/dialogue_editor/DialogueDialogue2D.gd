@@ -16,10 +16,10 @@ const DialogueManagerName = "DialogueManager"
 func _ready() -> void:
 	if get_tree().get_root().has_node(DialogueManagerName):
 		dialogueManager = get_tree().get_root().get_node(DialogueManagerName)
-	if not is_connected("body_entered", _on_body_entered):
-		assert(connect("body_entered", _on_body_entered) == OK)
-	if not is_connected("body_exited", _on_body_exited):
-		assert(connect("body_exited", _on_body_exited) == OK)
+	if not body_entered.is_connected(_on_body_entered):
+		assert(body_entered.connect(_on_body_entered) == OK)
+	if not body_exited.is_connected(_on_body_exited):
+		assert(body_exited.connect(_on_body_exited) == OK)
 
 func _on_body_entered(body: Node) -> void:
 	inside = true

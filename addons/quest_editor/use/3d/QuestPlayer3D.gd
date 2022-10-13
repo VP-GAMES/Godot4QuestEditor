@@ -10,7 +10,7 @@ const _inventoryManagerName = "InventoryManager"
 func _ready() -> void:
 	if get_tree().get_root().has_node(_questManagerName):
 		_questManager = get_tree().get_root().get_node(_questManagerName)
-	_questManager.set_player(self)
+		_questManager.set_player(self)
 	if get_tree().get_root().has_node(_inventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(_inventoryManagerName)
-	_inventoryManager.player = self
+		_inventoryManager.player = self

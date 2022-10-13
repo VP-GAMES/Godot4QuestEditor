@@ -8,7 +8,7 @@ var value
 var tooltip: String
 var icon: Texture2D
 
-func _init(itext: String, ivalue, itooltip: String = "", iicon: Texture2D = null) -> void:
+func _init(itext: String, ivalue, itooltip: String = "", iicon = null) -> void:
 	self.text = itext
 	self.value = ivalue
 	self.tooltip = itooltip

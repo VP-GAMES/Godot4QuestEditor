@@ -29,11 +29,6 @@ func set_data(task: Dictionary, quest: QuestQuest, data: QuestData) -> void:
 	_quantity_ui.text = str(_task.quantity)
 	_update_view()
 
-func _process(delta: float) -> void:
-	if not inventory_editor or not _data:
-		_fill_trigger_ui_dropdown()
-	if not dialogue_editor or not _data:
-		_fill_dialogue_ui_dropdown()
 
 func _init_connections() -> void:
 	if not _trigger_ui.gui_input.is_connected(_on_trigger_gui_input):

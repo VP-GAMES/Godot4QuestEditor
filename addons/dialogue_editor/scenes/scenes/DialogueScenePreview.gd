@@ -17,16 +17,16 @@ func set_data(data: DialogueData) -> void:
 	_update_view()
 
 func _init_connections() -> void:
-	if not _data.is_connected("scene_selection_changed", _on_scene_selection_changed):
-		_data.connect("scene_selection_changed", _on_scene_selection_changed)
-	if not _data.is_connected("scene_preview_data_changed", _on_scene_preview_data_changed):
-		_data.connect("scene_preview_data_changed", _on_scene_preview_data_changed)
-	if not _data.is_connected("scene_added", _on_scene_added):
-		_data.connect("scene_added", _on_scene_added)
-	if not _data.is_connected("scene_removed", _on_scene_removed):
-		_data.connect("scene_removed", _on_scene_removed)
-	if not is_connected("resized", _on_resized):
-		connect("resized", _on_resized)
+	if not _data.scene_selection_changed.is_connected(_on_scene_selection_changed):
+		_data.scene_selection_changed.connect(_on_scene_selection_changed)
+	if not _data.scene_preview_data_changed.is_connected(_on_scene_preview_data_changed):
+		_data.scene_preview_data_changed.connect(_on_scene_preview_data_changed)
+	if not _data.scene_added.is_connected(_on_scene_added):
+		_data.scene_added.connect(_on_scene_added)
+	if not _data.scene_removed.is_connected(_on_scene_removed):
+		_data.scene_removed.connect(_on_scene_removed)
+	if not resized.is_connected(_on_resized):
+		resized.connect(_on_resized)
 
 func _on_scene_selection_changed(scene) -> void:
 	_scene = scene

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5jw6bh010hkm"]
+[gd_scene load_steps=8 format=3 uid="uid://b5jw6bh010hkm"]
 
 [ext_resource type="Texture2D" uid="uid://cu2mqtk8bruhb" path="res://addons/dialogue_editor/icons/Add.png" id="1"]
 [ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataTexture.tscn" id="2"]

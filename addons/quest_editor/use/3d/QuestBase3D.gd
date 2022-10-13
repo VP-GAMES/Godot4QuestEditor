@@ -12,6 +12,8 @@ var questManager
 const questManagerName = "QuestManager"
 
 var inside
+
+@export var dialogue_default: String
 @export var activate: String = "action"
 @export var cancel: String = "cancel"
 
@@ -87,6 +89,8 @@ func _input(event: InputEvent):
 				if not questManager.is_quest_started():
 					if _quest:
 						_start_quest_and_dialogue()
+					else:
+						_start_dialogue()
 				else:
 					if _quest:
 						if _quest.tasks_done() and _quest.is_quest_delivery_dialogue() and not dialogueManager.is_started():
@@ -102,6 +106,8 @@ func _input(event: InputEvent):
 						var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
 						if task and task.dialogue and not task.dialogue.is_empty():
 							dialogueManager.start_dialogue(task.dialogue)
+						else:
+							_start_dialogue()
 			dialogueManager.next_sentence()
 		if event.is_action_released(cancel):
 			dialogueManager.cancel_dialogue()
@@ -116,6 +122,10 @@ func _start_quest_and_dialogue() -> void:
 				dialogueManager.dialogue_canceled.connect(_dialogue_canceled_event)
 			if not dialogueManager.dialogue_ended.is_connected(_dialogue_ended_event):
 				dialogueManager.dialogue_ended.connect(_dialogue_ended_event)
+
+func _start_dialogue() -> void:
+	if not dialogueManager.is_started() and not dialogue_default.is_empty():
+		dialogueManager.start_dialogue(dialogue_default)
 
 func _dialogue_event_accept_quest(event: String) -> void:
 	if event == "ACCEPT_QUEST":

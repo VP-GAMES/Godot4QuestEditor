@@ -143,7 +143,7 @@ func _init_check_box(index: int) -> CheckBox:
 	check_box.hint_tooltip = _items[index].tooltip
 	if index == _selected:
 		check_box.set_pressed(true)
-	check_box.connect("pressed", _on_selection_changed, [index])
+	check_box.pressed.connect(_on_selection_changed.bind(index))
 	return check_box
 
 func _on_selection_changed(index: int) -> void:

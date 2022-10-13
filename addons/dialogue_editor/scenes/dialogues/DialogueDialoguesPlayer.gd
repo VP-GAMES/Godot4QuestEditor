@@ -35,12 +35,12 @@ func _process(delta):
 		if get_tree().get_root().has_node(DialogueManagerName):
 			dialogueManagerAdded = true
 			var dialogue_name = ProjectSettings.get_setting(DialogueData.SETTINGS_DIALOGUES_SELECTED_DIALOGUE)
-			if not dialogueManager.is_connected("dialogue_ended", _on_dialogue_ended_canceled):
-				assert(dialogueManager.connect("dialogue_ended", _on_dialogue_ended_canceled) == OK)
-			if not dialogueManager.is_connected("dialogue_canceled", _on_dialogue_ended_canceled):
-				assert(dialogueManager.connect("dialogue_canceled", _on_dialogue_ended_canceled) == OK)
-			if not dialogueManager.is_connected("dialogue_event", _on_dialogue_event):
-				assert(dialogueManager.connect("dialogue_event", _on_dialogue_event) == OK)
+			if not dialogueManager.dialogue_ended.is_connected(_on_dialogue_ended_canceled):
+				assert(dialogueManager.dialogue_ended.connect(_on_dialogue_ended_canceled) == OK)
+			if not dialogueManager.dialogue_canceled.is_connected(_on_dialogue_ended_canceled):
+				assert(dialogueManager.dialogue_canceled.connect(_on_dialogue_ended_canceled) == OK)
+			if not dialogueManager.dialogue_event.is_connected(_on_dialogue_event):
+				assert(dialogueManager.dialogue_event.connect(_on_dialogue_event) == OK)
 			dialogueManager.start_dialogue(dialogue_name)
 
 func _on_dialogue_ended_canceled(dialogue) -> void:
@@ -50,8 +50,8 @@ func _on_dialogue_event(event: String) -> void:
 	_event_ui.text = "EVENT: -> " +  event
 	_event_ui.visible = true
 	_timer_ui.start()
-	if not _timer_ui.is_connected("timeout", _on_timeout):
-		assert(_timer_ui.connect("timeout", _on_timeout) == OK)
+	if not _timer_ui.timeout.is_connected(_on_timeout):
+		assert(_timer_ui.timeout.connect(_on_timeout) == OK)
 
 func _on_timeout() -> void:
 	_event_ui.visible = false

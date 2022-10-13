@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://cwigxlv86btou"]
+[gd_scene load_steps=23 format=3 uid="uid://cwigxlv86btou"]
 
-[ext_resource type="FontFile" uid="uid://xg6rkm7rciai" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="1"]
+[ext_resource type="FontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="1"]
 [ext_resource type="PackedScene" uid="uid://6mpvyrmc1iim" path="res://quest_example/3d/player/Player.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bv2ceh5gjbvkn" path="res://quest_example/textures/Chest.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bec7ilkcdhjig" path="res://quest_example/textures/Quest.png" id="4"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://addons/inventory_editor/InventoryItem3D.gd" id="13"]
 [ext_resource type="PackedScene" uid="uid://b5n4rtrmxxt0t" path="res://quest_example/3d/actors/Item.tscn" id="14"]
 [ext_resource type="Script" path="res://quest_example/3d/Item.gd" id="15"]
+[ext_resource type="PackedScene" path="res://addons/quest_editor/ui/QuestWatcher.tscn" id="16"]
 [ext_resource type="PackedScene" uid="uid://psdylvnosysr" path="res://quest_example/3d/models/godotTree.glb" id="17"]
 
 [sub_resource type="PlaneMesh" id="1"]
@@ -28,104 +29,111 @@ metallic_specular = 0.0
 [sub_resource type="BoxShape3D" id="4"]
 size = Vector3(0.0388198, 7.8478, 2)
 
+[sub_resource type="Font" id="5"]
+data/0 = ExtResource( "1" )
+
 [node name="Level" type="Node3D"]
-script = ExtResource("5")
+script = ExtResource( "5" )
 
 [node name="Wood" type="Node3D" parent="."]
 
-[node name="godotTree" parent="Wood" instance=ExtResource("17")]
+[node name="godotTree" parent="Wood" instance=ExtResource( "17" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.987, 0, -9.7417)
 
-[node name="godotTree3" parent="Wood" instance=ExtResource("17")]
+[node name="godotTree3" parent="Wood" instance=ExtResource( "17" )]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 30.3082, 0, -1.17388)
 
-[node name="godotTree2" parent="Wood" instance=ExtResource("17")]
+[node name="godotTree2" parent="Wood" instance=ExtResource( "17" )]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 26.987, 0, 7.13897)
 
-[node name="godotTree4" parent="Wood" instance=ExtResource("17")]
+[node name="godotTree4" parent="Wood" instance=ExtResource( "17" )]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 19.7978, 0, -5.55085)
 
-[node name="godotTree5" parent="Wood" instance=ExtResource("17")]
+[node name="godotTree5" parent="Wood" instance=ExtResource( "17" )]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 17.8995, 0, 5.01351)
 
 [node name="Background" type="MeshInstance3D" parent="."]
 transform = Transform3D(35, 0, 0, 0, 1, 0, 0, 0, 35, 0, 0, 0)
-mesh = SubResource("1")
-surface_material_override/0 = SubResource("StandardMaterial3D_d37el")
+mesh = SubResource( "1" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_d37el" )
 
 [node name="Ground" type="StaticBody3D" parent="Background"]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Background/Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15939, 0)
-shape = SubResource("3")
+shape = SubResource( "3" )
 
 [node name="WallXNegative" type="StaticBody3D" parent="Background"]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Background/WallXNegative"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01813, 1.75066, 0)
-shape = SubResource("4")
+shape = SubResource( "4" )
 
 [node name="WallXPositive" type="StaticBody3D" parent="Background"]
 transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Background/WallXPositive"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01813, 1.75066, 0)
-shape = SubResource("4")
+shape = SubResource( "4" )
 
 [node name="WallZNegative" type="StaticBody3D" parent="Background"]
 transform = Transform3D(-1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 0)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Background/WallZNegative"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01813, 1.75066, 0)
-shape = SubResource("4")
+shape = SubResource( "4" )
 
 [node name="WallZPositive" type="StaticBody3D" parent="Background"]
 transform = Transform3D(-1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="Background/WallZPositive"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01813, 1.75066, 0)
-shape = SubResource("4")
+shape = SubResource( "4" )
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="Background"]
 transform = Transform3D(0.0285714, 0, 0, 0, -1.62921e-07, 1, 0, -0.0285714, -4.65488e-09, 0, 20, 0)
 light_energy = 3.0
 
-[node name="John" parent="." instance=ExtResource("11")]
+[node name="John" parent="." instance=ExtResource( "11" )]
 transform = Transform3D(-0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, -0.819152, -24.4423, 0, 26.2755)
 
-[node name="Girl" parent="." instance=ExtResource("10")]
+[node name="Girl" parent="." instance=ExtResource( "10" )]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -21.952, 0, 0.112287)
 
-[node name="Trigger" parent="." instance=ExtResource("12")]
+[node name="Trigger" parent="." instance=ExtResource( "12" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.8115)
 
-[node name="Destination" parent="." instance=ExtResource("8")]
+[node name="Destination" parent="." instance=ExtResource( "8" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7346, 0, -19.7024)
 
-[node name="Enemy" parent="." instance=ExtResource("9")]
+[node name="Enemy" parent="." instance=ExtResource( "9" )]
 transform = Transform3D(-0.814936, 0, -0.579552, 0, 1, 0, 0.579552, 0, -0.814936, 19.5998, 0, 18.2416)
 
-[node name="Player" parent="." instance=ExtResource("2")]
+[node name="Player" parent="." instance=ExtResource( "2" )]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -21, 0, -21)
 
 [node name="Item" type="Node3D" parent="."]
 visible = false
-script = ExtResource("15")
+script = ExtResource( "15" )
 
 [node name="Item3D" type="Node3D" parent="Item"]
-script = ExtResource("13")
+script = ExtResource( "13" )
 item_put = "6550b66f-7b71-4737-b2d1-f70fe102d6b8"
 to_inventory = "8e526c15-dfbe-478b-b0c9-a05aa8722cb0"
 
-[node name="InventoryItem_6550b66f-7b71-4737-b2d1-f70fe102d6b8" parent="Item/Item3D" instance=ExtResource("14")]
+[node name="InventoryItem_6550b66f-7b71-4737-b2d1-f70fe102d6b8" parent="Item/Item3D" instance=ExtResource( "14" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1036, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryButton" type="TextureButton" parent="CanvasLayer"]
-texture_normal = ExtResource("3")
+texture_normal = ExtResource( "3" )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("7")]
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource( "7" )]
 visible = false
 anchor_left = 0.00103468
 anchor_right = 0.00103468
@@ -133,9 +141,13 @@ anchor_right = 0.00103468
 [node name="QuestButton" type="TextureButton" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_right = 1.0
-texture_normal = ExtResource("4")
+texture_normal = ExtResource( "4" )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Quest" parent="CanvasLayer" instance=ExtResource("6")]
+[node name="Quest" parent="CanvasLayer" instance=ExtResource( "6" )]
 visible = false
 anchor_left = 1.0
 anchor_right = 1.0
@@ -145,7 +157,15 @@ visible = false
 anchor_top = 0.1
 anchor_right = 1.0
 anchor_bottom = 0.5
-theme_override_fonts/normal_font = ExtResource("1")
+theme_override_fonts/normal_font = SubResource( "5" )
 bbcode_enabled = true
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]
+
+[node name="QuestWatcher" parent="CanvasLayer" instance=ExtResource( "16" )]
+visible = false
+anchor_left = 0.01
+anchor_top = 0.1
+anchor_right = 0.99
+anchor_bottom = 0.9
+active = false

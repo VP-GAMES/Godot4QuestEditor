@@ -26,24 +26,24 @@ func set_data(dialogue: DialogueDialogue, data: DialogueData) -> void:
 		_update_view()
 
 func _init_connections() -> void:
-	if not _graph_ui.is_connected("scroll_offset_changed", _on_scroll_offset_changed):
-		assert(_graph_ui.connect("scroll_offset_changed", _on_scroll_offset_changed) == OK)
-	if not _graph_ui.is_connected("node_selected", _on_node_selected):
-		assert(_graph_ui.connect("node_selected", _on_node_selected) == OK)
-	if not _graph_ui.is_connected("connection_request", _node_connection_request):
-		assert(_graph_ui.connect("connection_request", _node_connection_request) == OK)
-	if not _graph_ui.is_connected("disconnection_request", _node_disconnection_request):
-		assert(_graph_ui.connect("disconnection_request", _node_disconnection_request) == OK)
-	if not _popup_ui.is_connected("mouse_entered", _on_mouse_popup_entered):
-		assert(_popup_ui.connect("mouse_entered", _on_mouse_popup_entered) == OK)
-	if not _popup_ui.is_connected("mouse_exited", _on_mouse_popup_exited):
-		assert(_popup_ui.connect("mouse_exited", _on_mouse_popup_exited) == OK)
-	if not _graph_ui.is_connected("gui_input", _on_gui_input):
-		assert(_graph_ui.connect("gui_input", _on_gui_input) == OK)
-	if not _popup_ui.is_connected("id_pressed", _on_popup_item_selected):
-		assert(_popup_ui.connect("id_pressed", _on_popup_item_selected) == OK)
-	if not _dialogue.is_connected("update_view", _on_update_view):
-		assert(_dialogue.connect("update_view", _on_update_view) == OK)
+	if not _graph_ui.scroll_offset_changed.is_connected(_on_scroll_offset_changed):
+		assert(_graph_ui.scroll_offset_changed.connect(_on_scroll_offset_changed) == OK)
+	if not _graph_ui.node_selected.is_connected(_on_node_selected):
+		assert(_graph_ui.node_selected.connect(_on_node_selected) == OK)
+	if not _graph_ui.connection_request.is_connected(_node_connection_request):
+		assert(_graph_ui.connection_request.connect(_node_connection_request) == OK)
+	if not _graph_ui.disconnection_request.is_connected(_node_disconnection_request):
+		assert(_graph_ui.disconnection_request.connect(_node_disconnection_request) == OK)
+	if not _popup_ui.mouse_entered.is_connected(_on_mouse_popup_entered):
+		assert(_popup_ui.mouse_entered.connect(_on_mouse_popup_entered) == OK)
+	if not _popup_ui.mouse_exited.is_connected(_on_mouse_popup_exited):
+		assert(_popup_ui.mouse_exited.connect(_on_mouse_popup_exited) == OK)
+	if not _graph_ui.gui_input.is_connected(_on_gui_input):
+		assert(_graph_ui.gui_input.connect(_on_gui_input) == OK)
+	if not _popup_ui.id_pressed.is_connected(_on_popup_item_selected):
+		assert(_popup_ui.id_pressed.connect(_on_popup_item_selected) == OK)
+	if not _dialogue.update_view.is_connected(_on_update_view):
+		assert(_dialogue.update_view.connect(_on_update_view) == OK)
 
 func _on_scroll_offset_changed(ofs: Vector2) -> void:
 	_dialogue.scroll_offset = ofs

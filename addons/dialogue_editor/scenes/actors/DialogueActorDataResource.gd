@@ -26,14 +26,14 @@ func request_focus() -> void:
 	_name_ui.grab_focus()
 
 func _init_connections() -> void:
-	if not _actor.is_connected("resource_name_changed", _on_resource_name_changed):
-		assert(_actor.connect("resource_name_changed", _on_resource_name_changed) == OK)
-	if not _name_ui.is_connected("gui_input", _on_name_gui_input):
-		assert(_name_ui.connect("gui_input", _on_name_gui_input) == OK)
-	if not _name_ui.is_connected("text_changed", _on_name_changed):
-		assert(_name_ui.connect("text_changed", _on_name_changed) == OK)
-	if not _del_ui.is_connected("pressed", _del_pressed):
-		assert(_del_ui.connect("pressed", _del_pressed) == OK)
+	if not _actor.resource_name_changed.is_connected(_on_resource_name_changed):
+		assert(_actor.resource_name_changed.connect(_on_resource_name_changed) == OK)
+	if not _name_ui.gui_input.is_connected(_on_name_gui_input):
+		assert(_name_ui.gui_input.connect(_on_name_gui_input) == OK)
+	if not _name_ui.text_changed.is_connected(_on_name_changed):
+		assert(_name_ui.text_changed.connect(_on_name_changed) == OK)
+	if not _del_ui.pressed.is_connected(_del_pressed):
+		assert(_del_ui.pressed.connect(_del_pressed) == OK)
 
 func _on_resource_name_changed(resource) -> void:
 	if _resource == resource:

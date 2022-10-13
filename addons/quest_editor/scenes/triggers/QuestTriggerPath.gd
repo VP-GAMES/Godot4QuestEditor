@@ -55,7 +55,7 @@ func _on_focus_exited() -> void:
 	text = _data.filename(_trigger.scene)
 
 func _path_value_changed(path_value) -> void:
-	_trigger.scene = path_value
+	_trigger.change_scene(path_value)
 
 func _can_drop_data(position, data) -> bool:
 	var path_value = data["files"][0]
@@ -70,8 +70,8 @@ func _drop_data(position, data) -> void:
 
 func _check_path_ui() -> void:
 	if _trigger.scene != null and not _data.resource_exists(_trigger.scene):
-		set("custom_styles/normal", _path_ui_style_resource)
-		hint_tooltip =  "Your resource path: \"" + _trigger.scene + "\" does not exists"
+		add_theme_stylebox_override("normal", _path_ui_style_resource)
+		tooltip_text =  "Your resource path: \"" + _trigger.scene + "\" does not exists"
 	else:
-		set("custom_styles/normal", null)
-		hint_tooltip =  ""
+		remove_theme_stylebox_override("normal")
+		tooltip_text =  ""

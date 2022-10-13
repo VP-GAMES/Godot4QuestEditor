@@ -14,7 +14,7 @@ __meta__ = {
 offset_top = 2.0
 offset_right = 160.0
 offset_bottom = 28.0
-min_size = Vector2(160, 0)
+rect_min_size = Vector2(160, 0)
 text = "Action"
 
 [node name="Trigger" parent="." instance=ExtResource( "2" )]
@@ -54,5 +54,5 @@ __meta__ = {
 offset_left = 430.0
 offset_right = 450.0
 offset_bottom = 31.0
-min_size = Vector2(20, 20)
+rect_min_size = Vector2(20, 20)
 icon = ExtResource( "3" )

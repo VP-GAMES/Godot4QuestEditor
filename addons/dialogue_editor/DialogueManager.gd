@@ -154,8 +154,8 @@ func _draw_sentence() -> void:
 			_connect_buttons()
 
 func _connect_gui_input() -> void:
-	if not _scene.is_connected("gui_input", _on_gui_input):
-		_scene.connect("gui_input", _on_gui_input)
+	if not _scene.gui_input.is_connected(_on_gui_input):
+		_scene.gui_input.connect(_on_gui_input)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -168,8 +168,8 @@ func _connect_buttons() -> void:
 	for index in range(buttons_array.size() - 1, -1, -1):
 		var index_reverse = buttons_array.size() - (index +1)
 		var button_ui = buttons_array[index] as Button
-		if not button_ui.is_connected("pressed", _on_button_pressed):
-			assert(button_ui.connect("pressed", _on_button_pressed, [index_reverse]) == OK)
+		if not button_ui.pressed.is_connected(_on_button_pressed):
+			assert(button_ui.pressed.connect(_on_button_pressed.bind(index_reverse)) == OK)
 
 func _on_button_pressed(button_index: int) -> void:
 	var event_name = _sentence.texte_events[button_index].event

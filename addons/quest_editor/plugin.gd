@@ -12,7 +12,7 @@ func _enter_tree():
 	add_autoload_singleton("QuestManager", "res://addons/quest_editor/QuestManager.gd")
 	_quest_main = QuestMain.instantiate()
 	_quest_main.name = "QuestMain"
-	get_editor_interface().get_editor_main_control().add_child(_quest_main)
+	get_editor_interface().get_editor_main_screen().add_child(_quest_main)
 	_quest_main.set_editor(self)
 	_make_visible(false)
 

@@ -20,18 +20,18 @@ func set_data(data: DialogueData) -> void:
 	_update_view()
 
 func _init_connections() -> void:
-	if not _add_ui.is_connected("pressed", _add_pressed):
-		assert(_add_ui.connect("pressed", _add_pressed) == OK)
-	if not _data.is_connected("dialogue_added", _on_dialogue_action):
-		assert(_data.connect("dialogue_added", _on_dialogue_action) == OK)
-	if not _data.is_connected("dialogue_removed", _on_dialogue_action):
-		assert(_data.connect("dialogue_removed", _on_dialogue_action) == OK)
-	if not _play_ui.is_connected("pressed", _on_play_pressed):
-		assert(_play_ui.connect("pressed", _on_play_pressed) == OK)
-	if not _nodes_ui.is_connected("pressed", _on_type_pressed):
-		assert(_nodes_ui.connect("pressed", _on_type_pressed, ["NODES"]) == OK)
-	if not _bricks_ui.is_connected("pressed", _on_type_pressed):
-		assert(_bricks_ui.connect("pressed", _on_type_pressed, ["BRICKS"]) == OK)
+	if not _add_ui.pressed.is_connected(_add_pressed):
+		assert(_add_ui.pressed.connect(_add_pressed) == OK)
+	if not _data.dialogue_added.is_connected(_on_dialogue_action):
+		assert(_data.dialogue_added.connect(_on_dialogue_action) == OK)
+	if not _data.dialogue_removed.is_connected(_on_dialogue_action):
+		assert(_data.dialogue_removed.connect(_on_dialogue_action) == OK)
+	if not _play_ui.pressed.is_connected(_on_play_pressed):
+		assert(_play_ui.pressed.connect(_on_play_pressed) == OK)
+	if not _nodes_ui.pressed.is_connected(_on_type_pressed):
+		assert(_nodes_ui.pressed.connect(_on_type_pressed.bind("NODES")) == OK)
+	if not _bricks_ui.pressed.is_connected(_on_type_pressed):
+		assert(_bricks_ui.pressed.connect(_on_type_pressed.bind("BRICKS")) == OK)
 
 func _add_pressed() -> void:
 	_data.add_dialogue()

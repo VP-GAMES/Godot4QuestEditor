@@ -290,8 +290,7 @@ func select_dialogue(dialogue: DialogueDialogue, emitSignal = true) -> void:
 
 # ***** LOAD SAVE *****
 func init_data() -> void:
-	var file = File.new()
-	if file.file_exists(PATH_TO_SAVE):
+	if FileAccess.file_exists(PATH_TO_SAVE):
 		var resource = ResourceLoader.load(PATH_TO_SAVE) as DialogueData
 		if resource.actors and not resource.actors.is_empty():
 			actors = resource.actors
@@ -313,18 +312,17 @@ func _chech_uuids() -> void:
 			dialogue.uuid = UUID.v4()
 
 func save(update_script_classes = false) -> void:
-	ResourceSaver.save(PATH_TO_SAVE, self)
+	ResourceSaver.save(self, PATH_TO_SAVE)
 	_save_data_dialogue_names()
 	_save_data_dialogue_events()
 	if update_script_classes:
 		_editor.get_editor_interface().get_resource_filesystem().update_script_classes()
 
 func _save_data_dialogue_names() -> void:
-	var directory = Directory.new()
-	if not directory.dir_exists(default_path):
-		directory.make_dir(default_path)
-	var file = File.new()
-	file.open(default_path + "DialogueDialogues.gd", File.WRITE)
+	var dir:= DirAccess.open(default_path)
+	if not dir:
+		dir.make_dir(default_path)
+	var reader = FileAccess.open(default_path + "DialogueDialogues.gd", FileAccess.WRITE)
 	var source_code = "# Names for DialogueManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "@tool\n"
@@ -339,12 +337,10 @@ func _save_data_dialogue_names() -> void:
 		if index != dialogues.size() - 1:
 			source_code += ",\n"
 	source_code += "\n]"
-	file.store_string(source_code)
-	file.close()
+	reader.store_string(source_code)
 
 func _save_data_dialogue_events() -> void:
-	var file = File.new()
-	file.open(default_path + "DialogueEvents.gd", File.WRITE)
+	var reader = FileAccess.open(default_path + "DialogueEvents.gd", FileAccess.WRITE)
 	var source_code = "# Events for DialogueManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "@tool\n"
@@ -354,8 +350,7 @@ func _save_data_dialogue_events() -> void:
 			source_code += "const " + dialogue.name.to_upper() + "_EVENT_" + event.to_upper()
 			source_code += " = \"" + event +"\"\n"
 		source_code += "\n"
-	file.store_string(source_code)
-	file.close()
+	reader.store_string(source_code)
 
 func dialogue_exists(dialogue_uuid_or_name: String) -> bool:
 	if dialogue_exists_by_uuid(dialogue_uuid_or_name):
@@ -508,8 +503,7 @@ func file_extension(value: String):
 	return value.get_extension()
 
 func resource_exists(resource) -> bool:
-	var file = File.new()
-	return file.file_exists(resource.path)
+	return FileAccess.file_exists(resource.path)
 
 func resize_texture(t: Texture2D, size: Vector2) -> Texture:
 	if t == null:

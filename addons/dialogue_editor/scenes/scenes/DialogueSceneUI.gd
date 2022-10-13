@@ -31,20 +31,20 @@ func _init_styles() -> void:
 	_ui_style_selected.set_bg_color(_data.BACKGROUND_COLOR_SELECTED)
 
 func _init_connections() -> void:
-	if not _data.is_connected("scene_added", _on_scene_added):
-		assert(_data.connect("scene_added", _on_scene_added) == OK)
-	if not _data.is_connected("scene_removed", _on_scene_removed):
-		_data.connect("scene_removed", _on_scene_removed)
-	if not _data.is_connected("scene_selection_changed", _on_scene_selection_changed):
-		assert(_data.connect("scene_selection_changed", _on_scene_selection_changed) == OK)
-	if not _name_ui.is_connected("gui_input", _on_gui_input):
-		assert(_name_ui.connect("gui_input", _on_gui_input) == OK)
-	if not _sentence_ui.is_connected("pressed", _on_sentence_pressed):
-		assert(_sentence_ui.connect("pressed", _on_sentence_pressed) == OK)
-	if not _open_ui.is_connected("pressed", _on_open_pressed):
-		assert(_open_ui.connect("pressed", _on_open_pressed) == OK)
-	if not _del_ui.is_connected("pressed", _on_del_pressed):
-		assert(_del_ui.connect("pressed", _on_del_pressed) == OK)
+	if not _data.scene_added.is_connected(_on_scene_added):
+		assert(_data.scene_added.connect(_on_scene_added) == OK)
+	if not _data.scene_removed.is_connected(_on_scene_removed):
+		_data.scene_removed.connect(_on_scene_removed)
+	if not _data.scene_selection_changed.is_connected(_on_scene_selection_changed):
+		assert(_data.scene_selection_changed.connect(_on_scene_selection_changed) == OK)
+	if not _name_ui.gui_input.is_connected(_on_gui_input):
+		assert(_name_ui.gui_input.connect(_on_gui_input) == OK)
+	if not _sentence_ui.pressed.is_connected(_on_sentence_pressed):
+		assert(_sentence_ui.pressed.connect(_on_sentence_pressed) == OK)
+	if not _open_ui.pressed.is_connected(_on_open_pressed):
+		assert(_open_ui.pressed.connect(_on_open_pressed) == OK)
+	if not _del_ui.pressed.is_connected(_on_del_pressed):
+		assert(_del_ui.pressed.connect(_on_del_pressed) == OK)
 
 func _on_scene_added(scene) -> void:
 	_draw_style()
@@ -71,7 +71,7 @@ func _on_sentence_pressed() -> void:
 	root.add_child(sentence_dialog)
 	sentence_dialog.set_data(_scene, _data)
 	sentence_dialog.title = "Preview Sentence"
-	assert(sentence_dialog.connect("close_requested", _on_popup_hide, [root, sentence_dialog]) == OK)
+	assert(sentence_dialog.close_requested.connect(_on_popup_hide.bind(root, sentence_dialog)) == OK)
 	sentence_dialog.popup_centered()
 
 func _on_popup_hide(root, dialog) -> void:

@@ -34,10 +34,10 @@ func _dropdown_ui_init() -> void:
 	if localization_editor != null:
 		var data = localization_editor.get_data()
 		if data:
-			if not data.is_connected("data_changed", _on_localization_data_changed):
-				data.connect("data_changed", _on_localization_data_changed)
-			if not data.is_connected("data_key_value_changed", _on_localization_data_changed):
-				data.connect("data_key_value_changed", _on_localization_data_changed)
+			if not data.data_changed.is_connected(_on_localization_data_changed):
+				data.data_changed.connect(_on_localization_data_changed)
+			if not data.data_key_value_changed.is_connected(_on_localization_data_changed):
+				data.data_key_value_changed.connect(_on_localization_data_changed)
 			_on_localization_data_changed()
 
 func _on_localization_data_changed() -> void:
@@ -50,10 +50,10 @@ func _on_localization_data_changed() -> void:
 				_dropdown_ui.set_selected_by_value(_actor.uiname)
 
 func _init_connections() -> void:
-	if not _add_ui.is_connected("pressed", _on_add_pressed):
-		assert(_add_ui.connect("pressed", _on_add_pressed) == OK)
-	if not _data.is_connected("actor_selection_changed", _on_actor_selection_changed):
-		assert(_data.connect("actor_selection_changed", _on_actor_selection_changed) == OK)
+	if not _add_ui.pressed.is_connected(_on_add_pressed):
+		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+	if not _data.actor_selection_changed.is_connected(_on_actor_selection_changed):
+		assert(_data.actor_selection_changed.connect(_on_actor_selection_changed) == OK)
 
 func _on_add_pressed() -> void:
 	_actor.add_resource()
@@ -63,12 +63,12 @@ func _on_actor_selection_changed(actor: DialogueActor) -> void:
 	_update_view()
 
 func _init_actor_connections() -> void:
-	if not _actor.is_connected("resource_added", _on_resource_added):
-		assert(_actor.connect("resource_added", _on_resource_added) == OK)
-	if not _actor.is_connected("resource_removed", _on_resource_removed):
-		assert(_actor.connect("resource_removed", _on_resource_removed) == OK)
-	if not _uiname_ui.is_connected("text_changed", _on_uiname_changed):
-		assert(_uiname_ui.connect("text_changed", _on_uiname_changed) == OK)
+	if not _actor.resource_added.is_connected(_on_resource_added):
+		assert(_actor.resource_added.connect(_on_resource_added) == OK)
+	if not _actor.resource_removed.is_connected(_on_resource_removed):
+		assert(_actor.resource_removed.connect(_on_resource_removed) == OK)
+	if not _uiname_ui.text_changed.is_connected(_on_uiname_changed):
+		assert(_uiname_ui.text_changed.connect(_on_uiname_changed) == OK)
 	if _data.setting_localization_editor_enabled():
 		if not _dropdown_ui.selection_changed.is_connected(_on_selection_changed):
 			assert(_dropdown_ui.selection_changed.connect(_on_selection_changed) == OK)

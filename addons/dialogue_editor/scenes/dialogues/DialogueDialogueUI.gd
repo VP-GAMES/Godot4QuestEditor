@@ -27,20 +27,20 @@ func _init_styles() -> void:
 	_ui_style_selected.set_bg_color(Color("#868991"))
 
 func _init_connections() -> void:
-	if not _data.is_connected("dialogue_added", _on_dialogue_added):
-		assert(_data.connect("dialogue_added", _on_dialogue_added) == OK)
-	if not _data.is_connected("dialogue_removed", _on_dialogue_removed):
-		assert(_data.connect("dialogue_removed", _on_dialogue_removed) == OK)
-	if not _data.is_connected("dialogue_selection_changed", _on_dialogue_selection_changed):
-		assert(_data.connect("dialogue_selection_changed", _on_dialogue_selection_changed) == OK)
-	if not _name_ui.is_connected("gui_input", _on_gui_input):
-		assert(_name_ui.connect("gui_input", _on_gui_input) == OK)
-	if not _name_ui.is_connected("focus_exited", _on_focus_exited):
-		assert(_name_ui.connect("focus_exited", _on_focus_exited) == OK)
-	if not _name_ui.is_connected("text_changed", _on_text_changed):
-		assert(_name_ui.connect("text_changed", _on_text_changed) == OK)
-	if not _del_ui.is_connected("pressed", _del_pressed):
-		assert(_del_ui.connect("pressed", _del_pressed) == OK)
+	if not _data.dialogue_added.is_connected(_on_dialogue_added):
+		assert(_data.dialogue_added.connect(_on_dialogue_added) == OK)
+	if not _data.dialogue_removed.is_connected(_on_dialogue_removed):
+		assert(_data.dialogue_removed.connect(_on_dialogue_removed) == OK)
+	if not _data.dialogue_selection_changed.is_connected(_on_dialogue_selection_changed):
+		assert(_data.dialogue_selection_changed.connect(_on_dialogue_selection_changed) == OK)
+	if not _name_ui.gui_input.is_connected(_on_gui_input):
+		assert(_name_ui.gui_input.connect(_on_gui_input) == OK)
+	if not _name_ui.focus_exited.is_connected(_on_focus_exited):
+		assert(_name_ui.focus_exited.connect(_on_focus_exited) == OK)
+	if not _name_ui.text_changed.is_connected(_on_text_changed):
+		assert(_name_ui.text_changed.connect(_on_text_changed) == OK)
+	if not _del_ui.pressed.is_connected(_del_pressed):
+		assert(_del_ui.pressed.connect(_del_pressed) == OK)
 
 func _on_dialogue_added(dialogue: DialogueDialogue) -> void:
 	_draw_style()

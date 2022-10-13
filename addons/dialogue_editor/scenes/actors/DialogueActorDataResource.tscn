@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5oapcp1mwwa1"]
+[gd_scene load_steps=7 format=3 uid="uid://c5oapcp1mwwa1"]
 
 [ext_resource type="Texture2D" uid="uid://dj0dj3apfv7mo" path="res://addons/dialogue_editor/icons/Trash.png" id="1"]
 [ext_resource type="FontFile" uid="uid://b70mxl2qgp5dt" path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" id="2"]

@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/godotWeapon.glb-68ed2c6465cfd5e6ab328b5e41e38
 
 nodes/root_type="Spatial"
 nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
 meshes/generate_lods=true

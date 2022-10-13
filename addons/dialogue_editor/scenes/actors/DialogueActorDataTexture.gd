@@ -11,15 +11,15 @@ func set_data(data: DialogueData):
 	_init_connections()
 
 func _init_connections() -> void:
-	if not _data.is_connected("actor_selection_changed", _on_actor_selection_changed):
-		assert(_data.connect("actor_selection_changed", _on_actor_selection_changed) == OK)
+	if not _data.actor_selection_changed.is_connected(_on_actor_selection_changed):
+		assert(_data.actor_selection_changed.connect(_on_actor_selection_changed) == OK)
 
 func _on_actor_selection_changed(actor: DialogueActor) -> void:
 	if actor:
-		if not actor.is_connected("resource_path_changed", _on_resource_path_changed):
-			assert(actor.connect("resource_path_changed", _on_resource_path_changed) == OK)
-		if not actor.is_connected("resource_selection_changed", _on_resource_selection_changed):
-			assert(actor.connect("resource_selection_changed", _on_resource_selection_changed) == OK)
+		if not actor.resource_path_changed.is_connected(_on_resource_path_changed):
+			assert(actor.resource_path_changed.connect(_on_resource_path_changed) == OK)
+		if not actor.resource_selection_changed.is_connected(_on_resource_selection_changed):
+			assert(actor.resource_selection_changed.connect(_on_resource_selection_changed) == OK)
 	else:
 		set_resource(null)
 

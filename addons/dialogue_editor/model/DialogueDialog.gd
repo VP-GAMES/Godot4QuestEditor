@@ -25,8 +25,8 @@ func buttons() -> Array:
 func _ready() -> void:
 	if get_tree().get_root().has_node(_localizationManagerName):
 		_localizationManager = get_tree().get_root().get_node(_localizationManagerName)
-		if not _localizationManager.is_connected("translation_changed", _update_translation_from_manager):
-			_localizationManager.connect("translation_changed", _update_translation_from_manager)
+		if not _localizationManager.translation_changed.is_connected(_update_translation_from_manager):
+			_localizationManager.translation_changed.connect(_update_translation_from_manager)
 
 func _update_translation_from_manager() -> void:
 	_text()

@@ -2,7 +2,8 @@
 # @author Vladimir Petrenko
 @tool
 extends Resource
-class_name DialogueDialogue, "res://addons/dialogue_editor/icons/Dialogue.png"
+class_name DialogueDialogue
+@icon("res://addons/dialogue_editor/icons/Dialogue.png")
 
 # ***** EDITOR_PLUGIN BOILERPLATE *****
 var _editor
