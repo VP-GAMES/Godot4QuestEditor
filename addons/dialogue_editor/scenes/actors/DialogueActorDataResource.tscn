@@ -1,35 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5oapcp1mwwa1"]
+[gd_scene load_steps=5 format=3 uid="uid://c5oapcp1mwwa1"]
 
 [ext_resource type="Texture2D" uid="uid://dj0dj3apfv7mo" path="res://addons/dialogue_editor/icons/Trash.png" id="1"]
-[ext_resource type="FontFile" uid="uid://b70mxl2qgp5dt" path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" id="2"]
 [ext_resource type="Script" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataResource.gd" id="3"]
 [ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataPath.tscn" id="5"]
 
 [node name="DialogueActorDataResource" type="HBoxContainer"]
-script = ExtResource( "3" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("3")
 
 [node name="Name" type="LineEdit" parent="."]
-offset_right = 120.0
-offset_bottom = 31.0
-min_size = Vector2(120, 0)
-theme_override_fonts/font = ExtResource( "2" )
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 28.0
 placeholder_text = "Name"
 
-[node name="Path" parent="." instance=ExtResource( "5" )]
+[node name="Path" parent="." instance=ExtResource("5")]
+layout_mode = 2
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 124.0
-offset_right = 176.0
-offset_bottom = 31.0
-theme_override_fonts/font = ExtResource( "2" )
+offset_left = 204.0
+offset_right = 1130.0
+offset_bottom = 28.0
 
 [node name="Del" type="Button" parent="."]
-offset_left = 180.0
-offset_right = 200.0
-offset_bottom = 31.0
-min_size = Vector2(20, 20)
-hint_tooltip = "Delete resource"
-icon = ExtResource( "1" )
+layout_mode = 2
+offset_left = 1134.0
+offset_right = 1152.0
+offset_bottom = 28.0
+icon = ExtResource("1")
+icon_alignment = 1

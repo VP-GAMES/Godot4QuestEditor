@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://cwigxlv86btou"]
 
-[ext_resource type="FontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="1"]
+[ext_resource type="DynamicFontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="1"]
 [ext_resource type="PackedScene" uid="uid://6mpvyrmc1iim" path="res://quest_example/3d/player/Player.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bv2ceh5gjbvkn" path="res://quest_example/textures/Chest.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bec7ilkcdhjig" path="res://quest_example/textures/Quest.png" id="4"]
@@ -29,7 +29,7 @@ metallic_specular = 0.0
 [sub_resource type="BoxShape3D" id="4"]
 size = Vector3(0.0388198, 7.8478, 2)
 
-[sub_resource type="Font" id="5"]
+[sub_resource type="DynamicFont" id="5"]
 data/0 = ExtResource( "1" )
 
 [node name="Level" type="Node3D"]

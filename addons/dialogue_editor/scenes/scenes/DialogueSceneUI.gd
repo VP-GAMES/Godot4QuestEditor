@@ -62,7 +62,7 @@ func _on_gui_input(event: InputEvent) -> void:
 				if not _data.selected_scene() == _scene:
 					_data.select_scene(_scene)
 				else:
-					_name_ui.set("custom_styles/normal", null)
+					_name_ui.remove_theme_stylebox_override("normal")
 
 func _on_sentence_pressed() -> void:
 	_data.select_scene(_scene)
@@ -90,6 +90,6 @@ func _draw_view() -> void:
 
 func _draw_style() -> void:
 	if _data.selected_scene() == _scene:
-		_name_ui.set("custom_styles/normal", _ui_style_selected)
+		_name_ui.add_theme_stylebox_override("normal", _ui_style_selected)
 	else:
-		_name_ui.set("custom_styles/normal", null)
+		_name_ui.remove_theme_stylebox_override("normal")

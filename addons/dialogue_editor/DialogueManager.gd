@@ -6,6 +6,7 @@ signal dialogue_started(dialogue)
 signal dialogue_event(event)
 signal dialogue_canceled(dialogue)
 signal dialogue_ended(dialogue)
+signal sentence_changed(_sentence)
 
 var started_from_editor = false
 
@@ -17,6 +18,9 @@ var _dialogue
 var _sentence
 var _scene
 var _node
+
+func sentence():
+	return _sentence
 
 func _reset() -> void:
 	_dialogue = null
@@ -38,38 +42,38 @@ func actual_dialogue() -> String:
 func is_started() -> bool:
 	return _dialogue != null
 
-func start_dialogue(dialogue: String) -> void:
+func start_dialogue(dialogue: String, direct: bool = false) -> void:
 	if not _data.dialogue_exists(dialogue):
 		printerr("Dialogue ", dialogue,  " doesn't exists")
 		_reset()
 		return
 	_dialogue = _data.dialogue(dialogue) as DialogueDialogue
 	_node = _dialogue.node_start() as DialogueNode
-	if _node and started_from_editor:
+	if _node != null and started_from_editor or _node != null and direct:
 		_next_sentence(0)
-	emit_signal("dialogue_started", _dialogue.name)
+	emit_signal("dialogue_started", _dialogue)
 
-func start_dialogue_by_uuid(dialogue_uuid: String) -> void:
+func start_dialogue_by_uuid(dialogue_uuid: String, direct: bool = false) -> void:
 	if not _data.dialogue_exists_by_uuid(dialogue_uuid):
 		printerr("Dialogue ", dialogue_uuid,  " doesn't exists")
 		_reset()
 		return
 	_dialogue = _data.dialogue_by_uuid(dialogue_uuid) as DialogueDialogue
 	_node = _dialogue.node_start() as DialogueNode
-	if _node and started_from_editor:
+	if _node != null and started_from_editor or _node != null and direct:
 		_next_sentence(0)
-	emit_signal("dialogue_started", _dialogue.name)
+	emit_signal("dialogue_started", _dialogue)
 
-func start_dialogue_by_name(dialogue_name: String) -> void:
+func start_dialogue_by_name(dialogue_name: String, direct: bool = false) -> void:
 	if not _data.dialogue_exists_by_name(dialogue_name):
 		printerr("Dialogue ", dialogue_name,  " doesn't exists")
 		_reset()
 		return
 	_dialogue = _data.dialogue_by_name(dialogue_name) as DialogueDialogue
 	_node = _dialogue.node_start() as DialogueNode
-	if _node and started_from_editor:
+	if _node != null and started_from_editor or _node != null and direct:
 		_next_sentence(0)
-	emit_signal("dialogue_started", _dialogue.name)
+	emit_signal("dialogue_started", _dialogue)
 
 func _input(event: InputEvent):
 	if started_from_editor:
@@ -105,9 +109,10 @@ func _next_sentence(index) -> void:
 		if _sentence.scene:
 			_draw_view()
 			_node = sentence_node
+			emit_signal("sentence_changed", _sentence)
 		else:
 			_clear_sentences()
-			emit_signal("dialogue_ended", _dialogue.name)
+			emit_signal("dialogue_ended", _dialogue)
 			_reset()
 
 func _node_to_dialogue_sentence(node: DialogueNode):
@@ -154,8 +159,8 @@ func _draw_sentence() -> void:
 			_connect_buttons()
 
 func _connect_gui_input() -> void:
-	if not _scene.gui_input.is_connected(_on_gui_input):
-		_scene.gui_input.connect(_on_gui_input)
+	if not _scene.is_connected("gui_input", _on_gui_input):
+		_scene.connect("gui_input", _on_gui_input)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

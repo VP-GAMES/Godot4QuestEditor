@@ -1,20 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://56fcpawr7nt6"]
+[gd_scene load_steps=4 format=3 uid="uid://56fcpawr7nt6"]
 
-[ext_resource type="FontFile" uid="uid://b70mxl2qgp5dt" path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" id="1"]
 [ext_resource type="StyleBox" path="res://addons/dialogue_editor/default/styles/style_base.tres" id="2"]
 [ext_resource type="Script" path="res://addons/dialogue_editor/model/DialogueDialog.gd" id="3"]
 
 [node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( "3" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("3")
 
 [node name="Texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.75
 anchor_right = 0.5
@@ -24,47 +24,42 @@ offset_top = -150.0
 offset_right = 75.0
 ignore_texture_size = true
 stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Reference" type="ReferenceRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.75
-anchor_right = 0.5
-anchor_bottom = 0.75
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.55
+anchor_right = 0.55
+anchor_bottom = 0.73
 border_color = Color(1, 1, 1, 1)
 
 [node name="Name" type="Label" parent="."]
-anchor_left = 0.01
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
 anchor_top = 0.74
-anchor_right = 0.99
+anchor_right = 0.75
 anchor_bottom = 0.79
-theme_override_fonts/font = ExtResource( "1" )
 text = "Name"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
 [node name="Text" type="Label" parent="."]
-anchor_left = 0.01
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
 anchor_top = 0.79
-anchor_right = 0.99
+anchor_right = 0.75
 anchor_bottom = 0.99
-theme_override_fonts/font = ExtResource( "1" )
-theme_override_styles/normal = ExtResource( "2" )
+theme_override_styles/normal = ExtResource("2")
 text = "Text"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+autowrap_mode = 3
 
 [node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.01
 anchor_top = 0.95
 anchor_right = 0.99
 anchor_bottom = 0.99
-theme_override_fonts/font = ExtResource( "1" )
 text = "Button"
-__meta__ = {
-"_edit_use_anchors_": false
-}

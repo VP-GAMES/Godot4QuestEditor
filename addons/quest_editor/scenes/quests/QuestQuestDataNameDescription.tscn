@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://vydfqx7o80qw"]
 
-[ext_resource type="FontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="1"]
+[ext_resource type="DynamicFontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="1"]
 [ext_resource type="PackedScene" path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" id="2"]
 [ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataNameDescription.gd" id="3"]
 
-[sub_resource type="Font" id="1"]
+[sub_resource type="DynamicFont" id="1"]
 data/0 = ExtResource( "1" )
 
-[sub_resource type="Font" id="2"]
+[sub_resource type="DynamicFont" id="2"]
 data/0 = ExtResource( "1" )
 
 [node name="QuestQuestNameDescription" type="VBoxContainer"]
