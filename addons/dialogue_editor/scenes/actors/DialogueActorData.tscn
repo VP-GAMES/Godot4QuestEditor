@@ -1,158 +1,179 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5jw6bh010hkm"]
+[gd_scene load_steps=7 format=3 uid="uid://b5jw6bh010hkm"]
 
 [ext_resource type="Texture2D" uid="uid://cu2mqtk8bruhb" path="res://addons/dialogue_editor/icons/Add.png" id="1"]
 [ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataTexture.tscn" id="2"]
 [ext_resource type="Script" path="res://addons/dialogue_editor/scenes/actors/DialogueActorData.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://c5oapcp1mwwa1" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataResource.tscn" id="4"]
 [ext_resource type="FontFile" uid="uid://b70mxl2qgp5dt" path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" id="5"]
-[ext_resource type="PackedScene" uid="uid://cf8spgpdsxfdb" path="res://addons/dialogue_editor/ui_extensions/dropdown/Dropdown.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cf8spgpdsxfdb" path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" id="6"]
 
 [node name="DialogueActorData" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( "3" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("3")
 
 [node name="MarginData" type="MarginContainer" parent="."]
-offset_right = 281.0
-offset_bottom = 153.0
+layout_mode = 2
+offset_right = 574.0
+offset_bottom = 648.0
 size_flags_horizontal = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_top = 3
 theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
 [node name="VBox" type="VBoxContainer" parent="MarginData"]
+layout_mode = 2
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 278.0
-offset_bottom = 150.0
+offset_right = 571.0
+offset_bottom = 645.0
 
 [node name="HBoxUIName" type="HBoxContainer" parent="MarginData/VBox"]
-offset_right = 275.0
-offset_bottom = 31.0
+layout_mode = 2
+offset_right = 568.0
+offset_bottom = 28.0
 
 [node name="Label" type="Label" parent="MarginData/VBox/HBoxUIName"]
-offset_top = 2.0
-offset_right = 67.0
-offset_bottom = 28.0
+layout_mode = 2
+offset_top = 1.0
+offset_right = 68.0
+offset_bottom = 27.0
 text = "UI Name"
 
 [node name="UIName" type="LineEdit" parent="MarginData/VBox/HBoxUIName"]
-offset_left = 71.0
-offset_right = 171.0
-offset_bottom = 31.0
+layout_mode = 2
+offset_left = 72.0
+offset_right = 318.0
+offset_bottom = 28.0
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( "5" )
+theme_override_fonts/font = ExtResource("5")
 
-[node name="Dropdown" parent="MarginData/VBox/HBoxUIName" instance=ExtResource( "6" )]
+[node name="Dropdown" parent="MarginData/VBox/HBoxUIName" instance=ExtResource("6")]
+layout_mode = 2
 anchor_right = 0.0
-offset_left = 175.0
-offset_right = 275.0
+offset_left = 322.0
+offset_right = 568.0
+offset_bottom = 28.0
 
 [node name="HSeparator2" type="HSeparator" parent="MarginData/VBox"]
-offset_top = 35.0
-offset_right = 275.0
-offset_bottom = 39.0
+layout_mode = 2
+offset_top = 32.0
+offset_right = 568.0
+offset_bottom = 36.0
 
 [node name="HBox" type="HBoxContainer" parent="MarginData/VBox"]
-offset_top = 43.0
-offset_right = 275.0
-offset_bottom = 74.0
+layout_mode = 2
+offset_top = 40.0
+offset_right = 568.0
+offset_bottom = 66.0
 
 [node name="Add" type="Button" parent="MarginData/VBox/HBox"]
-offset_right = 20.0
-offset_bottom = 31.0
-min_size = Vector2(20, 20)
-hint_tooltip = "Add resource"
-icon = ExtResource( "1" )
+layout_mode = 2
+offset_right = 18.0
+offset_bottom = 26.0
+icon = ExtResource("1")
 
 [node name="Resources" type="Label" parent="MarginData/VBox/HBox"]
-offset_left = 24.0
-offset_top = 2.0
-offset_right = 103.0
-offset_bottom = 28.0
+layout_mode = 2
+offset_left = 22.0
+offset_right = 102.0
+offset_bottom = 26.0
 text = "Resources"
 
 [node name="HBoxTitles" type="HBoxContainer" parent="MarginData/VBox"]
-offset_top = 78.0
-offset_right = 275.0
-offset_bottom = 104.0
+layout_mode = 2
+offset_top = 70.0
+offset_right = 568.0
+offset_bottom = 96.0
 
 [node name="Name" type="Label" parent="MarginData/VBox/HBoxTitles"]
-offset_right = 144.0
+layout_mode = 2
+offset_right = 84.0
 offset_bottom = 26.0
-min_size = Vector2(144, 0)
 text = "Expression"
 
 [node name="Path" type="Label" parent="MarginData/VBox/HBoxTitles"]
-offset_left = 148.0
-offset_right = 275.0
+layout_mode = 2
+offset_left = 88.0
+offset_right = 568.0
 offset_bottom = 26.0
 size_flags_horizontal = 3
 text = "Path to resource"
 
 [node name="HSeparator" type="HSeparator" parent="MarginData/VBox"]
-offset_top = 108.0
-offset_right = 275.0
-offset_bottom = 112.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
+offset_top = 100.0
+offset_right = 568.0
+offset_bottom = 104.0
 
 [node name="Resources" type="VBoxContainer" parent="MarginData/VBox"]
-offset_top = 116.0
-offset_right = 275.0
-offset_bottom = 147.0
+layout_mode = 2
+offset_top = 108.0
+offset_right = 568.0
+offset_bottom = 642.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DialogueActorDataResource" parent="MarginData/VBox/Resources" instance=ExtResource( "4" )]
-offset_right = 275.0
-offset_bottom = 31.0
+[node name="DialogueActorDataResource" parent="MarginData/VBox/Resources" instance=ExtResource("4")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 568.0
+grow_horizontal = 1
 
 [node name="MarginPreview" type="MarginContainer" parent="."]
-offset_left = 285.0
-offset_right = 352.0
-offset_bottom = 153.0
+layout_mode = 2
+offset_left = 578.0
+offset_right = 1152.0
+offset_bottom = 648.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_top = 3
 theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
 [node name="Panel" type="Panel" parent="MarginPreview"]
+layout_mode = 2
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 64.0
-offset_bottom = 150.0
+offset_right = 571.0
+offset_bottom = 645.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBox" type="VBoxContainer" parent="MarginPreview"]
+layout_mode = 2
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 64.0
-offset_bottom = 150.0
+offset_right = 571.0
+offset_bottom = 645.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Margin" type="MarginContainer" parent="MarginPreview/VBox"]
-offset_right = 61.0
+layout_mode = 2
+offset_right = 568.0
 offset_bottom = 32.0
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_bottom = 3
 
 [node name="Preview" type="Label" parent="MarginPreview/VBox/Margin"]
+layout_mode = 2
 offset_top = 3.0
-offset_right = 61.0
+offset_right = 568.0
 offset_bottom = 29.0
 text = "Preview"
 
-[node name="Texture" parent="MarginPreview/VBox" instance=ExtResource( "2" )]
+[node name="Texture" parent="MarginPreview/VBox" instance=ExtResource("2")]
+layout_mode = 2
 offset_top = 36.0
-offset_right = 61.0
-offset_bottom = 147.0
+offset_right = 568.0
+offset_bottom = 642.0
+stretch_mode = 5

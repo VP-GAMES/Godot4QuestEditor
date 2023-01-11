@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dg0ldtvtoiia3" path="res://addons/quest_editor/icons/File.png" id="1"]
 [ext_resource type="Script" path="res://addons/quest_editor/scenes/triggers/QuestTriggerData.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://cavnmixnsholv" path="res://addons/quest_editor/scenes/triggers/QuestTriggerPath.tscn" id="3"]
-[ext_resource type="FontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="4_y5rjy"]
+[ext_resource type="DynamicFontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="4_y5rjy"]
 
-[sub_resource type="Font" id="1"]
+[sub_resource type="DynamicFont" id="1"]
 data/0 = ExtResource( "4_y5rjy" )
 
 [node name="QuestTriggerData" type="VBoxContainer"]
