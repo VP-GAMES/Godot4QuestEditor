@@ -149,27 +149,27 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/inventory_editor/ui/InventoryItemUI.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"LocalizationAutoTranslateAmazon",
 "language": &"GDScript",
 "path": "res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslateAmazon.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"LocalizationAutoTranslateDeepL",
 "language": &"GDScript",
 "path": "res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslateDeepL.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"LocalizationAutoTranslateGoogle",
 "language": &"GDScript",
 "path": "res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslateGoogle.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"LocalizationAutoTranslateMicrosoft",
 "language": &"GDScript",
 "path": "res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslateMicrosoft.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"LocalizationAutoTranslateYandex",
 "language": &"GDScript",
 "path": "res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslateYandex.gd"
@@ -189,7 +189,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/localization_editor/model/LocalizationLocaleSingle.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"LocalizationLocalesList",
 "language": &"GDScript",
 "path": "res://addons/localization_editor/model/LocalizationLocalesList.gd"
@@ -238,6 +238,11 @@ _global_script_classes=[{
 "class": &"QuestEnemy3D",
 "language": &"GDScript",
 "path": "res://addons/quest_editor/use/3d/QuestEnemy3D.gd"
+}, {
+"base": "EditorProperty",
+"class": &"QuestInspectorPluginNpc",
+"language": &"GDScript",
+"path": "res://addons/quest_editor/QuestInspectorPluginNpc.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuestManagerQuests",
@@ -289,10 +294,20 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quest_editor/use/3d/QuestTrigger3D.gd"
 }, {
+"base": "UnitTest",
+"class": &"TestInventoryInventories",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/test/model/TestInventoryInventories.gd"
+}, {
 "base": "Node",
 "class": &"UUID",
 "language": &"GDScript",
 "path": "res://addons/localization_editor/uuid/uuid.gd"
+}, {
+"base": "Node",
+"class": &"UnitTest",
+"language": &"GDScript",
+"path": "res://addons/inventory_editor/test/test_model/UnitTest.gd"
 }]
 _global_script_class_icons={
 "Dialogue2D": "",
@@ -341,6 +356,7 @@ _global_script_class_icons={
 "QuestDestination3D": "",
 "QuestEnemy2D": "",
 "QuestEnemy3D": "",
+"QuestInspectorPluginNpc": "",
 "QuestManagerQuests": "",
 "QuestManagerTriggers": "",
 "QuestNPC2D": "",
@@ -351,7 +367,9 @@ _global_script_class_icons={
 "QuestTrigger": "",
 "QuestTrigger2D": "",
 "QuestTrigger3D": "",
-"UUID": ""
+"TestInventoryInventories": "",
+"UUID": "",
+"UnitTest": ""
 }
 
 [application]

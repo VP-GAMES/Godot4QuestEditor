@@ -85,6 +85,7 @@ func _input(event: InputEvent):
 					if _quest.tasks_done() and _quest.is_quest_delivery_dialogue() and not dialogueManager.is_started():
 						if _quest.delivery_trigger == trigger.uuid:
 							dialogueManager.start_dialogue(_quest.delivery_dialogue)
+							questManager.delivery_quest(_quest)
 							questManager.call_rewards_methods(_quest)
 							questManager.end_quest(_quest)
 					elif _quest.is_quest_running_dialogue() and not dialogueManager.is_started():

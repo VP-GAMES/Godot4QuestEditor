@@ -22,6 +22,22 @@ const UUID = preload("res://addons/quest_editor/uuid/uuid.gd")
 # ***** EDITOR_PLUGIN_END *****
 
 const default_path = "res://quest/"
+# ***** LOCALIZATION *****
+var _locale
+
+signal locale_changed(locale)
+
+func get_locale() -> String:
+	_locale = setting_dialogue_editor_locale()
+	if _locale == null:
+		_locale = TranslationServer.get_locale()
+	return _locale
+
+func set_locale(locale: String) -> void:
+	_locale = locale
+	setting_dialogue_editor_locale_put(_locale)
+	TranslationServer.set_locale(_locale)
+	emit_signal("locale_changed", _locale)
 
 # ***** QUEST *****
 signal quest_added(quest)
@@ -291,10 +307,9 @@ func init_data() -> void:
 var _path_to_save = "user://QuestsSave.res"
 
 func reset_saved_user_data() -> void:
-	print("REMOVE USER SAVED DATA: ", _path_to_save)
-	var directory:= DirAccess.open(_path_to_save) 
-	directory.remove(_path_to_save)
-	print("REMOVE")
+	if FileAccess.file_exists(_path_to_save):
+		var directory:= DirAccess.open("user://")
+		directory.remove(_path_to_save)
 
 func save(update_script_classes = false) -> void:	
 	ResourceSaver.save(self, PATH_TO_SAVE)
@@ -323,7 +338,6 @@ func _save_data_quests() -> void:
 			source_code += ",\n"
 	source_code += "\n]"
 	file.store_string(source_code)
-	file.close()
 
 func _save_data_triggers() -> void:
 	var directory:= DirAccess.open(default_path)
@@ -344,8 +358,16 @@ func _save_data_triggers() -> void:
 		if index != triggers.size() - 1:
 			source_code += ",\n"
 	source_code += "\n]"
+	source_code += "\nconst TRIGGERSLIST = {\n"
+	for index in range(triggers.size()):
+		var trigger = triggers[index]
+		var namePrepared = trigger.name.replace(" ", "")
+		namePrepared = namePrepared.to_upper()
+		source_code += "  \"" + namePrepared + "\": \"" + trigger.uuid +"\""
+		if index != triggers.size() - 1:
+			source_code += ",\n"
+	source_code += "\n}"
 	file.store_string(source_code)
-	file.close()
 
 # ***** EDITOR SETTINGS *****
 const BACKGROUND_COLOR_SELECTED = Color("#868991")
@@ -358,6 +380,7 @@ const SETTINGS_QUESTS_SPLIT_OFFSET = "quest_editor/quests_split_offset"
 const SETTINGS_QUESTS_SPLIT_OFFSET_DEFAULT = 215
 const SETTINGS_TRIGGERS_SPLIT_OFFSET = "quest_editor/triggers_split_offset"
 const SETTINGS_TRIGGERS_SPLIT_OFFSET_DEFAULT = 215
+const SETTINGS_TRIGGERS_EDITOR_LOCALE = "quest_editor/quest_editor_locale"
 
 func setting_quests_split_offset() -> int:
 	var offset = SETTINGS_QUESTS_SPLIT_OFFSET_DEFAULT
@@ -376,6 +399,15 @@ func setting_triggers_split_offset() -> int:
 
 func setting_triggers_split_offset_put(offset: int) -> void:
 	ProjectSettings.set_setting(SETTINGS_TRIGGERS_SPLIT_OFFSET, offset)
+
+func setting_dialogue_editor_locale():
+	if ProjectSettings.has_setting(SETTINGS_TRIGGERS_EDITOR_LOCALE):
+		return ProjectSettings.get_setting(SETTINGS_TRIGGERS_EDITOR_LOCALE)
+	return null
+
+func setting_dialogue_editor_locale_put(locale: String) -> void:
+	ProjectSettings.set_setting(SETTINGS_TRIGGERS_EDITOR_LOCALE, locale)
+	ProjectSettings.save()
 
 func setting_localization_editor_enabled() -> bool:
 	if ProjectSettings.has_setting("editor_plugins/enabled"):

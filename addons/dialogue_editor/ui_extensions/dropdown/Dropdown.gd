@@ -30,20 +30,23 @@ func is_disabled() -> bool:
 func items() -> Array:
 	return _items
 
-func add_item_as_string(value: String) -> void:
-	add_item(DropdownItem.new(value, value))
+func add_item_as_string(value: String, tooltip: String = "") -> void:
+	add_item(DropdownItem.new(value, value, tooltip))
 
 func add_item(item: DropdownItem) -> void:
 	_items.append(item)
 
 func clear() -> void:
-	_items.clear()
+	for item in _items:
+		item.free()
+	_items = []
 
 func erase_item_by_string(value: String) -> void:
 	erase_item(DropdownItem.new(value, value))
 
 func erase_item(item: DropdownItem) -> void:
 	_items.erase(item)
+	item.free()
 
 func set_selected_item(item: DropdownItem) -> void:
 	_on_selection_changed(_items.find(item))
@@ -153,6 +156,7 @@ func _on_selection_changed(index: int) -> void:
 	elif _selected != index:
 		_selected = index
 		_selector.text = _items[_selected].text
+		_selector.tooltip_text = _items[_selected].tooltip
 		if _items[_selected].icon != null:
 			_icon.texture = _items[_selected].icon
 		emit_signal("selection_changed", _items[_selected])

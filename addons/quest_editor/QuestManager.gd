@@ -22,15 +22,16 @@ func _init() -> void:
 		load_data()
 
 func load_data() -> void:
-	_data = ResourceLoader.load(_data.PATH_TO_SAVE) as QuestData	
+	_data = ResourceLoader.load(_data.PATH_TO_SAVE) as QuestData
 
 func save_data() -> void:
 	_data.PATH_TO_SAVE = _path_to_save
 	_data.save(false)
 
-func reset_data() -> void:
+func reset_data(save_data_too: bool = true) -> void:
 	_data.reset()
-	save_data()
+	if save_data_too:
+		save_data()
 
 func set_player(player) -> void:
 	_player = player
@@ -57,9 +58,16 @@ func start_quest(quest: QuestQuest) -> void:
 	quest.state = QuestQuest.QUESTSTATE_STARTED
 	emit_signal("quest_started", quest)
 
+func delivery_quest(quest: QuestQuest) -> void:
+	quest.delivery_done = true
+	emit_signal("quest_updated", quest)
+
 func end_quest(quest: QuestQuest) -> void:
 	quest.state = QuestQuest.QUESTSTATE_DONE
 	emit_signal("quest_ended", quest)
+
+func get_quest_by_uuid(uuid: String) -> QuestQuest:
+	return _data.get_quest_by_uuid(uuid)
 
 func get_task_and_update_quest_state(quest: QuestQuest, trigger_uuid: String, add_quantity = 0):
 	var task = quest.update_task_state(trigger_uuid, add_quantity)
@@ -98,15 +106,16 @@ func get_quest_available_by_start_trigger(quest_trigger: String) -> QuestQuest:
 			if quest.state == QuestQuest.QUESTSTATE_STARTED:
 				response_quest = quest
 			if quest.state == QuestQuest.QUESTSTATE_UNDEFINED:
-				if _precompleted_quest_done(quest) and _quest_requerements_fulfilled(quest):
-					response_quest = quest
+				if _precompleted_quest_done(quest):
+					if _quest_requerements_fulfilled(quest):
+						response_quest = quest
 	return response_quest
 
 func get_quest_available_by_delivery_trigger(delivery_trigger: String) -> QuestQuest:
 	var response_quest = null
 	for quest in _data.quests:
 		if quest.delivery_trigger == delivery_trigger:
-			if quest.state == QuestQuest.QUESTSTATE_STARTED:
+			if quest.state == QuestQuest.QUESTSTATE_STARTED and quest.tasks_done():
 				response_quest = quest
 	return response_quest
 

@@ -147,6 +147,25 @@ func get_task(trigger_uuid: String):
 			return task
 	return null
 
+func get_task_available_by_trigger(trigger_uuid: String):
+	if not linear:
+		return get_task(trigger_uuid)
+	else:
+		var task_found = null
+		var all_done = true
+		var start = false
+		for i in range(tasks.size() - 1, -1, -1):
+			var task = tasks[i]
+			if start:
+				if task.done != true:
+					all_done = false
+			if task.trigger == trigger_uuid and task.done == false:
+				task_found = task
+				start = true
+		if start == true and all_done == true:
+			return task_found
+	return null
+
 func get_task_bevore(trigger_uuid: String):
 	var index = 0
 	for task in tasks:

@@ -3,10 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dg0ldtvtoiia3" path="res://addons/quest_editor/icons/File.png" id="1"]
 [ext_resource type="Script" path="res://addons/quest_editor/scenes/triggers/QuestTriggerData.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://cavnmixnsholv" path="res://addons/quest_editor/scenes/triggers/QuestTriggerPath.tscn" id="3"]
-[ext_resource type="DynamicFontData" uid="uid://438wa7f7nmv3" path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" id="4_y5rjy"]
-
-[sub_resource type="DynamicFont" id="1"]
-data/0 = ExtResource( "4_y5rjy" )
 
 [node name="QuestTriggerData" type="VBoxContainer"]
 anchor_right = 1.0
@@ -52,7 +48,6 @@ anchor_bottom = 0.0
 offset_left = 89.0
 offset_right = 1000.0
 offset_bottom = 31.0
-theme_override_fonts/font = SubResource( "1" )
 
 [node name="Open" type="Button" parent="HBoxPath"]
 rect_min_size = Vector2(20, 20)

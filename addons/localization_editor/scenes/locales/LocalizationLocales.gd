@@ -28,7 +28,7 @@ func _clear_view() -> void:
 		child.queue_free()
 
 func _draw_view() -> void:
-	for locale in LocalizationLocalesList.locales():
+	for locale in LocalizationLocalesList.LOCALES:
 		if _is_locale_to_show(locale):
 			var locale_ui = LocalizationLocale.instantiate()
 			_locales_ui.add_child(locale_ui)
@@ -40,8 +40,8 @@ func _is_locale_to_show(locale) -> bool:
 	return _is_locale_to_show_by_filter(locale)
 	
 func _is_locale_to_show_by_selection(locale) -> bool:
-	return !_data.locales_selected() or _data.find_locale(locale.code) != null
+	return !_data.locales_selected() or _data.find_locale(locale) != null
 		
 func  _is_locale_to_show_by_filter(locale) -> bool:
 	var filter = _data.locales_filter()
-	return filter == "" or filter in locale.code or filter in locale.name
+	return filter == "" or filter in locale or filter in LocalizationLocalesList.label_by_code(locale)

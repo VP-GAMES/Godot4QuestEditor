@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cedctbw2y05t"]
+[gd_scene load_steps=3 format=3 uid="uid://cedctbw2y05t"]
 
 [ext_resource type="StyleBox" path="res://addons/dialogue_editor/default/styles/style_base.tres" id="2"]
 [ext_resource type="Script" path="res://addons/dialogue_editor/model/DialogueDialog.gd" id="3"]
@@ -8,6 +8,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3")
@@ -38,6 +40,7 @@ anchor_left = 0.5
 anchor_top = 0.74
 anchor_right = 0.99
 anchor_bottom = 0.79
+theme_override_font_sizes/font_size = 30
 text = "Name"
 horizontal_alignment = 2
 
@@ -48,6 +51,7 @@ anchor_left = 0.5
 anchor_top = 0.79
 anchor_right = 0.99
 anchor_bottom = 0.99
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = ExtResource("2")
 text = "Text"
 autowrap_mode = 3
@@ -59,4 +63,5 @@ anchor_left = 0.01
 anchor_top = 0.95
 anchor_right = 0.99
 anchor_bottom = 0.99
+theme_override_font_sizes/font_size = 25
 text = "Button"

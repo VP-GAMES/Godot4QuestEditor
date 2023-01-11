@@ -23,16 +23,16 @@ func set_data(locale, data: LocalizationData) -> void:
 	_init_connections()
 
 func _draw_view() -> void:
-	_selection_ui.text = _locale.code
-	_locale_ui.text = _locale.name
+	_selection_ui.text = _locale
+	_locale_ui.text = LocalizationLocalesList.label_by_code(_locale)
 	_selection_ui_state()
 	_eye_ui_state()
 
 func _selection_ui_state() -> void:
-	_selection_ui.set_pressed(_data.find_locale(_locale.code) != null)
+	_selection_ui.set_pressed(_data.find_locale(_locale) != null)
 
 func _eye_ui_state() -> void:
-	_eye_ui.set_pressed(not _data.is_locale_visible(_locale.code))
+	_eye_ui.set_pressed(not _data.is_locale_visible(_locale))
 	_update_view_eye(_selection_ui.is_pressed())
 
 func _init_connections() -> void:
@@ -43,7 +43,7 @@ func _init_connections() -> void:
 
 func _on_selection_changed(value) -> void:
 	if value == true:
-		_data.add_locale(_locale.code)
+		_data.add_locale(_locale)
 		_update_view_eye(value)
 	else:
 		_show_confirm_dialog()
@@ -59,7 +59,7 @@ func _show_confirm_dialog() -> void:
 		confirm_dialog.popup_centered()
 
 func _on_confirm_dialog_ok(root, confirm_dialog) -> void:
-	_data.del_locale(_locale.code)
+	_data.del_locale(_locale)
 	_update_view_eye(false)
 	_confirm_dialog_remove(root, confirm_dialog)
 
@@ -79,13 +79,13 @@ func _update_view_eye(value: bool) -> void:
 		_eye_ui.hide()
 
 func _update_visible_icon_from_data() -> void:
-	_update_visible_icon(_data.is_locale_visible(_locale.code))
+	_update_visible_icon(_data.is_locale_visible(_locale))
 
 func _on_eye_changed(value) -> void:
 	if value:
-		_data.setting_locales_visibility_put(_locale.code)
+		_data.setting_locales_visibility_put(_locale)
 	else:
-		_data.setting_locales_visibility_del(_locale.code)
+		_data.setting_locales_visibility_del(_locale)
 	_update_visible_icon(!value)
 
 func _update_visible_icon(value: bool) -> void:

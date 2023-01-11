@@ -51,13 +51,19 @@ func _dropdown_ui_init() -> void:
 				data.data_changed.connect(_on_localization_data_changed)
 			if not data.data_key_value_changed.is_connected(_on_localization_data_changed):
 				data.data_key_value_changed.connect(_on_localization_data_changed)
+			if not _data.locale_changed.is_connected(_locale_changed):
+				_data.locale_changed.connect(_locale_changed)
 			_on_localization_data_changed()
+
+func _locale_changed(_locale: String):
+	_on_localization_data_changed()
 
 func _on_localization_data_changed() -> void:
 	if _dropdown_ui:
 		_dropdown_ui.clear()
-		for key in localization_editor.get_data().data.keys:
-			_dropdown_ui.add_item_as_string(key.value)
+		var localization_data = localization_editor.get_data()
+		for key in localization_data.data.keys:
+			_dropdown_ui.add_item_as_string(key.value, localization_data.value_by_locale_key(_data.get_locale(), key.value))
 		_dropdown_ui.set_selected_by_value(_sentence.text)
 
 func _init_connections() -> void:

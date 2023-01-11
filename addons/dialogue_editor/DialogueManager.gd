@@ -154,7 +154,9 @@ func _draw_sentence() -> void:
 		if _sentence.texte_events.size() == 1:
 			var event_name = _sentence.texte_events[0].event
 			if event_name:
-				emit_signal("dialogue_event", event_name)
+				var event_names = event_name.split(",")
+				for name in event_names:
+					emit_signal("dialogue_event", name)
 		elif _sentence.texte_events.size() > 1:
 			_connect_buttons()
 
@@ -179,5 +181,7 @@ func _connect_buttons() -> void:
 func _on_button_pressed(button_index: int) -> void:
 	var event_name = _sentence.texte_events[button_index].event
 	if event_name:
-		emit_signal("dialogue_event", event_name)
+		var event_names = event_name.split(",")
+		for name in event_names:
+			emit_signal("dialogue_event", name)
 	_next_sentence(button_index)

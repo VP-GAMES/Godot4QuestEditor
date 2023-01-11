@@ -149,17 +149,17 @@ func _init_from_language_ui() -> void:
 	if not _from_language_ui.is_connected("selection_changed", _check_translate_ui):
 		assert(_from_language_ui.connect("selection_changed", _check_translate_ui) == OK)
 	for loc in _data.locales():
-		var locale = Locales.by_code(loc)
-		if locale != null:
-			_from_language_ui.add_item(DropdownItem.new(locale.name, locale.code))
+		var label = Locales.label_by_code(loc)
+		if label != null and not label.is_empty():
+			_from_language_ui.add_item(DropdownItem.new(loc, label))
 
-func _init_to_language_ui(locales: Array) -> void:
+func _init_to_language_ui(locales: Dictionary) -> void:
 	_to_language_ui.clear()
 	if not _to_language_ui.is_connected("selection_changed", _check_translate_ui):
 		assert(_to_language_ui.connect("selection_changed", _check_translate_ui) == OK)
 	for locale in locales:
-		if Locales.has_code(locale.code):
-			_to_language_ui.add_item(DropdownItem.new(locale.name, locale.code))
+		if Locales.has_code(locale):
+			_to_language_ui.add_item(DropdownItem.new(locale, Locales.label_by_code(locale)))
 
 func _check_translate_ui(_item: DropdownItem) -> void:
 	_check_translate_ui_selected()
@@ -185,21 +185,21 @@ func _on_translator_selected(index: int) -> void:
 	match index:
 		0:
 			_link.text =  "https://translate.google.com/"
-			_init_to_language_ui(LocalizationAutoTranslateGoogle.locales())
+			_init_to_language_ui(LocalizationAutoTranslateGoogle.LOCALES)
 		1:
 			_link.text =  "https://yandex.com/dev/translate/"
-			_init_to_language_ui(LocalizationAutoTranslateYandex.locales())
+			_init_to_language_ui(LocalizationAutoTranslateYandex.LOCALES)
 		2:
 			_link.text =  "https://www.deepl.com/translator"
-			_init_to_language_ui(LocalizationAutoTranslateDeepL.locales())
+			_init_to_language_ui(LocalizationAutoTranslateDeepL.LOCALES)
 			_deepl_container.show()
 		3:
 			_link.text =  "https://aws.amazon.com/translate/"
-			_init_to_language_ui(LocalizationAutoTranslateAmazon.locales())
+			_init_to_language_ui(LocalizationAutoTranslateAmazon.LOCALES)
 			_amazon_container.show()
 		4:
 			_link.text =  "https://translator.microsoft.com/"
-			_init_to_language_ui(LocalizationAutoTranslateMicrosoft.locales())
+			_init_to_language_ui(LocalizationAutoTranslateMicrosoft.LOCALES)
 			_microsoft_container.show()
 
 func _on_link_pressed() -> void:

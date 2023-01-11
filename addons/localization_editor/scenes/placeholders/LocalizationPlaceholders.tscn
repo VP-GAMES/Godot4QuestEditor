@@ -1,22 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://pcmx6j8x2og6"]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholders.gd" id="1"]
+[ext_resource path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholders.gd" type="Script" id=1]
 
 [node name="LocalizationPlaceholders" type="Panel"]
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource("1")
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Scroll" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Placeholders" type="HBoxContainer" parent="Scroll"]
-layout_mode = 2
+margin_right = 1024.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

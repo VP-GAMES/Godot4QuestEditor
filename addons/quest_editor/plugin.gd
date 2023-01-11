@@ -6,7 +6,10 @@ extends EditorPlugin
 const IconResource = preload("res://addons/quest_editor/icons/Quest.png")
 const QuestMain = preload("res://addons/quest_editor/QuestEditor.tscn")
 
-var _quest_main
+var _quest_main: Control = null
+var _dialogue_editor: Control = null
+var _quest_editor_plugin: EditorInspectorPlugin = null
+
 
 func _enter_tree():
 	add_autoload_singleton("QuestManager", "res://addons/quest_editor/QuestManager.gd")
@@ -15,6 +18,9 @@ func _enter_tree():
 	get_editor_interface().get_editor_main_screen().add_child(_quest_main)
 	_quest_main.set_editor(self)
 	_make_visible(false)
+	_quest_editor_plugin = preload("res://addons/quest_editor/QuestInspectorPlugin.gd").new()
+	_quest_editor_plugin.set_data(get_editor_interface().get_editor_main_screen())
+	add_inspector_plugin(_quest_editor_plugin)
 
 func _exit_tree():
 	remove_autoload_singleton("QuestManager")
