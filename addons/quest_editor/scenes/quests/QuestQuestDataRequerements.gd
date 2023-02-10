@@ -31,11 +31,11 @@ func _on_gui_input(event: InputEvent) -> void:
 
 func _fill_dropdown() -> void:
 	_quests_dropdown_ui.clear()
-	var item_null = DropdownItem.new("NONE", "")
+	var item_null = DropdownItem.new("", "NONE")
 	_quests_dropdown_ui.add_item(item_null)
 	for quest in _data.quests:
 		if quest != _quest:
-			var item_d = DropdownItem.new(quest.name, quest.uuid)
+			var item_d = DropdownItem.new(quest.uuid, quest.name)
 			_quests_dropdown_ui.add_item(item_d)
 
 func _on_selection_changed(item: DropdownItem) -> void:

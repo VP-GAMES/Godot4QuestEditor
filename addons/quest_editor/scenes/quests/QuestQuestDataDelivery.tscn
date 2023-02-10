@@ -1,33 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://br8f3g2hpriau"]
 
 [ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataDelivery.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://cf8spgpdsxfdb" path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_mbaiy"]
 
 [node name="VBoxDelivery" type="VBoxContainer"]
 script = ExtResource("1")
 
 [node name="HBox" type="HBoxContainer" parent="."]
-offset_right = 276.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="Delivery" type="CheckBox" parent="HBox"]
-offset_right = 147.0
-offset_bottom = 31.0
+layout_mode = 2
 text = "Delivery trigger"
 
-[node name="EndTrigger" parent="HBox" instance=ExtResource("2")]
-anchor_right = 0.0
-offset_left = 151.0
-offset_right = 175.0
+[node name="EndTrigger" parent="HBox" instance=ExtResource("2_mbaiy")]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="HBox"]
-offset_left = 179.0
-offset_top = 2.0
-offset_right = 248.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "Dialogue"
 
-[node name="EndDialogue" parent="HBox" instance=ExtResource("2")]
-anchor_right = 0.0
-offset_left = 252.0
-offset_right = 276.0
+[node name="EndDialogue" parent="HBox" instance=ExtResource("2_mbaiy")]
+layout_mode = 2

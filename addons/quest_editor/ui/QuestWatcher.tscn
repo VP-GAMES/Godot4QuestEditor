@@ -1,19 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/quest_editor/ui/QuestWatcher.gd" type="Script" id=1]
-[ext_resource path="res://addons/quest_editor/default/fonts/Pangolin-Regular.ttf" type="DynamicFontData" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=3]
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 2 )
 
 [node name="QuestWatcher" type="Control"]
 anchor_right = 1.0
@@ -60,8 +47,6 @@ margin_top = 1.0
 margin_right = 150.0
 margin_bottom = 21.0
 rect_min_size = Vector2( 150, 0 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0.678431, 0, 1 )
 text = "Name"
 
 [node name="Name" type="RichTextLabel" parent="Margin/VBox/HBoxName"]
@@ -70,8 +55,6 @@ margin_right = 1910.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 0, 22 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = SubResource( 2 )
-custom_colors/default_color = Color( 1, 0.678431, 0, 1 )
 bbcode_enabled = true
 
 [node name="HBoxDescription" type="HBoxContainer" parent="Margin/VBox"]
@@ -84,8 +67,6 @@ margin_right = 150.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_vertical = 5
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 1, 0.678431, 0, 1 )
 text = "Description"
 
 [node name="Description" type="RichTextLabel" parent="Margin/VBox/HBoxDescription"]
@@ -94,8 +75,6 @@ margin_right = 1910.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = SubResource( 4 )
-custom_colors/default_color = Color( 1, 0.678431, 0, 1 )
 bbcode_enabled = true
 
 [node name="HBoxPrecompleted" type="HBoxContainer" parent="Margin/VBox"]
@@ -108,8 +87,6 @@ margin_top = 1.0
 margin_right = 150.0
 margin_bottom = 21.0
 rect_min_size = Vector2( 150, 0 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0.678431, 0, 1 )
 text = "Precompleted"
 
 [node name="Precompleted" type="RichTextLabel" parent="Margin/VBox/HBoxPrecompleted"]
@@ -118,8 +95,6 @@ margin_right = 1910.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 0, 22 )
 size_flags_horizontal = 3
-custom_fonts/normal_font = SubResource( 2 )
-custom_colors/default_color = Color( 1, 0.678431, 0, 1 )
 bbcode_enabled = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Margin/VBox"]
@@ -131,8 +106,6 @@ margin_bottom = 136.0
 margin_right = 150.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 150, 0 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0.678431, 0, 1 )
 text = "Tasks"
 
 [node name="VBoxTasks" type="VBoxContainer" parent="Margin/VBox"]

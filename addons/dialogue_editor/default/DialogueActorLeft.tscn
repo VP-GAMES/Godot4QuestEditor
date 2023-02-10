@@ -21,7 +21,7 @@ anchor_left = 0.01
 anchor_top = 0.55
 anchor_right = 0.12
 anchor_bottom = 0.73
-ignore_texture_size = true
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Reference" type="ReferenceRect" parent="."]

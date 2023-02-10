@@ -316,7 +316,7 @@ func save(update_script_classes = false) -> void:
 	_save_data_quests()
 	_save_data_triggers()
 	if update_script_classes:
-		_editor.get_editor_interface().get_resource_filesystem().update_script_classes()
+		_editor.get_editor_interface().get_resource_filesystem().scan()
 
 func _save_data_quests() -> void:
 	var directory:= DirAccess.open(default_path)
@@ -336,7 +336,7 @@ func _save_data_quests() -> void:
 		source_code += " \"" + quests[index].name + "\""
 		if index != quests.size() - 1:
 			source_code += ",\n"
-	source_code += "\n]"
+	source_code += "\n]\n\n"
 	file.store_string(source_code)
 
 func _save_data_triggers() -> void:

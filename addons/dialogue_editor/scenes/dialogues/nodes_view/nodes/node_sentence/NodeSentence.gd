@@ -88,7 +88,7 @@ func _on_texture_selection_changed(texture_uuid) -> void:
 	_dialogue.emit_signal_update_view()
 
 func _on_view_pressed() -> void:
-	_node.change_texture_view(_view_ui.pressed)
+	_node.change_texture_view(_view_ui.button_pressed)
 
 func _on_view_selection_changed(texture_view) -> void:
 	_dialogue.emit_signal_update_view()

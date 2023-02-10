@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vydfqx7o80qw"]
 
-[ext_resource type="PackedScene" uid="uid://cf8spgpdsxfdb" path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_1msqi"]
 [ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataNameDescription.gd" id="3"]
 
 [node name="QuestQuestNameDescription" type="VBoxContainer"]
@@ -8,57 +8,31 @@ script = ExtResource("3")
 
 [node name="HBoxName" type="HBoxContainer" parent="."]
 layout_mode = 2
-offset_right = 163.0
-offset_bottom = 31.0
 
 [node name="Label" type="Label" parent="HBoxName"]
 layout_mode = 2
-offset_right = 64.0
-offset_bottom = 31.0
 size_flags_vertical = 5
 text = "UIName"
 
 [node name="UIName" type="LineEdit" parent="HBoxName"]
 layout_mode = 2
-offset_left = 68.0
-offset_right = 135.0
-offset_bottom = 31.0
 size_flags_horizontal = 3
 
-[node name="Dropdown" parent="HBoxName" instance=ExtResource("2")]
+[node name="Dropdown" parent="HBoxName" instance=ExtResource("2_1msqi")]
 layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_left = 139.0
-offset_right = 163.0
-grow_horizontal = 1
 
 [node name="HBoxDescription" type="HBoxContainer" parent="."]
 layout_mode = 2
-offset_top = 35.0
-offset_right = 163.0
-offset_bottom = 61.0
 
 [node name="Label" type="Label" parent="HBoxDescription"]
 layout_mode = 2
-offset_right = 89.0
-offset_bottom = 26.0
 size_flags_vertical = 5
 text = "Description"
 
 [node name="Description" type="TextEdit" parent="HBoxDescription"]
 layout_mode = 2
-offset_left = 93.0
-offset_right = 126.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Dropdown" parent="HBoxDescription" instance=ExtResource("2")]
+[node name="Dropdown" parent="HBoxDescription" instance=ExtResource("2_1msqi")]
 layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_left = 130.0
-offset_right = 163.0
-offset_bottom = 26.0
-grow_horizontal = 1

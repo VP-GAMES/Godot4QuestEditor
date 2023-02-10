@@ -23,6 +23,17 @@ func _init() -> void:
 
 func load_data() -> void:
 	_data = ResourceLoader.load(_data.PATH_TO_SAVE) as QuestData
+#	_data.quests[0].state = QuestQuest.QUESTSTATE_DONE
+#	_data.quests[1].state = QuestQuest.QUESTSTATE_STARTED
+#	_data.quests[2].state = QuestQuest.QUESTSTATE_DONE
+#	_data.quests[3].state = QuestQuest.QUESTSTATE_DONE
+#	_data.quests[4].state = QuestQuest.QUESTSTATE_DONE
+#	_data.quests[5].state = QuestQuest.QUESTSTATE_DONE
+#	_data.quests[6].tasks[0].done = true
+#	_data.quests[6].tasks[1].done = true
+#	_data.quests[6].tasks[2].done = true
+#	start_quest(_data.quests[6])
+	# Shem hier weiter
 
 func save_data() -> void:
 	_data.PATH_TO_SAVE = _path_to_save
@@ -64,6 +75,7 @@ func delivery_quest(quest: QuestQuest) -> void:
 
 func end_quest(quest: QuestQuest) -> void:
 	quest.state = QuestQuest.QUESTSTATE_DONE
+	print(quest.uiname)
 	emit_signal("quest_ended", quest)
 
 func get_quest_by_uuid(uuid: String) -> QuestQuest:

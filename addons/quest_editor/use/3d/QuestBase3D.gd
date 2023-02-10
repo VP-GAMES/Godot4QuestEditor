@@ -92,23 +92,28 @@ func _input(event: InputEvent):
 					else:
 						_start_dialogue()
 				else:
+					if _quest == null:
+						_quest = questManager.started_quest()
 					if _quest:
-						if _quest.tasks_done() and _quest.is_quest_delivery_dialogue() and not dialogueManager.is_started():
-							if _quest.delivery_trigger == trigger.uuid:
+						if _quest.tasks_done():
+							if _quest.is_quest_delivery_dialogue() and not dialogueManager.is_started() and _quest.delivery_trigger == trigger.uuid:
 								dialogueManager.start_dialogue(_quest.delivery_dialogue)
 								questManager.delivery_quest(_quest)
 								questManager.call_rewards_methods(_quest)
 								questManager.end_quest(_quest)
-						elif _quest.is_quest_running_dialogue() and not dialogueManager.is_started():
+							elif _quest and _quest.quest_trigger == trigger.uuid and _quest.is_quest_running_dialogue() and not dialogueManager.is_started():
+								dialogueManager.start_dialogue(_quest.quest_running_dialogue)
+							else:
+								_start_dialogue()
+						elif _quest and _quest.quest_trigger == trigger.uuid and _quest.is_quest_running_dialogue() and not dialogueManager.is_started():
 							dialogueManager.start_dialogue(_quest.quest_running_dialogue)
-					else:
-						_quest = questManager.started_quest()
-						var task_trigger = questManager.get_trigger_by_ui_uuid(_uuid)
-						var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
-						if task and task.dialogue and not task.dialogue.is_empty():
-							dialogueManager.start_dialogue(task.dialogue)
 						else:
-							_start_dialogue()
+							var task_trigger = questManager.get_trigger_by_ui_uuid(_uuid)
+							var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
+							if task and task.dialogue and not task.dialogue.is_empty():
+								dialogueManager.start_dialogue(task.dialogue)
+							else:
+								_start_dialogue()
 			dialogueManager.next_sentence()
 		if event.is_action_released(cancel):
 			dialogueManager.cancel_dialogue()

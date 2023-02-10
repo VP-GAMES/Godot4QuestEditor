@@ -3,7 +3,7 @@
 @tool
 extends Resource
 class_name DialogueSentence
-@icon("res://addons/dialogue_editor/icons/Sentence.png")
+# TODO @icon("res://addons/dialogue_editor/icons/Sentence.png")
 
 @export var scene: String = ""
 @export var actor: Resource # DialogueActor

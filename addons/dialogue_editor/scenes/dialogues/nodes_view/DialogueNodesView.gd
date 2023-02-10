@@ -70,7 +70,7 @@ func _on_update_view() -> void:
 
 func _on_end_node_move():
 	var node = _selected_node._node
-	_dialogue.node_move_request(node.uuid, _selected_node.offset)
+	_dialogue.node_move_request(node.uuid, _selected_node.position_offset)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if _dialogue:

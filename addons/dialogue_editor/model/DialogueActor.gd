@@ -3,7 +3,7 @@
 @tool
 extends Resource
 class_name DialogueActor
-@icon("res://addons/dialogue_editor/icons/Actor.png")
+# TODO @icon("res://addons/dialogue_editor/icons/Actor.png")
 
 # ***** EDITOR_PLUGIN BOILERPLATE *****
 var _editor

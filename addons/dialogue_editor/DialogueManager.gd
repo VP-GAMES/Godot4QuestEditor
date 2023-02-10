@@ -39,6 +39,11 @@ func load_data() -> void:
 func actual_dialogue() -> String:
 	return _dialogue.name
 
+func actual_dialogue_uuid():
+	if _dialogue != null:
+		return _dialogue.uuid
+	return null
+
 func is_started() -> bool:
 	return _dialogue != null
 
@@ -89,8 +94,9 @@ func next_sentence() -> void:
 func cancel_dialogue() -> void:
 	if is_started():
 		_clear_sentences()
+		var old_dialogue = _dialogue
 		_reset()
-		emit_signal("dialogue_canceled", _dialogue)
+		emit_signal("dialogue_canceled", old_dialogue)
 
 func _next_sentence_action() -> void:
 		var index = -1

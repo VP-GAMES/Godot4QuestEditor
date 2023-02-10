@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc7ym1pqb17mg"]
+[gd_scene load_steps=3 format=3 uid="uid://dc7ym1pqb17mg"]
 
 [ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/nodes/node_sentence/NodeSentence.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cr1hvm6iy8dxl" path="res://addons/dialogue_editor/icons/Actor.png" id="2_ba4ph"]
 
 [node name="NodeSentence" type="GraphNode"]
-min_size = Vector2(300, 0)
+offset_right = 142.0
+offset_bottom = 143.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
@@ -12,6 +16,7 @@ slot/0/right_enabled = false
 slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
+slot/0/draw_stylebox = true
 slot/1/left_enabled = false
 slot/1/left_type = 0
 slot/1/left_color = Color(1, 1, 1, 1)
@@ -20,6 +25,7 @@ slot/1/right_enabled = false
 slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
+slot/1/draw_stylebox = true
 slot/2/left_enabled = false
 slot/2/left_type = 0
 slot/2/left_color = Color(1, 1, 1, 1)
@@ -28,6 +34,7 @@ slot/2/right_enabled = true
 slot/2/right_type = 0
 slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
+slot/2/draw_stylebox = true
 slot/3/left_enabled = false
 slot/3/left_type = 0
 slot/3/left_color = Color(1, 1, 1, 1)
@@ -36,117 +43,63 @@ slot/3/right_enabled = false
 slot/3/right_type = 0
 slot/3/right_color = Color(1, 1, 1, 1)
 slot/3/right_icon = null
-script = ExtResource( "2" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+slot/3/draw_stylebox = true
+script = ExtResource("2")
 
 [node name="PanelScene" type="PanelContainer" parent="."]
-offset_left = 18.0
-offset_top = 42.0
-offset_right = 282.0
-offset_bottom = 73.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="HBox" type="HBoxContainer" parent="PanelScene"]
-offset_right = 264.0
-offset_bottom = 31.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelScene/HBox"]
-offset_top = 2.0
-offset_right = 45.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "Scene"
 
 [node name="Scene" type="OptionButton" parent="PanelScene/HBox"]
-offset_left = 49.0
-offset_right = 264.0
-offset_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PanelActor" type="PanelContainer" parent="."]
-offset_left = 18.0
-offset_top = 75.0
-offset_right = 282.0
-offset_bottom = 106.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="HBox" type="HBoxContainer" parent="PanelActor"]
-offset_right = 264.0
-offset_bottom = 31.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="Add" type="Button" parent="PanelActor/HBox"]
-offset_right = 24.0
-offset_bottom = 31.0
-min_size = Vector2(24, 24)
+layout_mode = 2
 text = "+"
 
 [node name="Label" type="Label" parent="PanelActor/HBox"]
-offset_left = 28.0
-offset_top = 2.0
-offset_right = 70.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "Actor"
 
 [node name="Actor" type="OptionButton" parent="PanelActor/HBox"]
-offset_left = 74.0
-offset_right = 264.0
-offset_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PanelTexture" type="PanelContainer" parent="."]
-offset_left = 18.0
-offset_top = 108.0
-offset_right = 282.0
-offset_bottom = 139.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="HBoxTexture" type="HBoxContainer" parent="PanelTexture"]
-offset_right = 264.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="View" type="CheckBox" parent="PanelTexture/HBoxTexture"]
-offset_right = 24.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelTexture/HBoxTexture"]
-offset_left = 28.0
-offset_top = 2.0
-offset_right = 87.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "Texture"
 
 [node name="Texture" type="OptionButton" parent="PanelTexture/HBoxTexture"]
-offset_left = 91.0
-offset_right = 264.0
-offset_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Center" type="CenterContainer" parent="."]
-offset_left = 18.0
-offset_top = 141.0
-offset_right = 282.0
-offset_bottom = 291.0
+layout_mode = 2
 
 [node name="Texture" type="TextureRect" parent="Center"]
-offset_left = 57.0
-offset_right = 207.0
-offset_bottom = 150.0
-min_size = Vector2(150, 150)
-ignore_texture_size = true
-stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_ba4ph")
+expand_mode = 1

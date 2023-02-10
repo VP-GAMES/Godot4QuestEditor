@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://d15n48edirewf"]
+[gd_scene load_steps=8 format=3 uid="uid://bssdhtctthadv"]
 
 [ext_resource type="Script" path="res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslate.gd" id="1_cuqef"]
 [ext_resource type="Texture2D" uid="uid://byv22srd37niw" path="res://addons/localization_editor/icons/Google.png" id="2_l1peq"]
-[ext_resource type="PackedScene" uid="uid://cmavhtjtgg1ca" path="res://addons/localization_editor/ui_extensions/dropdown/Dropdown.tscn" id="3_8iumy"]
 [ext_resource type="Texture2D" uid="uid://chlw8bdg84q1m" path="res://addons/localization_editor/icons/Yandex.png" id="3_ul6cn"]
 [ext_resource type="Texture2D" uid="uid://c24qna6n2q27l" path="res://addons/localization_editor/icons/DeepL.png" id="4_142cw"]
 [ext_resource type="Texture2D" uid="uid://cfu2uuf8hh0c" path="res://addons/localization_editor/icons/Amazon.png" id="5_0oig7"]
 [ext_resource type="Texture2D" uid="uid://dekewvpr4ic2c" path="res://addons/localization_editor/icons/Microsoft.png" id="6_tal6j"]
+[ext_resource type="PackedScene" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="7_jsbqb"]
 
 [node name="LocalizationAutotranslateGoogle" type="MarginContainer"]
 anchors_preset = 15
@@ -216,18 +216,16 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "From:"
 
-[node name="FromLanguage" parent="Panel/VBox/HBox" instance=ExtResource("3_8iumy")]
+[node name="FromLanguage" parent="Panel/VBox/HBox" instance=ExtResource("7_jsbqb")]
 layout_mode = 2
-tooltip_text = "Input language"
 
 [node name="To" type="Label" parent="Panel/VBox/HBox"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "To:"
 
-[node name="ToLanguage" parent="Panel/VBox/HBox" instance=ExtResource("3_8iumy")]
+[node name="ToLanguage" parent="Panel/VBox/HBox" instance=ExtResource("7_jsbqb")]
 layout_mode = 2
-tooltip_text = "Output language"
 
 [node name="Translate" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2

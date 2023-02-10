@@ -316,13 +316,13 @@ func save(update_script_classes = false) -> void:
 	_save_data_dialogue_names()
 	_save_data_dialogue_events()
 	if update_script_classes:
-		_editor.get_editor_interface().get_resource_filesystem().update_script_classes()
+		_editor.get_editor_interface().get_resource_filesystem().scan()
 
 func _save_data_dialogue_names() -> void:
 	var dir:= DirAccess.open(default_path)
 	if not dir:
 		dir.make_dir(default_path)
-	var reader = FileAccess.open(default_path + "DialogueDialogues.gd", FileAccess.WRITE)
+	var fileAccess = FileAccess.open(default_path + "DialogueDialogues.gd", FileAccess.WRITE)
 	var source_code = "# Names for DialogueManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "@tool\n"
@@ -337,20 +337,22 @@ func _save_data_dialogue_names() -> void:
 		if index != dialogues.size() - 1:
 			source_code += ",\n"
 	source_code += "\n]"
-	reader.store_string(source_code)
+	fileAccess.store_string(source_code)
 
 func _save_data_dialogue_events() -> void:
-	var reader = FileAccess.open(default_path + "DialogueEvents.gd", FileAccess.WRITE)
+	var fileAccess = FileAccess.open(default_path + "DialogueEvents.gd", FileAccess.WRITE)
 	var source_code = "# Events for DialogueManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "@tool\n"
 	source_code += "class_name DialogueEvents\n\n"
 	for dialogue in dialogues:
 		for event in dialogue.events():
-			source_code += "const " + dialogue.name.to_upper() + "_EVENT_" + event.to_upper()
-			source_code += " = \"" + event +"\"\n"
-		source_code += "\n"
-	reader.store_string(source_code)
+			var sub_events = event.split(",")
+			for eve in sub_events:
+				source_code += "const " + dialogue.name.to_upper() + "_EVENT_" + eve.to_upper()
+				source_code += " = \"" + eve +"\"\n"
+	fileAccess.store_string(source_code)
+	
 
 func dialogue_exists(dialogue_uuid_or_name: String) -> bool:
 	if dialogue_exists_by_uuid(dialogue_uuid_or_name):

@@ -4,7 +4,7 @@
 extends EditorProperty
 class_name QuestInspectorPluginNpc
 
-const Dropdown = preload("res://addons/dialogue_editor/ui_extensions/dropdown/Dropdown.tscn")
+const Dropdown = preload("res://addons/ui_extensions/dropdown/Dropdown.tscn")
 
 var updating = false
 var dropdown = Dropdown.instantiate()
@@ -29,7 +29,7 @@ func _update_dropdown() -> void:
 	dropdown.clear()
 	if _data != null:
 		for dialogue in _data.dialogues:
-			var item_d = DropdownItem.new(dialogue.name, dialogue.uuid)
+			var item_d = DropdownItem.new(dialogue.uuid, dialogue.name)
 			dropdown.add_item(item_d)
 
 func _on_selection_changed(item: DropdownItem):

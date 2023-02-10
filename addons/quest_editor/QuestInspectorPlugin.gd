@@ -10,7 +10,7 @@ func set_data(main_screen: VBoxContainer) -> void:
 func _can_handle(object):
 	return object is QuestNPC3D or object is QuestNPC3D
 
-func _parse_property(object: Object, type: int, name: String, hint_type: int, hint_string: String, usage_flags: int, wide: bool):
+func _parse_property(object: Object, type, name: String, hint_type: int, hint_string: String, usage_flags: int, wide: bool):
 	if type == TYPE_STRING and name == "dialogue_default":
 		var questInspectorPluginNpc = QuestInspectorPluginNpc.new()
 		add_property_editor(name, questInspectorPluginNpc)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4lfjklyalnk7"]
 
 [ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksViewItem.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://cf8spgpdsxfdb" path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_62gy7"]
 [ext_resource type="Texture2D" uid="uid://bcia7fs1y13ht" path="res://addons/quest_editor/icons/Trash.png" id="3"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
@@ -11,14 +11,14 @@ script = ExtResource("1")
 layout_mode = 2
 text = "Action"
 
-[node name="Trigger" parent="." instance=ExtResource("2")]
+[node name="Trigger" parent="." instance=ExtResource("2_62gy7")]
 layout_mode = 2
 
 [node name="LabelDialogue" type="Label" parent="."]
 layout_mode = 2
 text = "Dialogue"
 
-[node name="Dialogue" parent="." instance=ExtResource("2")]
+[node name="Dialogue" parent="." instance=ExtResource("2_62gy7")]
 layout_mode = 2
 
 [node name="LabelQuantity" type="Label" parent="."]

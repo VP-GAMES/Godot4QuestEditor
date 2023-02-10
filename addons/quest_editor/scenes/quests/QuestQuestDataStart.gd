@@ -43,12 +43,12 @@ func _on_trigger_gui_input(event: InputEvent) -> void:
 
 func _fill_trigger_ui_dropdown() -> void:
 	_trigger_ui.clear()
-	_trigger_ui.add_item(DropdownItem.new("NONE", ""))
+	_trigger_ui.add_item(DropdownItem.new("", "NONE"))
 	for trigger in _data.all_npcs():
-		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
+		var item_t = DropdownItem.new(trigger.uuid, trigger.name)
 		_trigger_ui.add_item(item_t)
 	for trigger in _data.all_destinations():
-		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
+		var item_t = DropdownItem.new(trigger.uuid, trigger.name)
 		_trigger_ui.add_item(item_t)
 
 func _on_trigger_selection_changed(trigger: DropdownItem) -> void:
@@ -78,9 +78,9 @@ func _fill_start_ui_dropdown() -> void:
 	if dialogue_editor:
 		var dialogue_data = dialogue_editor.get_data()
 		_start_ui.clear()
-		_start_ui.add_item(DropdownItem.new("NONE", ""))
+		_start_ui.add_item(DropdownItem.new("", "NONE"))
 		for dialogue in dialogue_data.dialogues:
-			var item_d = DropdownItem.new(dialogue.name, dialogue.uuid)
+			var item_d = DropdownItem.new(dialogue.uuid, dialogue.name)
 			_start_ui.add_item(item_d)
 
 func _on_start_selection_changed(dialogue: DropdownItem) -> void:
@@ -94,9 +94,9 @@ func _fill_running_ui_dropdown() -> void:
 	if dialogue_editor:
 		var dialogue_data = dialogue_editor.get_data()
 		_running_ui.clear()
-		_running_ui.add_item(DropdownItem.new("NONE", ""))
+		_running_ui.add_item(DropdownItem.new("", "NONE"))
 		for dialogue in dialogue_data.dialogues:
-			var item_d = DropdownItem.new(dialogue.name, dialogue.uuid)
+			var item_d = DropdownItem.new(dialogue.uuid, dialogue.name)
 			_running_ui.add_item(item_d)
 
 func _on_running_selection_changed(quest: DropdownItem) -> void:

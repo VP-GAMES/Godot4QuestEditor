@@ -51,7 +51,7 @@ func _on_trigger_gui_input(event: InputEvent) -> void:
 func _fill_trigger_ui_dropdown() -> void:
 	_trigger_ui.clear()
 	for trigger in _data.triggers:
-		var item_t = DropdownItem.new(trigger.name, trigger.uuid)
+		var item_t = DropdownItem.new(trigger.uuid, trigger.name)
 		_trigger_ui.add_item(item_t)
 	if not inventory_editor:
 		var inventoryEditorPath = "../../../../../../../../../../InventoryEditor"
@@ -61,7 +61,7 @@ func _fill_trigger_ui_dropdown() -> void:
 		var data = inventory_editor.get_data()
 		if data:
 			for item in data.all_items():
-				var item_i = DropdownItem.new(item.name, item.uuid)
+				var item_i = DropdownItem.new(item.uuid, item.name)
 				_trigger_ui.add_item(item_i)
 	if _trigger_ui:
 		_trigger_ui.set_selected_by_value(_task.trigger)
@@ -88,10 +88,10 @@ func _fill_start_ui_dropdown() -> void:
 	if dialogue_editor:
 		var dialogue_data = dialogue_editor.get_data()
 		_dialogue_ui.clear()
-		var item_e = DropdownItem.new("NONE", "")
+		var item_e = DropdownItem.new("", "NONE")
 		_dialogue_ui.add_item(item_e)
 		for dialogue in dialogue_data.dialogues:
-			var item_d = DropdownItem.new(dialogue.name, dialogue.uuid)
+			var item_d = DropdownItem.new(dialogue.uuid, dialogue.name)
 			_dialogue_ui.add_item(item_d)
 
 func _on_dialogue_selection_changed(dialogue: DropdownItem) -> void:

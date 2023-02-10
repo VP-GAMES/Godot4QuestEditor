@@ -166,13 +166,16 @@ func get_task_available_by_trigger(trigger_uuid: String):
 			return task_found
 	return null
 
+func get_task_first():
+	return tasks[0]
+
 func get_task_bevore(trigger_uuid: String):
 	var index = 0
 	for task in tasks:
 		if task.trigger == trigger_uuid:
 			if index == 0:
 				return null
-			return tasks[index]
+			return tasks[index - 1]
 		index += 1
 	return null
 

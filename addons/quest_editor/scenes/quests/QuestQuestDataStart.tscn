@@ -1,50 +1,31 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpgn2f70ekq1j"]
 
-[ext_resource type="PackedScene" path="res://addons/quest_editor/ui_extensions/dropdown/Dropdown.tscn" id="1"]
 [ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataStart.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_kkdiv"]
 
 [node name="QuestQuestStart" type="VBoxContainer"]
-script = ExtResource( "2" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("2")
 
 [node name="HBox" type="HBoxContainer" parent="."]
-offset_right = 490.0
-offset_bottom = 31.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="HBox"]
-offset_top = 2.0
-offset_right = 160.0
-offset_bottom = 28.0
-rect_min_size = Vector2(160, 0)
+layout_mode = 2
 text = "Quest trigger"
 
-[node name="Trigger" parent="HBox" instance=ExtResource( "1" )]
-anchor_right = 0.0
-offset_left = 164.0
-offset_right = 188.0
+[node name="Trigger" parent="HBox" instance=ExtResource("2_kkdiv")]
+layout_mode = 2
 
 [node name="Label2" type="Label" parent="HBox"]
-offset_left = 192.0
-offset_top = 2.0
-offset_right = 298.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "Start dialogue"
 
-[node name="Start" parent="HBox" instance=ExtResource( "1" )]
-anchor_right = 0.0
-offset_left = 302.0
-offset_right = 326.0
+[node name="Start" parent="HBox" instance=ExtResource("2_kkdiv")]
+layout_mode = 2
 
 [node name="Label3" type="Label" parent="HBox"]
-offset_left = 330.0
-offset_top = 2.0
-offset_right = 462.0
-offset_bottom = 28.0
+layout_mode = 2
 text = "Running dialogue"
 
-[node name="Running" parent="HBox" instance=ExtResource( "1" )]
-anchor_right = 0.0
-offset_left = 466.0
-offset_right = 490.0
+[node name="Running" parent="HBox" instance=ExtResource("2_kkdiv")]
+layout_mode = 2
