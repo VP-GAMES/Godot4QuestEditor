@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ctrtvn63dpa3r" path="res://quest_example/2d/actors/Destination.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://dlkojgk8lbxot" path="res://quest_example/2d/actors/Enemy.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://fgkpwnmxemho" path="res://quest_example/2d/actors/Trigger.tscn" id="15"]
-[ext_resource type="Script" uid="uid://vu734xq4txey" path="res://addons/inventory_editor/InventoryItem2D.gd" id="16"]
+[ext_resource type="Script" uid="uid://bquuogcnp1emo" path="res://addons/inventory_editor/InventoryItem2D.gd" id="16"]
 [ext_resource type="PackedScene" uid="uid://g84e6kqpj6ij" path="res://quest_example/2d/actors/Item.tscn" id="17"]
 [ext_resource type="Texture2D" uid="uid://bm7jp74ne8dhb" path="res://quest_example/textures/Fir.png" id="18"]
 [ext_resource type="Script" uid="uid://bjeefkunob45s" path="res://quest_example/2d/Item.gd" id="19"]

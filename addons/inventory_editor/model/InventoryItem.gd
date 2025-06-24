@@ -39,27 +39,27 @@ signal property_value_changed(property)
 
 func change_name(new_name: String):
 	name = new_name
-	emit_signal("name_changed")
+	name_changed.emit()
 
 func change_description(new_description: String):
 	description = new_description
-	emit_signal("description_changed")
+	description_changed.emit()
 
 func set_stacksize(new_stacksize: int) -> void:
 	stacksize = new_stacksize
-	emit_signal("stacksize_changed")
+	stacksize_changed.emit()
 
 func set_stacks(new_stacks: int) -> void:
 	stacks = new_stacks
-	emit_signal("stacks_changed")
+	stacks_changed.emit()
 
 func set_icon(new_icon_path: String) -> void:
 	icon = new_icon_path
-	emit_signal("icon_changed")
+	icon_changed.emit()
 
 func set_scene(new_scene_path: String) -> void:
 	scene = new_scene_path
-	emit_signal("scene_changed")
+	scene_changed.emit()
 
 func change_property_name(property, name, sendSignal = true) -> void:
 	var old_name = "" + property.name
@@ -74,7 +74,7 @@ func change_property_name(property, name, sendSignal = true) -> void:
 func _change_property_name(property, name, sendSignal = true) -> void:
 	property.name = name
 	if sendSignal:
-		emit_signal("property_name_changed", property)
+		property_name_changed.emit(property)
 
 func change_property_value(property, value, sendSignal = true) -> void:
 	var old_value = property.value
@@ -89,7 +89,7 @@ func change_property_value(property, value, sendSignal = true) -> void:
 func _change_property_value(property, value, sendSignal = true) -> void:
 	property.value = value
 	if sendSignal:
-		emit_signal("property_value_changed", property)
+		property_value_changed.emit(property)
 
 func add_property() -> void:
 	var property = _create_property()
@@ -130,7 +130,7 @@ func _next_property_name() -> String:
 
 func _add_property(property, position = properties.size()) -> void:
 	properties.insert(position, property)
-	emit_signal("property_added")
+	property_added.emit()
 
 func del_property(property) -> void:
 	if _undo_redo != null:
@@ -144,4 +144,4 @@ func del_property(property) -> void:
 
 func _del_property(property) -> void:
 		properties.erase(property)
-		emit_signal("property_removed")
+		property_removed.emit()

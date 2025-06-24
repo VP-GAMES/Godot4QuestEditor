@@ -67,22 +67,22 @@ func _fill_dropdown_description_ui() -> void:
 
 func _init_connections() -> void:
 	if not _data.type_selection_changed.is_connected(_on_type_selection_changed):
-		assert(_data.type_selection_changed.connect(_on_type_selection_changed) == OK)
+		_data.type_selection_changed.connect(_on_type_selection_changed)
 	if not _data.item_selection_changed.is_connected(_on_item_selection_changed):
-		assert(_data.item_selection_changed.connect(_on_item_selection_changed) == OK)
+		_data.item_selection_changed.connect(_on_item_selection_changed)
 	if not _stacksize_ui.text_changed.is_connected(_on_stacksize_text_changed):
-		assert(_stacksize_ui.text_changed.connect(_on_stacksize_text_changed) == OK)
+		_stacksize_ui.text_changed.connect(_on_stacksize_text_changed)
 	if not _stacks_ui.text_changed.is_connected(_on_stacks_text_changed):
-		assert(_stacks_ui.text_changed.connect(_on_stacks_text_changed) == OK)
+		_stacks_ui.text_changed.connect(_on_stacks_text_changed)
 	if not _open_ui.pressed.is_connected(_on_open_pressed):
-		assert(_open_ui.pressed.connect(_on_open_pressed) == OK)
+		_open_ui.pressed.connect(_on_open_pressed)
 	if not _description_ui.text_changed.is_connected(_on_description_text_changed):
-		assert(_description_ui.text_changed.connect(_on_description_text_changed) == OK)
+		_description_ui.text_changed.connect(_on_description_text_changed)
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if _data.setting_localization_editor_enabled():
 		if not _dropdown_description_ui.selection_changed.is_connected(_on_selection_changed_description):
-			assert(_dropdown_description_ui.selection_changed.connect(_on_selection_changed_description) == OK)
+			_dropdown_description_ui.selection_changed.connect(_on_selection_changed_description)
 
 func _on_type_selection_changed(type: InventoryType) -> void:
 	_update_selection_view()
@@ -101,11 +101,11 @@ func _on_selection_changed_description(item: DropdownItem) -> void:
 func _init_connections_item() -> void:
 	if _item:
 		if not _item.icon_changed.is_connected(_on_icon_changed):
-			assert(_item.icon_changed.connect(_on_icon_changed) == OK)
+			_item.icon_changed.connect(_on_icon_changed)
 		if not _item.property_added.is_connected(_on_property_added):
-			assert(_item.property_added.connect(_on_property_added) == OK)
+			_item.property_added.connect(_on_property_added)
 		if not _item.property_removed.is_connected(_on_property_removed):
-			assert(_item.property_removed.connect(_on_property_removed) == OK)
+			_item.property_removed.connect(_on_property_removed)
 
 func _on_icon_changed() -> void:
 	_draw_view_icon_preview_ui()

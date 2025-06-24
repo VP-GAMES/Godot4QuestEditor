@@ -87,24 +87,24 @@ func _on_dropdown_item_selection_changed(item: DropdownItem):
 
 func _init_connections() -> void:
 	if not _data.item_added.is_connected(_on_item_added):
-		assert(_data.item_added.connect(_on_item_added) == OK)
+		_data.item_added.connect(_on_item_added)
 	if not _data.item_removed.is_connected(_on_item_removed):
-		assert(_data.item_removed.connect(_on_item_removed) == OK)
+		_data.item_removed.connect(_on_item_removed)
 	if not _data.recipe_selection_changed.is_connected(_on_recipe_selection_changed):
-		assert(_data.recipe_selection_changed.connect(_on_recipe_selection_changed) == OK)
+		_data.recipe_selection_changed.connect(_on_recipe_selection_changed)
 	if not _stacksize_ui.text_changed.is_connected(_on_stacksize_text_changed):
-		assert(_stacksize_ui.text_changed.connect(_on_stacksize_text_changed) == OK)
+		_stacksize_ui.text_changed.connect(_on_stacksize_text_changed)
 	if not _stacks_ui.text_changed.is_connected(_on_stacks_text_changed):
-		assert(_stacks_ui.text_changed.connect(_on_stacks_text_changed) == OK)
+		_stacks_ui.text_changed.connect(_on_stacks_text_changed)
 	if not _open_ui.pressed.is_connected(_on_open_pressed):
-		assert(_open_ui.pressed.connect(_on_open_pressed) == OK)
+		_open_ui.pressed.connect(_on_open_pressed)
 	if not _description_ui.text_changed.is_connected(_on_description_text_changed):
-		assert(_description_ui.text_changed.connect(_on_description_text_changed) == OK)
+		_description_ui.text_changed.connect(_on_description_text_changed)
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if _data.setting_localization_editor_enabled():
 		if not _dropdown_description_ui.selection_changed.is_connected(_on_selection_changed_description):
-			assert(_dropdown_description_ui.selection_changed.connect(_on_selection_changed_description) == OK)
+			_dropdown_description_ui.selection_changed.connect(_on_selection_changed_description)
 
 func _on_item_added(_item) -> void:
 	_dropdown_item_update()
@@ -150,11 +150,11 @@ func _on_selection_changed_description(item: DropdownItem) -> void:
 func _init_connections_recipe() -> void:
 	if _recipe:
 		if not _recipe.icon_changed.is_connected(_on_icon_changed):
-			assert(_recipe.icon_changed.connect(_on_icon_changed) == OK)
+			_recipe.icon_changed.connect(_on_icon_changed)
 		if not _recipe.ingredient_added.is_connected(_on_ingredient_added):
-			assert(_recipe.ingredient_added.connect(_on_ingredient_added) == OK)
+			_recipe.ingredient_added.connect(_on_ingredient_added)
 		if not _recipe.ingredient_removed.is_connected(_on_ingredient_removed):
-			assert(_recipe.ingredient_removed.connect(_on_ingredient_removed) == OK)
+			_recipe.ingredient_removed.connect(_on_ingredient_removed)
 
 func _on_add_pressed() -> void:
 	_recipe.add_ingredient()

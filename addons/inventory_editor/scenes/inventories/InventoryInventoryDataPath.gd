@@ -21,13 +21,13 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _inventory.icon_changed.is_connected(_on_icon_changed):
-		assert(_inventory.icon_changed.connect(_on_icon_changed) == OK)
+		_inventory.icon_changed.connect(_on_icon_changed)
 	if not focus_entered.is_connected(_on_focus_entered):
-		assert(focus_entered.connect(_on_focus_entered) == OK)
+		focus_entered.connect(_on_focus_entered)
 	if not focus_exited.is_connected(_on_focus_exited):
-		assert(focus_exited.connect(_on_focus_exited) == OK)
+		focus_exited.connect(_on_focus_exited)
 	if not text_changed.is_connected(_path_value_changed):
-		assert(text_changed.connect(_path_value_changed) == OK)
+		text_changed.connect(_path_value_changed)
 
 func _on_icon_changed() -> void:
 	_draw_view()

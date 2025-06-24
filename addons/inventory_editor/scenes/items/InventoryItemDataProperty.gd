@@ -18,15 +18,15 @@ func set_data(property, item: InventoryItem) -> void:
 
 func _init_connections() -> void:
 	if not _name_ui.text_changed.is_connected(_on_name_text_changed):
-		assert(_name_ui.text_changed.connect(_on_name_text_changed) == OK)
+		_name_ui.text_changed.connect(_on_name_text_changed)
 	if not _value_ui.text_changed.is_connected(_on_value_text_changed):
-		assert(_value_ui.text_changed.connect(_on_value_text_changed) == OK)
+		_value_ui.text_changed.connect(_on_value_text_changed)
 	if not _item.property_name_changed.is_connected(_on_property_name_changed):
-		assert(_item.property_name_changed.connect(_on_property_name_changed) == OK)
+		_item.property_name_changed.connect(_on_property_name_changed)
 	if not _item.property_value_changed.is_connected(_on_property_value_changed):
-		assert(_item.property_value_changed.connect(_on_property_value_changed) == OK)
+		_item.property_value_changed.connect(_on_property_value_changed)
 	if not _del_ui.pressed.is_connected(_on_del_pressed):
-		assert(_del_ui.pressed.connect(_on_del_pressed) == OK)
+		_del_ui.pressed.connect(_on_del_pressed)
 
 func _on_name_text_changed(new_text: String) -> void:
 	_item.change_property_name(_property, new_text, false)

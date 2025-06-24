@@ -22,9 +22,9 @@ func _ready() -> void:
 		var area = get_node("InventoryItem_" + item_put)
 		if area:
 			if not area.body_entered.is_connected(_on_body_entered):
-				assert(area.body_entered.connect(_on_body_entered) == OK)
+				area.body_entered.connect(_on_body_entered)
 			if not area.body_exited.is_connected(_on_body_exited):
-				assert(area.body_exited.connect(_on_body_exited) == OK)
+				area.body_exited.connect(_on_body_exited)
 	if get_tree().get_root().has_node(questManagerName):
 		questManager = get_tree().get_root().get_node(questManagerName)
 
@@ -62,10 +62,9 @@ func _on_body_entered(body: Node) -> void:
 	var remainder = _inventoryManager.add_item(to_inventory, item_put, quantity, autosave)
 	if remove_collected and remainder == 0:
 		queue_free()
-		if questManager and questManager.is_quest_started():
-			var quest = questManager.started_quest()
-			var task = questManager.get_task_and_update_quest_state(quest, item_put, quantity)
+	if questManager and questManager.is_quest_started():
+		var quest = questManager.started_quest()
+		var task = questManager.get_task_and_update_quest_state(quest, item_put, quantity)
 
 func _on_body_exited(body: Node) -> void:
 	inside = false
-

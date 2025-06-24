@@ -24,7 +24,7 @@ func change_ingredient_value(ingredient, value, sendSignal = true) -> void:
 func _change_ingredient_value(ingredient, value, sendSignal = true) -> void:
 	ingredient.value = value
 	if sendSignal:
-		emit_signal("ingredient_value_changed", ingredient)
+		ingredient_value_changed.emit(ingredient)
 
 func add_ingredient() -> void:
 	var ingredient = _create_ingredient()
@@ -41,7 +41,7 @@ func _create_ingredient() -> Dictionary:
 
 func _add_ingredient(ingredient, position = ingredients.size()) -> void:
 	ingredients.insert(position, ingredient)
-	emit_signal("ingredient_added")
+	ingredient_added.emit()
 
 func del_ingredient(ingredient) -> void:
 	if _undo_redo != null:
@@ -55,4 +55,4 @@ func del_ingredient(ingredient) -> void:
 
 func _del_ingredient(ingredient) -> void:
 		ingredients.erase(ingredient)
-		emit_signal("ingredient_removed")
+		ingredient_removed.emit()

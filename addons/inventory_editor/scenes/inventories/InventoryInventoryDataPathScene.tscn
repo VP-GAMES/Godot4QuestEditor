@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://diwd5k2ssotp5"]
 
-[ext_resource type="Script" uid="uid://dh1jet3muuq3d" path="res://addons/inventory_editor/scenes/inventories/InventoryInventoryDataPathScene.gd" id="2"]
+[ext_resource type="Script" path="res://addons/inventory_editor/scenes/inventories/InventoryInventoryDataPathScene.gd" id="2"]
 
 [node name="DialogueActorDataPath" type="LineEdit"]
 anchors_preset = 15

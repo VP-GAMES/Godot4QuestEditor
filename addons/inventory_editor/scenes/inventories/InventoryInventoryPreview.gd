@@ -59,13 +59,13 @@ func _init_manger() -> void:
 
 func _init_connections() -> void:
 	if not _data.inventory_added.is_connected(_on_inventory_added):
-		assert(_data.inventory_added.connect(_on_inventory_added) == OK)
+		_data.inventory_added.connect(_on_inventory_added)
 	if not _data.inventory_removed.is_connected(_on_inventory_removed):
-		assert(_data.inventory_removed.connect(_on_inventory_removed) == OK)
+		_data.inventory_removed.connect(_on_inventory_removed)
 	if not _data.inventory_selection_changed.is_connected(_on_inventory_selection_changed):
-		assert(_data.inventory_selection_changed.connect(_on_inventory_selection_changed) == OK)
+		_data.inventory_selection_changed.connect(_on_inventory_selection_changed)
 	if not _data.inventory_scene_changed.is_connected(_on_inventory_scene_changed):
-		assert(_data.inventory_scene_changed.connect(_on_inventory_scene_changed) == OK)
+		_data.inventory_scene_changed.connect(_on_inventory_scene_changed)
 	if not _data.item_added.is_connected(_on_item_added):
 		_data.item_added.connect(_on_item_added)
 	if not _dropdown_ui.selection_changed.is_connected(_on_selection_changed):

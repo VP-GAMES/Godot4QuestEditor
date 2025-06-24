@@ -27,8 +27,11 @@ signal icon_changed
 
 func change_name(new_name: String):
 	name = new_name
-	emit_signal("name_changed")
+	name_changed.emit()
 
 func set_icon(new_icon_path: String) -> void:
 	icon = new_icon_path
-	emit_signal("icon_changed")
+	icon_changed.emit()
+
+func sort_items_by_name() -> void:
+	items.sort_custom(func(a, b): return a.name < b.name)

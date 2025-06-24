@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dgb7djfqul8vm"]
 
-[ext_resource type="Script" uid="uid://5e8doe4jpnnn" path="res://addons/inventory_editor/InventoryEditor.gd" id="1"]
+[ext_resource type="Script" path="res://addons/inventory_editor/InventoryEditor.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bv1gmxjhtcpxk" path="res://addons/inventory_editor/icons/Save.png" id="2"]
-[ext_resource type="PackedScene" uid="uid://dmt133aolf4re" path="res://addons/inventory_editor/scenes/items/InventoryTypesEditorView.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://addons/inventory_editor/scenes/items/InventoryTypesEditorView.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://ore5wnc3tdpq" path="res://addons/inventory_editor/scenes/inventories/InventoryInventoriesEditorView.tscn" id="5_lwnpv"]
-[ext_resource type="PackedScene" uid="uid://cp0a66m7c11v4" path="res://addons/inventory_editor/scenes/craft/InventoryCraftEditorView.tscn" id="7_yjglb"]
+[ext_resource type="PackedScene" path="res://addons/inventory_editor/scenes/craft/InventoryCraftEditorView.tscn" id="7_yjglb"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

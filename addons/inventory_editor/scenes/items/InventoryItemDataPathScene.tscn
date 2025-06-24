@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpng247b4f7aa"]
+[gd_scene load_steps=4 format=3 uid="uid://bpng247b4f7aa"]
 
-[ext_resource type="Script" uid="uid://i28hasiuk8yk" path="res://addons/inventory_editor/scenes/items/InventoryItemDataPathScene.gd" id="2"]
+[ext_resource type="Script" path="res://addons/inventory_editor/scenes/items/InventoryItemDataPathScene.gd" id="2"]
 
 [node name="DialogueActorDataPath" type="LineEdit"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("2")
+script = ExtResource( "2" )
 __meta__ = {
 "_edit_use_anchors_": false
 }

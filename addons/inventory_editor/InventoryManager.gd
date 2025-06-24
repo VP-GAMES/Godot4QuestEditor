@@ -10,7 +10,9 @@ signal inventory_changed(inventory_uuid)
 var _db = InventoryData.new()
 var player
 
-var _path_to_type = "user://inventory.tres"
+const PATH_DEFAULT_TO_TYPE = "user://inventory.tres"
+
+var _path_to_type = PATH_DEFAULT_TO_TYPE
 var _data = InventoryInventories.new()
 
 func ready(db: InventoryData) -> void:
@@ -26,9 +28,10 @@ func _init_db() -> void:
 		_db.inventory_stacks_changed.connect(_on_inventory_stacks_changed)
 
 func _on_inventory_stacks_changed(inventory) -> void:
-	emit_signal("inventory_changed", inventory.uuid)
+	inventory_changed.emit(inventory.uuid)
 
 func load_data() -> void:
+	_data = InventoryInventories.new()
 	if FileAccess.file_exists(_path_to_type):
 		var loaded_data = load(_path_to_type)
 		if loaded_data:
@@ -63,7 +66,7 @@ func clear_inventory(inventory_uuid: String) -> void:
 		items = _data.inventories[inventory_uuid]
 		for index in range(items.size()):
 			items[index] = {}
-		emit_signal("inventory_changed", inventory_uuid)
+		inventory_changed.emit(inventory_uuid)
 
 func add_item_by_name(inventory_name: String, item_name: String, quantity: int = 1) -> int:
 	var inventory = _db.get_inventory_by_name(inventory_name)
@@ -87,7 +90,7 @@ func add_item(inventory_uuid: String, item_uuid: String, quantity: int = 1, do_s
 	_add_item_with_quantity(db_inventory, db_item, quantity)
 	if do_save:
 		save()
-	emit_signal("inventory_changed", inventory_uuid)
+	inventory_changed.emit(inventory_uuid)
 	return remainder
 
 func create_inventory(inventory_uuid:String) -> void:
@@ -157,7 +160,7 @@ func remove_item(inventory_uuid: String, item_uuid: String, quantity: int = 1, d
 	_remove_item(inventory_uuid, item_uuid, quantity)
 	if do_save:
 		save()
-	emit_signal("inventory_changed", inventory_uuid)
+	inventory_changed.emit(inventory_uuid)
 	return quantity
 
 func remove_all_items(inventory_uuid: String, item_uuid: String, do_save = true) -> int:
@@ -165,7 +168,7 @@ func remove_all_items(inventory_uuid: String, item_uuid: String, do_save = true)
 	_remove_item(inventory_uuid, item_uuid, quantity)
 	if do_save:
 		save()
-	emit_signal("inventory_changed", inventory_uuid)
+	inventory_changed.emit(inventory_uuid)
 	return quantity
 
 func _remove_item(inventory_uuid: String, item_uuid: String, quantity: int) -> int:
@@ -204,7 +207,7 @@ func _move_in_same_inventory(inventory_uuid: String, from_index: int, to_index: 
 		var to = items[to_index]
 		items[to_index] = from
 		items[from_index] = to
-		emit_signal("inventory_changed", inventory_uuid)
+		inventory_changed.emit(inventory_uuid)
 
 func _move_to_other_inventory(inventory_uuid_from: String, from_index: int, inventory_uuid_to: String, to_index: int) -> void:
 	var items_from = _data.inventories[inventory_uuid_from]
@@ -218,8 +221,8 @@ func _move_to_other_inventory(inventory_uuid_from: String, from_index: int, inve
 	else:
 		items_to[to_index] = item_from
 		items_from[from_index] = {}
-	emit_signal("inventory_changed", inventory_uuid_from)
-	emit_signal("inventory_changed", inventory_uuid_to)
+	inventory_changed.emit(inventory_uuid_from)
+	inventory_changed.emit(inventory_uuid_to)
 
 func inventory_has_item_by_name(inventory_name: String, item_name: String) -> bool:
 	return inventory_item_quantity_by_name(inventory_name, item_name) > 0
@@ -246,14 +249,14 @@ func inventory_item_quantity(inventory_uuid: String, item_uuid: String) -> int:
 	return quantity
 
 func has_item_by_name(item_name: String) -> bool:
-	var item = _db.get_inventory_by_name(item_name)
+	var item = _db.get_item_by_name(item_name)
 	return has_item_quantity(item.uuid) > 0
 
 func has_item(item_uuid: String) -> bool:
 	return has_item_quantity(item_uuid) > 0
 
 func has_item_quantity_by_name(item_name: String) -> int:
-	var item = _db.get_inventory_by_name(item_name)
+	var item = _db.get_item_by_name(item_name)
 	return has_item_quantity(item.uuid)
 
 func has_item_quantity(item_uuid: String) -> int:
@@ -288,4 +291,4 @@ func craft_item(inventory_uuid, recipe_uuid) -> void:
 	else:
 		var index = remove_item(inventory_uuid, recipe_db.uuid, 1)
 		_data.inventories[inventory_uuid][index] = {"item_uuid": recipe_db.item, "quantity": 1}
-	emit_signal("inventory_changed", inventory_uuid)
+	inventory_changed.emit(inventory_uuid)

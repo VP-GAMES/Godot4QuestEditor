@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://pd4ccpckdkaf" path="res://addons/inventory_editor/icons/Trash.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dhc2m24gbwp23" path="res://addons/inventory_editor/icons/Item.png" id="2"]
-[ext_resource type="Script" uid="uid://g7mtawhi4ywd" path="res://addons/inventory_editor/scenes/items/InventoryItemUI.gd" id="3"]
+[ext_resource type="Script" path="res://addons/inventory_editor/scenes/items/InventoryItemUI.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://b8h8yvx6l14h3" path="res://addons/inventory_editor/icons/Copy.png" id="5"]
 
 [node name="InventoryItemUI" type="MarginContainer"]

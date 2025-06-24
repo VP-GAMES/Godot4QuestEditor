@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://1txirr45vbrf"]
 
-[ext_resource type="Script" uid="uid://vtowkav1pete" path="res://addons/inventory_editor/ui/InventoryItemUIIcon.gd" id="1"]
+[ext_resource type="Script" path="res://addons/inventory_editor/ui/InventoryItemUIIcon.gd" id="1"]
 
 [node name="Icon" type="TextureRect"]
 anchors_preset = 15

@@ -59,7 +59,7 @@ func get_data() -> InventoryData:
 
 func _init_connections() -> void:
 	if not _save_ui.pressed.is_connected(_on_save_data):
-		assert(_save_ui.pressed.connect(_on_save_data) == OK)
+		_save_ui.pressed.connect(_on_save_data)
 
 func _on_save_data() -> void:
 	save_data(true)
@@ -97,7 +97,7 @@ func init_languages() -> void:
 			index = i
 	_languages_ui.select(index)
 	if not _languages_ui.item_selected.is_connected(_on_item_selected):
-		assert(_languages_ui.item_selected.connect(_on_item_selected) == OK)
+		_languages_ui.item_selected.connect(_on_item_selected)
 	if(index == -1) and _locales.size() > 0:
 		_languages_ui.select(0)
 

@@ -57,7 +57,7 @@ func _update_item() -> void:
 				_item = null
 				_item_db = null
 				texture = null
-				_quantity_ui.text = "0"
+				_quantity_ui.text = "" 
 
 func _get_drag_data(position: Vector2):
 	var drag_texture = TextureRect.new()

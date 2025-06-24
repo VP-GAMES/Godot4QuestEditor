@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ore5wnc3tdpq"]
 
-[ext_resource type="Script" uid="uid://c1scp2ty3lhfs" path="res://addons/inventory_editor/scenes/inventories/InventoryInventoriesEditorView.gd" id="1"]
+[ext_resource type="Script" path="res://addons/inventory_editor/scenes/inventories/InventoryInventoriesEditorView.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://door23ws6puav" path="res://addons/inventory_editor/scenes/inventories/InventoryInventories.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b5ko610clbu87" path="res://addons/inventory_editor/scenes/inventories/InventoryInventoryPreview.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://l03mugb48y86" path="res://addons/inventory_editor/scenes/inventories/InventoryInventoryData.tscn" id="4"]

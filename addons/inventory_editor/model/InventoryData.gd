@@ -39,7 +39,7 @@ func set_locale(locale: String) -> void:
 	_locale = locale
 	setting_dialogue_editor_locale_put(_locale)
 	TranslationServer.set_locale(_locale)
-	emit_signal("locale_changed", _locale)
+	locale_changed.emit(_locale)
 
 # ***** INVENTORY *****
 signal inventory_added(inventory)
@@ -50,13 +50,13 @@ signal inventory_icon_changed(inventory)
 signal inventory_scene_changed(inventory)
 
 func emit_inventory_stacks_changed(inventory: InventoryInventory) -> void:
-	emit_signal("inventory_stacks_changed", inventory)
+	inventory_stacks_changed.emit(inventory)
 
 func emit_inventory_icon_changed(inventory: InventoryInventory) -> void:
-	emit_signal("inventory_icon_changed", inventory)
+	inventory_icon_changed.emit(inventory)
 
 func emit_inventory_scene_changed(inventory: InventoryInventory) -> void:
-	emit_signal("inventory_scene_changed", inventory)
+	inventory_scene_changed.emit(inventory)
 
 @export var inventories: Array = [_create_inventory()]
 var _inventory_selected: InventoryInventory
@@ -106,7 +106,7 @@ func _add_inventory(inventory: InventoryInventory, sendSignal = true, position =
 	if inventories == null:
 		inventories = []
 	inventories.insert(position, inventory)
-	emit_signal("inventory_added", inventory)
+	inventory_added.emit(inventory)
 	select_inventory(inventory)
 
 func del_inventory(inventory) -> void:
@@ -123,7 +123,7 @@ func _del_inventory(inventory) -> void:
 	var index = inventories.find(inventory)
 	if index > -1:
 		inventories.remove_at(index)
-		emit_signal("inventory_removed", inventory)
+		inventory_removed.emit(inventory)
 		_inventory_selected = null
 		var inventory_selected = selected_inventory()
 		select_inventory(inventory_selected)
@@ -135,7 +135,7 @@ func selected_inventory() -> InventoryInventory:
 
 func select_inventory(inventory: InventoryInventory) -> void:
 	_inventory_selected = inventory
-	emit_signal("inventory_selection_changed", _inventory_selected)
+	inventory_selection_changed.emit(_inventory_selected)
 
 func get_inventory_by_uuid(uuid: String) -> InventoryInventory:
 	for inventory in inventories:
@@ -156,7 +156,7 @@ signal type_selection_changed(type)
 signal type_icon_changed(item)
 
 func emit_type_icon_changed(type: InventoryType) -> void:
-	emit_signal("type_icon_changed", type)
+	type_icon_changed.emit(type)
 
 @export var types: Array = [_create_type()]
 var _type_selected: InventoryType
@@ -207,7 +207,7 @@ func _add_type(type: InventoryType, sendSignal = true, position = types.size()) 
 	if types == null:
 		types = []
 	types.insert(position, type)
-	emit_signal("type_added", type)
+	type_added.emit(type)
 	select_type(type)
 
 func del_type(type) -> void:
@@ -224,7 +224,7 @@ func _del_type(type) -> void:
 	var index = types.find(type)
 	if index > -1:
 		types.remove_at(index)
-		emit_signal("type_removed", type)
+		type_removed.emit(type)
 		_type_selected = null
 		var type_selected = selected_type()
 		select_type(type_selected)
@@ -236,7 +236,7 @@ func selected_type() -> InventoryType:
 
 func select_type(type: InventoryType) -> void:
 	_type_selected = type
-	emit_signal("type_selection_changed", _type_selected)
+	type_selection_changed.emit(_type_selected)
 
 func get_type_by_uuid(uuid: String) -> InventoryType:
 	for type in types:
@@ -257,7 +257,7 @@ signal item_selection_changed(item)
 signal item_icon_changed(item)
 
 func emit_item_icon_changed(item: InventoryItem) -> void:
-	emit_signal("item_icon_changed", item)
+	item_icon_changed.emit(item)
 
 func all_items() -> Array:
 	var items = []
@@ -266,6 +266,7 @@ func all_items() -> Array:
 			items.append(item)
 	for recipe in recipes:
 		items.append(recipe)
+	items.sort_custom(func(a, b): return a.name < b.name)
 	return items
 
 func add_item(sendSignal = true) -> void:
@@ -313,7 +314,7 @@ func _add_item(item: InventoryItem, sendSignal = true, position = _type_selected
 	if _type_selected.items == null:
 		_type_selected.items = []
 	_type_selected.items.insert(position, item)
-	emit_signal("item_added", item)
+	item_added.emit(item)
 	if select:
 		select_item(item)
 
@@ -346,7 +347,7 @@ func _del_item(item) -> void:
 	var index = _type_selected.items.find(item)
 	if index > -1:
 		_type_selected.items.remove_at(index)
-		emit_signal("item_removed", item)
+		item_removed.emit(item)
 		_type_selected.selected = null
 		var item_selected = selected_item()
 		select_item(item_selected)
@@ -358,7 +359,7 @@ func selected_item() -> InventoryItem:
 
 func select_item(item: InventoryItem) -> void:
 	_type_selected.selected = item
-	emit_signal("item_selection_changed", _type_selected.selected)
+	item_selection_changed.emit(_type_selected.selected)
 
 func get_item_by_uuid(uuid: String) -> InventoryItem:
 	for type in types:
@@ -388,7 +389,7 @@ signal recipe_selection_changed(recipe)
 signal recipe_icon_changed(item)
 
 func emit_recipe_icon_changed(recipe: InventoryRecipe) -> void:
-	emit_signal("recipe_icon_changed", recipe)
+	recipe_icon_changed.emit(recipe)
 
 @export var recipes: Array = []
 var _recipe_selected: InventoryRecipe
@@ -439,7 +440,7 @@ func _add_recipe(recipe: InventoryRecipe, sendSignal = true, position = recipes.
 	if recipes == null:
 		recipes = []
 	recipes.insert(position, recipe)
-	emit_signal("recipe_added", recipe)
+	recipe_added.emit(recipe)
 	select_recipe(recipe)
 
 func del_recipe(recipe) -> void:
@@ -456,7 +457,7 @@ func _del_recipe(recipe) -> void:
 	var index = recipes.find(recipe)
 	if index > -1:
 		recipes.remove_at(index)
-		emit_signal("recipe_removed", recipe)
+		recipe_removed.emit(recipe)
 		_recipe_selected = null
 		var recipe_selected = selected_recipe()
 		select_recipe(recipe_selected)
@@ -468,7 +469,7 @@ func selected_recipe() -> InventoryRecipe:
 
 func select_recipe(recipe: InventoryRecipe) -> void:
 	_recipe_selected = recipe
-	emit_signal("recipe_selection_changed", _recipe_selected)
+	recipe_selection_changed.emit(_recipe_selected)
 
 func get_recipe_by_uuid(uuid: String) -> InventoryRecipe:
 	for recipe in recipes:
@@ -568,9 +569,9 @@ func init_data() -> void:
 
 func save(update_script_classes = false) -> void:
 	ResourceSaver.save(self, PATH_TO_SAVE)
-	_save_data_inventories()
-	_save_data_items()
 	if update_script_classes:
+		_save_data_inventories()
+		_save_data_items()
 		_editor.get_editor_interface().get_resource_filesystem().scan()
 
 func _save_data_inventories() -> void:
@@ -648,3 +649,12 @@ func file_extension(value: String):
 
 func resource_exists(resource_path) -> bool:
 	return FileAccess.file_exists(resource_path)
+
+func sort_types_by_name() -> void:
+	types.sort_custom(func(a, b): return a.name < b.name)
+
+func sort_inventories_by_name() -> void:
+	inventories.sort_custom(func(a, b): return a.name < b.name)
+
+func sort_recipes_by_name() -> void:
+	recipes.sort_custom(func(a, b): return a.name < b.name)

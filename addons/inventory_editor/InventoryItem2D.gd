@@ -21,9 +21,9 @@ func _ready() -> void:
 		if has_node("InventoryItem_" + item_put + "/Area2D"):
 			var area = get_node("InventoryItem_" + item_put + "/Area2D")
 			if not area.body_entered.is_connected(_on_body_entered):
-				assert(area.body_entered.connect(_on_body_entered) == OK)
+				area.body_entered.connect(_on_body_entered)
 			if not area.body_exited.is_connected(_on_body_exited):
-				assert(area.body_exited.connect(_on_body_exited) == OK)
+				area.body_exited.connect(_on_body_exited)
 	if get_tree().get_root().has_node(questManagerName):
 		questManager = get_tree().get_root().get_node(questManagerName)
 

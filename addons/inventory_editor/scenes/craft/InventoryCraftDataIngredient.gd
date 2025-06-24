@@ -21,13 +21,13 @@ func set_data(ingredient, recipe: InventoryRecipe, data: InventoryData) -> void:
 
 func _init_connections() -> void:
 	if not _data.item_added.is_connected(_on_item_added):
-		assert(_data.item_added.connect(_on_item_added) == OK)
+		_data.item_added.connect(_on_item_added)
 	if not _data.item_removed.is_connected(_on_item_removed):
-		assert(_data.item_removed.connect(_on_item_removed) == OK)
+		_data.item_removed.connect(_on_item_removed)
 	if not _quantity_ui.text_changed.is_connected(_on_quantity_text_changed):
-		assert(_quantity_ui.text_changed.connect(_on_quantity_text_changed) == OK)
+		_quantity_ui.text_changed.connect(_on_quantity_text_changed)
 	if not _del_ui.pressed.is_connected(_on_del_pressed):
-		assert(_del_ui.pressed.connect(_on_del_pressed) == OK)
+		_del_ui.pressed.connect(_on_del_pressed)
 
 func _on_item_added(_item) -> void:
 	_dropdown_item_update()

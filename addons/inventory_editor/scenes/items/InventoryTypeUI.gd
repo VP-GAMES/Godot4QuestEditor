@@ -26,23 +26,23 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _data.type_added.is_connected(_on_type_added):
-		assert(_data.type_added.connect(_on_type_added) == OK)
+		_data.type_added.connect(_on_type_added)
 	if not _data.type_removed.is_connected(_on_type_removed):
-		assert(_data.type_removed.connect(_on_type_removed) == OK)
+		_data.type_removed.connect(_on_type_removed)
 	if not _type.icon_changed.is_connected(_on_icon_changed):
-		assert(_type.icon_changed.connect(_on_icon_changed) == OK)
+		_type.icon_changed.connect(_on_icon_changed)
 	if not _data.type_selection_changed.is_connected(_on_type_selection_changed):
-		assert(_data.type_selection_changed.connect(_on_type_selection_changed) == OK)
+		_data.type_selection_changed.connect(_on_type_selection_changed)
 	if not _texture_ui.gui_input.is_connected(_on_gui_input):
-		assert(_texture_ui.gui_input.connect(_on_gui_input) == OK)
+		_texture_ui.gui_input.connect(_on_gui_input)
 	if not _name_ui.gui_input.is_connected(_on_gui_input):
-		assert(_name_ui.gui_input.connect(_on_gui_input) == OK)
+		_name_ui.gui_input.connect(_on_gui_input)
 	if not _name_ui.focus_exited.is_connected(_on_focus_exited):
-		assert(_name_ui.focus_exited.connect(_on_focus_exited) == OK)
+		_name_ui.focus_exited.connect(_on_focus_exited)
 	if not _name_ui.text_changed.is_connected(_on_text_changed):
-		assert(_name_ui.text_changed.connect(_on_text_changed) == OK)
+		_name_ui.text_changed.connect(_on_text_changed)
 	if not _del_ui.pressed.is_connected(_del_pressed):
-		assert(_del_ui.pressed.connect(_del_pressed) == OK)
+		_del_ui.pressed.connect(_del_pressed)
 
 func _on_type_added(type: InventoryType) -> void:
 	_draw_style()
@@ -69,7 +69,7 @@ func _on_gui_input(event: InputEvent) -> void:
 				else:
 					_name_ui.remove_theme_stylebox_override("normal")
 	if event is InputEventKey and event.pressed:
-		if event.scancode == KEY_ENTER or event.scancode == KEY_KP_ENTER:
+		if event.physical_keycode == KEY_ENTER or event.physical_keycode == KEY_KP_ENTER:
 			if _name_ui.has_focus():
 				_del_ui.grab_focus()
 

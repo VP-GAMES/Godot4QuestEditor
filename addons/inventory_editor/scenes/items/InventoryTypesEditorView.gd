@@ -22,11 +22,11 @@ func set_data(data: InventoryData) -> void:
 
 func _init_connections() -> void:
 	if not _split_ui.dragged.is_connected(_on_split_dragged):
-		assert(_split_ui.dragged.connect(_on_split_dragged) == OK)
+		_split_ui.dragged.connect(_on_split_dragged)
 	if not _data.type_added.is_connected(_on_type_added):
-		assert(_data.type_added.connect(_on_type_added) == OK)
+		_data.type_added.connect(_on_type_added)
 	if not _data.type_removed.is_connected(_on_type_removed):
-		assert(_data.type_removed.connect(_on_type_removed) == OK)
+		_data.type_removed.connect(_on_type_removed)
 
 func _process(delta):
 	if _split_viewport_size != size.x:

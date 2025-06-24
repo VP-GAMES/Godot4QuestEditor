@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://5ptxtho3tph2"]
 
 [ext_resource type="Texture2D" uid="uid://dnw1xbg83c5pu" path="res://addons/inventory_editor/icons/Add.png" id="1"]
-[ext_resource type="Script" uid="uid://c7in1daq3l05l" path="res://addons/inventory_editor/scenes/items/InventoryItems.gd" id="2"]
+[ext_resource type="Script" path="res://addons/inventory_editor/scenes/items/InventoryItems.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bjy2ok8ebudb8" path="res://addons/inventory_editor/scenes/items/InventoryItemUI.tscn" id="3"]
 
 [node name="InventoryItems" type="Panel"]
@@ -17,60 +17,41 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBox" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBox" type="HBoxContainer" parent="Margin/VBox"]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
 
 [node name="Add" type="Button" parent="Margin/VBox/HBox"]
 layout_mode = 2
-offset_right = 18.0
-offset_bottom = 26.0
 icon = ExtResource("1")
 icon_alignment = 1
 
 [node name="Label" type="Label" parent="Margin/VBox/HBox"]
 layout_mode = 2
-offset_left = 22.0
-offset_right = 66.0
-offset_bottom = 26.0
 text = "Items"
 
 [node name="HSeparator" type="HSeparator" parent="Margin/VBox"]
 layout_mode = 2
-offset_top = 30.0
-offset_right = 1152.0
-offset_bottom = 34.0
 
 [node name="Scroll" type="ScrollContainer" parent="Margin/VBox"]
 layout_mode = 2
-offset_top = 38.0
-offset_right = 1152.0
-offset_bottom = 648.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Items" type="VBoxContainer" parent="Margin/VBox/Scroll"]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 610.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="InventoryItemUI" parent="Margin/VBox/Scroll/Items" instance=ExtResource("3")]
 layout_mode = 2
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1152.0
-offset_bottom = 31.0

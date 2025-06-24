@@ -23,11 +23,11 @@ func set_data(data: InventoryData) -> void:
 
 func _init_connections() -> void:
 	if not _data.inventory_selection_changed.is_connected(_on_inventory_selection_changed):
-		assert(_data.inventory_selection_changed.connect(_on_inventory_selection_changed) == OK)
+		_data.inventory_selection_changed.connect(_on_inventory_selection_changed)
 	if not _stacks_ui.text_changed.is_connected(_on_stacks_text_changed):
-		assert(_stacks_ui.text_changed.connect(_on_stacks_text_changed) == OK)
+		_stacks_ui.text_changed.connect(_on_stacks_text_changed)
 	if not _open_ui.pressed.is_connected(_on_open_pressed):
-		assert(_open_ui.pressed.connect(_on_open_pressed) == OK)
+		_open_ui.pressed.connect(_on_open_pressed)
 
 func _on_inventory_selection_changed(inventory: InventoryInventory) -> void:
 	_inventory = _data.selected_inventory()
@@ -37,7 +37,7 @@ func _on_inventory_selection_changed(inventory: InventoryInventory) -> void:
 func _init_connections_inventory() -> void:
 	if _inventory:
 		if not _inventory.icon_changed.is_connected(_on_icon_changed):
-			assert(_inventory.icon_changed.connect(_on_icon_changed) == OK)
+			_inventory.icon_changed.connect(_on_icon_changed)
 
 func _on_icon_changed() -> void:
 	_draw_view_preview_texture_ui()

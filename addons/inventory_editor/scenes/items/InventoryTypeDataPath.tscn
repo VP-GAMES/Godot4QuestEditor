@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdfnq8fem6gtg"]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource type="Script" uid="uid://bh2n36j3c5pyb" path="res://addons/inventory_editor/scenes/items/InventoryTypeDataPath.gd" id="2"]
+[ext_resource path="res://addons/inventory_editor/scenes/items/InventoryTypeDataPath.gd" type="Script" id=2]
 
 [node name="DataPath" type="LineEdit"]
 anchor_right = 1.0
@@ -11,7 +11,7 @@ margin_right = 21.3816
 margin_bottom = 8.90906
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("2")
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

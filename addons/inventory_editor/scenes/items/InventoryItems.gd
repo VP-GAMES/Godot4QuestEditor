@@ -17,13 +17,13 @@ func set_data(data: InventoryData) -> void:
 
 func _init_connections() -> void:
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if not _data.item_added.is_connected(_on_item_added):
-		assert(_data.item_added.connect(_on_item_added) == OK)
+		_data.item_added.connect(_on_item_added)
 	if not _data.item_removed.is_connected(_on_item_removed):
-		assert(_data.item_removed.connect(_on_item_removed) == OK)
+		_data.item_removed.connect(_on_item_removed)
 	if not _data.type_selection_changed.is_connected(_on_type_selection_changed):
-		assert(_data.type_selection_changed.connect(_on_type_selection_changed) == OK)
+		_data.type_selection_changed.connect(_on_type_selection_changed)
 
 func _on_add_pressed() -> void:
 	_data.add_item()
@@ -49,6 +49,7 @@ func _clear_view() -> void:
 func _draw_view() -> void:
 	var type = _data.selected_type()
 	if type:
+		type.sort_items_by_name()
 		for item in type.items:
 			_draw_item(item)
 

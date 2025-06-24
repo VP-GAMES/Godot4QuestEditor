@@ -12,16 +12,17 @@ const InventoryTypeUI = preload("res://addons/inventory_editor/scenes/items/Inve
 
 func set_data(data: InventoryData) -> void:
 	_data = data
+	_data.sort_types_by_name()
 	_init_connections()
 	_update_view()
 
 func _init_connections() -> void:
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if not _data.type_added.is_connected(_on_type_added):
-		assert(_data.type_added.connect(_on_type_added) == OK)
+		_data.type_added.connect(_on_type_added)
 	if not _data.type_removed.is_connected(_on_type_removed):
-		assert(_data.type_removed.connect(_on_type_removed) == OK)
+		_data.type_removed.connect(_on_type_removed)
 
 func _on_add_pressed() -> void:
 	_data.add_type()

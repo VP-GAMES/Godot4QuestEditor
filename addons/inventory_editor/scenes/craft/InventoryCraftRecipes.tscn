@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dnw1xbg83c5pu" path="res://addons/inventory_editor/icons/Add.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://de2ruvheuuhvd" path="res://addons/inventory_editor/scenes/craft/InventoryCraftRecipeUI.tscn" id="2"]
-[ext_resource type="Script" uid="uid://dmovu2qm3krhw" path="res://addons/inventory_editor/scenes/craft/InventoryCraftRecipes.gd" id="3"]
+[ext_resource type="Script" path="res://addons/inventory_editor/scenes/craft/InventoryCraftRecipes.gd" id="3"]
 
 [node name="InventoryRecipes" type="Panel"]
 anchors_preset = 15
@@ -17,60 +17,41 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBox" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBox" type="HBoxContainer" parent="Margin/VBox"]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
 
 [node name="Add" type="Button" parent="Margin/VBox/HBox"]
 layout_mode = 2
-offset_right = 18.0
-offset_bottom = 26.0
 icon = ExtResource("1")
 icon_alignment = 1
 
 [node name="Label" type="Label" parent="Margin/VBox/HBox"]
 layout_mode = 2
-offset_left = 22.0
-offset_right = 81.0
-offset_bottom = 26.0
 text = "Recipes"
 
 [node name="HSeparator" type="HSeparator" parent="Margin/VBox"]
 layout_mode = 2
-offset_top = 30.0
-offset_right = 1152.0
-offset_bottom = 34.0
 
 [node name="Scroll" type="ScrollContainer" parent="Margin/VBox"]
 layout_mode = 2
-offset_top = 38.0
-offset_right = 1152.0
-offset_bottom = 648.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Recipes" type="VBoxContainer" parent="Margin/VBox/Scroll"]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 610.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="InventoryRecipeUI" parent="Margin/VBox/Scroll/Recipes" instance=ExtResource("2")]
 layout_mode = 2
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1152.0
-offset_bottom = 31.0

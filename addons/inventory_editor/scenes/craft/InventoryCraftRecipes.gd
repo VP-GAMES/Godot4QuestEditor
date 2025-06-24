@@ -12,16 +12,17 @@ const InventoryCraftRecipeUI = preload("res://addons/inventory_editor/scenes/cra
 
 func set_data(data: InventoryData) -> void:
 	_data = data
+	_data.sort_recipes_by_name()
 	_init_connections()
 	_update_view()
 
 func _init_connections() -> void:
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if not _data.recipe_added.is_connected(_on_recipe_added):
-		assert(_data.recipe_added.connect(_on_recipe_added) == OK)
+		_data.recipe_added.connect(_on_recipe_added)
 	if not _data.recipe_removed.is_connected(_on_recipe_removed):
-		assert(_data.recipe_removed.connect(_on_recipe_removed) == OK)
+		_data.recipe_removed.connect(_on_recipe_removed)
 
 func _on_add_pressed() -> void:
 	_data.add_recipe()

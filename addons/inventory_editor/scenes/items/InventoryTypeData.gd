@@ -20,7 +20,7 @@ func set_data(data: InventoryData) -> void:
 
 func _init_connections() -> void:
 	if not _data.type_selection_changed.is_connected(_on_type_selection_changed):
-		assert(_data.type_selection_changed.connect(_on_type_selection_changed) == OK)
+		_data.type_selection_changed.connect(_on_type_selection_changed)
 
 func _on_type_selection_changed(type: InventoryType) -> void:
 	_type = _data.selected_type()
@@ -30,7 +30,7 @@ func _on_type_selection_changed(type: InventoryType) -> void:
 func _init_connections_type() -> void:
 	if _type:
 		if not _type.icon_changed.is_connected(_on_icon_changed):
-			assert(_type.icon_changed.connect(_on_icon_changed) == OK)
+			_type.icon_changed.connect(_on_icon_changed)
 
 func _on_icon_changed() -> void:
 	_draw_view_icon_preview_ui()

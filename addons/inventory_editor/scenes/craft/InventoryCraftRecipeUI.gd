@@ -26,23 +26,23 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _data.recipe_added.is_connected(_on_recipe_added):
-		assert(_data.recipe_added.connect(_on_recipe_added) == OK)
+		_data.recipe_added.connect(_on_recipe_added)
 	if not _data.recipe_removed.is_connected(_on_recipe_removed):
-		assert(_data.recipe_removed.connect(_on_recipe_removed) == OK)
+		_data.recipe_removed.connect(_on_recipe_removed)
 	if not _recipe.icon_changed.is_connected(_on_icon_changed):
-		assert(_recipe.icon_changed.connect(_on_icon_changed) == OK)
+		_recipe.icon_changed.connect(_on_icon_changed)
 	if not _data.recipe_selection_changed.is_connected(_on_recipe_selection_changed):
-		assert(_data.recipe_selection_changed.connect(_on_recipe_selection_changed) == OK)
+		_data.recipe_selection_changed.connect(_on_recipe_selection_changed)
 	if not _texture_ui.gui_input.is_connected(_on_gui_input):
-		assert(_texture_ui.gui_input.connect(_on_gui_input) == OK)
+		_texture_ui.gui_input.connect(_on_gui_input)
 	if not _name_ui.gui_input.is_connected(_on_gui_input):
-		assert(_name_ui.gui_input.connect(_on_gui_input) == OK)
+		_name_ui.gui_input.connect(_on_gui_input)
 	if not _name_ui.focus_exited.is_connected(_on_focus_exited):
-		assert(_name_ui.focus_exited.connect(_on_focus_exited) == OK)
+		_name_ui.focus_exited.connect(_on_focus_exited)
 	if not _name_ui.text_changed.is_connected(_on_text_changed):
-		assert(_name_ui.text_changed.connect(_on_text_changed) == OK)
+		_name_ui.text_changed.connect(_on_text_changed)
 	if not _del_ui.pressed.is_connected(_del_pressed):
-		assert(_del_ui.pressed.connect(_del_pressed) == OK)
+		_del_ui.pressed.connect(_del_pressed)
 
 func _on_recipe_added(recipe: InventoryRecipe) -> void:
 	_draw_style()
@@ -69,7 +69,7 @@ func _on_gui_input(event: InputEvent) -> void:
 				else:
 					_name_ui.remove_theme_stylebox_override("normal")
 	if event is InputEventKey and event.pressed:
-		if event.scancode == KEY_ENTER or event.scancode == KEY_KP_ENTER:
+		if event.physical_keycode == KEY_ENTER or event.physical_keycode == KEY_KP_ENTER:
 			if _name_ui.has_focus():
 				_del_ui.grab_focus()
 
