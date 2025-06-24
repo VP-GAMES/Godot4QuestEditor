@@ -32,13 +32,13 @@ var _resource_selected = null
 
 func change_name(new_name: String):
 	name = new_name
-	emit_signal("changed")
-	emit_signal("name_changed")
+	changed.emit()
+	name_changed.emit()
 
 func change_uiname(new_uiname: String):
 	uiname = new_uiname
-	emit_signal("changed")
-	emit_signal("uiname_changed")
+	changed.emit()
+	uiname_changed.emit()
 
 func add_resource() -> void:
 	var resource = _create_resource()
@@ -55,8 +55,8 @@ func _create_resource():
 
 func _add_resource(resource, position = resources.size()) -> void:
 	resources.insert(position, resource)
-	emit_signal("changed")
-	emit_signal("resource_added", resource)
+	changed.emit()
+	resource_added.emit(resource)
 	select_resource(resource)
 
 func del_resource(resource) -> void:
@@ -73,8 +73,8 @@ func _del_resource(resource) -> void:
 	var index = resources.find(resource)
 	if index > -1:
 		resources.remove_at(index)
-		emit_signal("changed")
-		emit_signal("resource_removed", resource)
+		changed.emit()
+		resource_removed.emit(resource)
 		var resource_selected = selected_resource()
 		select_resource(resource_selected)
 
@@ -90,9 +90,9 @@ func change_resource_name(resource: Dictionary, name: String) -> void:
 
 func _change_resource_name(resource: Dictionary, name: String, sendSignal = false) -> void:
 	resource.name = name
-	emit_signal("changed")
+	changed.emit()
 	if sendSignal:
-		emit_signal("resource_name_changed", resource)
+		resource_name_changed.emit(resource)
 
 func change_resource_path(resource: Dictionary, path: String) -> void:
 	var old_path = resource.path
@@ -114,10 +114,10 @@ func _resource_path_change(resource: Dictionary, path: String, name: String) -> 
 	if name_changed:
 		resource.name = name
 	resource.name = name
-	emit_signal("changed")
-	emit_signal("resource_path_changed", resource)
+	changed.emit()
+	resource_path_changed.emit(resource)
 	if name_changed:
-		emit_signal("resource_name_changed", resource)
+		resource_name_changed.emit(resource)
 
 func selected_resource():
 	if _resource_selected == null and not resources.is_empty():
@@ -125,7 +125,7 @@ func selected_resource():
 	return _resource_selected
 
 func select_resource(resource) -> void:
-	emit_signal("resource_selection_changed", resource)
+	resource_selection_changed.emit(resource)
 
 func default_uuid() -> String:
 	var uuid = null

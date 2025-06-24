@@ -26,6 +26,7 @@ QuestManager="*res://addons/quest_editor/QuestManager.gd"
 
 dialogues_selected_dialogue="f8991765-0fff-4d5c-b806-f18501d05346"
 dialogues_editor_locale="de"
+scenes_split_offset=365
 
 [editor_plugins]
 

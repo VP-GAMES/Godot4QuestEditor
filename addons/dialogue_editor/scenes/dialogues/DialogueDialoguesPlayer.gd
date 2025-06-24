@@ -36,11 +36,11 @@ func _process(delta):
 			dialogueManagerAdded = true
 			var dialogue_name = ProjectSettings.get_setting(DialogueData.SETTINGS_DIALOGUES_SELECTED_DIALOGUE)
 			if not dialogueManager.dialogue_ended.is_connected(_on_dialogue_ended_canceled):
-				assert(dialogueManager.dialogue_ended.connect(_on_dialogue_ended_canceled) == OK)
+				dialogueManager.dialogue_ended.connect(_on_dialogue_ended_canceled)
 			if not dialogueManager.dialogue_canceled.is_connected(_on_dialogue_ended_canceled):
-				assert(dialogueManager.dialogue_canceled.connect(_on_dialogue_ended_canceled) == OK)
+				dialogueManager.dialogue_canceled.connect(_on_dialogue_ended_canceled)
 			if not dialogueManager.dialogue_event.is_connected(_on_dialogue_event):
-				assert(dialogueManager.dialogue_event.connect(_on_dialogue_event) == OK)
+				dialogueManager.dialogue_event.connect(_on_dialogue_event)
 			dialogueManager.start_dialogue(dialogue_name)
 
 func _on_dialogue_ended_canceled(dialogue) -> void:
@@ -51,7 +51,7 @@ func _on_dialogue_event(event: String) -> void:
 	_event_ui.visible = true
 	_timer_ui.start()
 	if not _timer_ui.timeout.is_connected(_on_timeout):
-		assert(_timer_ui.timeout.connect(_on_timeout) == OK)
+		_timer_ui.timeout.connect(_on_timeout)
 
 func _on_timeout() -> void:
 	_event_ui.visible = false

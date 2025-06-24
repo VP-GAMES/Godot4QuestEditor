@@ -23,9 +23,9 @@ func _change_name() -> void:
 
 func _init_connections() -> void:
 	if not dragged.is_connected(_on_node_dragged):
-		assert(dragged.connect(_on_node_dragged) == OK)
+		dragged.connect(_on_node_dragged)
 	if not _node.node_position_changed.is_connected(_on_node_position_changed):
-		assert(_node.node_position_changed.connect(_on_node_position_changed) == OK)
+		_node.node_position_changed.connect(_on_node_position_changed)
 
 func _on_node_dragged(from: Vector2, to: Vector2) -> void:
 	_node.change_position(from, to)

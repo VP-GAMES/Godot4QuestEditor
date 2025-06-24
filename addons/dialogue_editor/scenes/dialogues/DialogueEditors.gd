@@ -17,9 +17,9 @@ func set_data(data: DialogueData) -> void:
 
 func _init_connections() -> void:
 	if not _data.dialogue_view_selection_changed.is_connected(_on_dialogue_view_selection_changed):
-		assert(_data.dialogue_view_selection_changed.connect(_on_dialogue_view_selection_changed) == OK)
+		_data.dialogue_view_selection_changed.connect(_on_dialogue_view_selection_changed)
 	if not _data.dialogue_selection_changed.is_connected(_on_dialogue_selection_changed):
-		assert(_data.dialogue_selection_changed.connect(_on_dialogue_selection_changed) == OK)
+		_data.dialogue_selection_changed.connect(_on_dialogue_selection_changed)
 
 func _on_dialogue_view_selection_changed() -> void:
 	_update_view()

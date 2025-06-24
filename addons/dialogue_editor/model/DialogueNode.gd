@@ -44,7 +44,7 @@ func change_position(from: Vector2, to: Vector2) -> void:
 func _change_position(new_position: Vector2, emitSignal = true) -> void:
 	position = new_position
 	if emitSignal:
-		emit_signal("node_position_changed", self)
+		node_position_changed.emit(self)
 
 # ***** SCENES *****
 signal scene_selection_changed(scene)
@@ -71,7 +71,7 @@ func _change_scene(new_scene: String, new_actor: Resource, new_texture_uuid = ""
 	actor = new_actor
 	texture_uuid = new_texture_uuid
 	texture_view = new_texture_view
-	emit_signal("scene_selection_changed", scene)
+	scene_selection_changed.emit(scene)
 
 # ***** ACTORS *****
 signal actor_selection_changed(actor)
@@ -82,7 +82,10 @@ func change_actor(new_actor = Resource.new()) -> void:
 		var old_texture_uuid = texture_uuid
 		var old_texture_view = texture_view
 		_undo_redo.create_action("Node change actor")
-		_undo_redo.add_do_method(self, "_change_actor", new_actor)
+		if new_actor.resources.size() == 1:
+			_undo_redo.add_do_method(self, "_change_actor", new_actor, new_actor.resources[0].uuid)
+		else:
+			_undo_redo.add_do_method(self, "_change_actor", new_actor)
 		_undo_redo.add_undo_method(self, "_change_actor", old_actor, old_texture_uuid, old_texture_view)
 		_undo_redo.commit_action()
 	else:
@@ -92,7 +95,7 @@ func _change_actor(new_actor: DialogueActor, new_texture_uuid = "", new_texture_
 	actor = new_actor
 	texture_uuid = new_texture_uuid
 	texture_view = new_texture_view
-	emit_signal("actor_selection_changed", actor)
+	actor_selection_changed.emit(actor)
 
 func is_actor_empty_object() -> bool:
 	return actor is DialogueEmpty
@@ -116,7 +119,7 @@ func _change_texture_uuid(new_texture_uuid: String, new_texture_view = texture_v
 	texture_view = new_texture_view
 	if texture_uuid.is_empty():
 		texture_view = false
-	emit_signal("texture_selection_changed", texture_uuid)
+	texture_selection_changed.emit(texture_uuid)
 
 # ***** TEXTURE_VIEW *****
 signal view_selection_changed(texture_view)
@@ -135,7 +138,7 @@ func _change_texture_view(new_texture_view) -> void:
 	texture_view = new_texture_view
 	if texture_uuid == null:
 		texture_view = false
-	emit_signal("view_selection_changed", texture_view)
+	view_selection_changed.emit(texture_view)
 
 # ***** SENTENCES *****
 signal sentence_added(sentence)
@@ -167,7 +170,7 @@ func _add_sentence(sentence: Dictionary, sendSignal = true, position = sentences
 	sentences.insert(position, sentence)
 	if select_sentence:
 		_select_sentence(sentence)
-	emit_signal("sentence_added", sentence)
+	sentence_added.emit(sentence)
 
 func del_sentence(sentence) -> void:
 	if _undo_redo != null:
@@ -185,7 +188,7 @@ func _del_sentence(sentence) -> void:
 		sentences.remove_at(index)
 		var sentence_selected = selected_sentence()
 		select_sentence(sentence_selected)
-		emit_signal("sentence_removed", sentence)
+		sentence_removed.emit(sentence)
 
 func selected_sentence() -> Dictionary:
 	if sentence_selected_uuid.is_empty() or sentence_by_uuid(sentence_selected_uuid) == null:
@@ -215,7 +218,7 @@ func select_sentence(sentence: Dictionary, sendSignal = true) -> void:
 func _select_sentence(sentence: Dictionary, sendSignal = true) -> void:
 	sentence_selected_uuid = sentence.uuid
 	if sendSignal:
-		emit_signal("sentence_selection_changed", sentence_selected_uuid)
+		sentence_selection_changed.emit(sentence_selected_uuid)
 
 func select_sentence_event_visibility(sentence: Dictionary, visibility: bool) -> void:
 	if _undo_redo != null:
@@ -230,7 +233,7 @@ func select_sentence_event_visibility(sentence: Dictionary, visibility: bool) ->
 
 func _select_sentence_event_visibility(sentence: Dictionary, visibility: bool) -> void:
 	sentence.event_visible = visibility
-	emit_signal("sentence_event_visibility_changed", sentence)
+	sentence_event_visibility_changed.emit(sentence)
 
 func change_sentence_text(sentence: Dictionary, text: String) -> void:
 	if _undo_redo != null:
@@ -245,7 +248,7 @@ func change_sentence_text(sentence: Dictionary, text: String) -> void:
 
 func _change_sentence_text(sentence: Dictionary, text) -> void:
 	sentence.text = text
-	emit_signal("sentence_text_changed", sentence)
+	sentence_text_changed.emit(sentence)
 
 func change_sentence_event(sentence: Dictionary, event: String) -> void:
 	if _undo_redo != null:
@@ -260,4 +263,4 @@ func change_sentence_event(sentence: Dictionary, event: String) -> void:
 
 func _change_sentence_event(sentence: Dictionary, event) -> void:
 	sentence.event = event
-	emit_signal("sentence_event_changed", sentence)
+	sentence_event_changed.emit(sentence)

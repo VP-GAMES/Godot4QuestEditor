@@ -27,15 +27,15 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _actor.resource_path_changed.is_connected(_on_resource_path_changed):
-		assert(_actor.resource_path_changed.connect(_on_resource_path_changed) == OK)
+		_actor.resource_path_changed.connect(_on_resource_path_changed)
 	if not focus_entered.is_connected(_on_focus_entered):
-		assert(focus_entered.connect(_on_focus_entered) == OK)
+		focus_entered.connect(_on_focus_entered)
 	if not focus_exited.is_connected(_on_focus_exited):
-		assert(focus_exited.connect(_on_focus_exited) == OK)
+		focus_exited.connect(_on_focus_exited)
 	if not text_changed.is_connected(_path_value_changed):
-		assert(text_changed.connect(_path_value_changed) == OK)
+		text_changed.connect(_path_value_changed)
 	if not gui_input.is_connected(_on_gui_input):
-		assert(gui_input.connect(_on_gui_input) == OK)
+		gui_input.connect(_on_gui_input)
 
 func _on_resource_path_changed(resource) -> void:
 	if _resource == resource:
@@ -76,8 +76,8 @@ func _on_gui_input(event: InputEvent) -> void:
 					file_dialog.add_filter("*." + extension)
 				var root = get_tree().get_root()
 				root.add_child(file_dialog)
-				assert(file_dialog.file_selected.connect(_path_value_changed) == OK)
-				assert(file_dialog.get_cancel_button().pressed.connect(_on_popup_hide.bind(root, file_dialog)) == OK)
+				file_dialog.file_selected.connect(_path_value_changed)
+				file_dialog.get_cancel_button().pressed.connect(_on_popup_hide.bind(root, file_dialog))
 				file_dialog.popup_centered()
 
 func _on_popup_hide(root, dialog) -> void:

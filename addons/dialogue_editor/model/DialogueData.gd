@@ -40,7 +40,7 @@ func set_locale(locale: String) -> void:
 	_locale = locale
 	setting_dialogue_editor_locale_put(_locale)
 	TranslationServer.set_locale(_locale)
-	emit_signal("locale_changed", _locale)
+	locale_changed.emit(_locale)
 
 # ***** ACTORS *****
 signal actor_added(actor)
@@ -93,7 +93,7 @@ func _add_actor(actor: DialogueActor, sendSignal = true, position = actors.size(
 	if actors == null:
 		actors = []
 	actors.insert(position, actor)
-	emit_signal("actor_added", actor)
+	actor_added.emit(actor)
 	select_actor(actor)
 
 func del_actor(actor) -> void:
@@ -110,7 +110,7 @@ func _del_actor(actor) -> void:
 	var index = actors.find(actor)
 	if index > -1:
 		actors.remove_at(index)
-		emit_signal("actor_removed", actor)
+		actor_removed.emit(actor)
 		_actor_selected = null
 		var actor_selected = selected_actor()
 		select_actor(actor_selected)
@@ -122,7 +122,7 @@ func selected_actor() -> DialogueActor:
 
 func select_actor(actor: DialogueActor) -> void:
 	_actor_selected = actor
-	emit_signal("actor_selection_changed", _actor_selected)
+	actor_selection_changed.emit(_actor_selected)
 
 # ***** SCENES *****
 signal scene_added(scene)
@@ -161,7 +161,7 @@ func _create_scene(resource):
 
 func _add_scene(scene, sendSignal = true, position = scenes.size()) -> void:
 	scenes.insert(position, scene)
-	emit_signal("scene_added", scene)
+	scene_added.emit(scene)
 	select_scene(scene)
 
 func del_scene(scene) -> void:
@@ -178,7 +178,7 @@ func _del_scene(scene) -> void:
 	var index = scenes.find(scene)
 	if index > -1:
 		scenes.remove_at(index)
-		emit_signal("scene_removed", scene)
+		scene_removed.emit(scene)
 		_scene_selected = null
 		var scene_selected = selected_scene()
 		select_scene(scene_selected)
@@ -190,10 +190,10 @@ func selected_scene():
 
 func select_scene(scene) -> void:
 	_scene_selected = scene
-	emit_signal("scene_selection_changed", _scene_selected)
+	scene_selection_changed.emit(_scene_selected)
 
 func emit_signal_scene_preview_data_changed(scene) -> void:
-	emit_signal("scene_preview_data_changed", scene)
+	scene_preview_data_changed.emit(scene)
 
 # ***** DIALOGUES *****
 signal dialogue_changed
@@ -207,14 +207,14 @@ signal dialogue_view_selection_changed
 var _dialogue_selected: DialogueDialogue
 
 func add_dialogue(sendSignal = true) -> void:
-		var dialogue = _create_dialogue()
-		if _undo_redo != null:
-			_undo_redo.create_action("Add dialogue")
-			_undo_redo.add_do_method(self, "_add_dialogue", dialogue)
-			_undo_redo.add_undo_method(self, "_del_dialogue", dialogue)
-			_undo_redo.commit_action()
-		else:
-			_add_dialogue(dialogue, sendSignal)
+	var dialogue = _create_dialogue()
+	if _undo_redo != null:
+		_undo_redo.create_action("Add dialogue")
+		_undo_redo.add_do_method(self, "_add_dialogue", dialogue)
+		_undo_redo.add_undo_method(self, "_del_dialogue", dialogue)
+		_undo_redo.commit_action()
+	else:
+		_add_dialogue(dialogue, sendSignal)
 
 func _create_dialogue() -> DialogueDialogue:
 	var dialogue = DialogueDialogue.new()
@@ -223,12 +223,68 @@ func _create_dialogue() -> DialogueDialogue:
 	dialogue.set_editor(_editor)
 	return dialogue
 
-func _next_dialogue_name() -> String:
+func copy_dialogue(sendSignal = true) -> void:
+	var dialogue = _copy_dialogue()
+	if _undo_redo != null:
+		_undo_redo.create_action("Copy dialogue")
+		_undo_redo.add_do_method(self, "_add_dialogue", dialogue)
+		_undo_redo.add_undo_method(self, "_del_dialogue", dialogue)
+		_undo_redo.commit_action()
+	else:
+		_add_dialogue(dialogue, sendSignal)
+
+func _copy_dialogue() -> DialogueDialogue:
+	if _dialogue_selected == null:
+		return _create_dialogue()
+	else:
+		var dialogue: DialogueDialogue = DialogueDialogue.new()
+		dialogue.uuid = UUID.v4()
+		dialogue.name = _next_dialogue_name(_dialogue_selected.name)
+		dialogue.scroll_offset = _dialogue_selected.scroll_offset
+		dialogue.set_editor(_editor)
+		dialogue.nodes = []
+		if _dialogue_selected.nodes.size() > 0:
+			for node_dialogue_selected in _dialogue_selected.nodes:
+				var node = DialogueNode.new()
+				node.set_editor(_editor)
+				node.uuid = node_dialogue_selected.uuid
+				node.type = node_dialogue_selected.type
+				node.title = node_dialogue_selected.title
+				node.position = node_dialogue_selected.position
+				node.scene = node_dialogue_selected.scene
+				node.actor = node_dialogue_selected.actor
+				node.texture_uuid = node_dialogue_selected.texture_uuid
+				node.texture_view = node_dialogue_selected.texture_view
+				node.sentence_selected_uuid = node_dialogue_selected.sentence_selected_uuid
+				dialogue.nodes.append(node)
+				if node_dialogue_selected.sentences.size() > 0:
+					node.sentences = []
+					for sentence_dialogue_selected in node_dialogue_selected.sentences:
+						var sentence = {
+							"uuid": UUID.v4(),
+							"text": sentence_dialogue_selected.text,
+							"event_visible": sentence_dialogue_selected.event_visible,
+							"event": sentence_dialogue_selected.event,
+							"node_uuid": sentence_dialogue_selected.node_uuid
+						}
+						node.sentences.append(sentence)
+			for node_dialogue_selected in _dialogue_selected.nodes:
+				var old_uuid = node_dialogue_selected.uuid
+				var new_uuid = UUID.v4()
+				for node_to_reuuid in dialogue.nodes:
+					if node_to_reuuid.uuid == old_uuid:
+						node_to_reuuid.uuid = new_uuid
+					for sentence_to_reuuid in node_to_reuuid.sentences:
+						if sentence_to_reuuid.node_uuid == old_uuid:
+							sentence_to_reuuid.node_uuid = new_uuid
+		return dialogue
+
+func _next_dialogue_name(base_name: String = "Dialogue") -> String:
 	var value = -9223372036854775807
 	var dialogue_found = false
 	for dialogue in dialogues:
 		var name = dialogue.name
-		if name.begins_with("Dialogue"):
+		if name.begins_with(base_name):
 			dialogue_found = true
 			var behind = dialogue.name.substr(8)
 			var regex = RegEx.new()
@@ -238,7 +294,7 @@ func _next_dialogue_name() -> String:
 				var new_value = str(behind).to_int()
 				if  value < new_value:
 					value = new_value
-	var next_name = "Dialogue"
+	var next_name = base_name
 	if value != -9223372036854775807:
 		next_name += str(value + 1)
 	elif dialogue_found:
@@ -249,8 +305,8 @@ func _add_dialogue(dialogue: DialogueDialogue, sendSignal = true, position = dia
 	if dialogues == null:
 		dialogues = []
 	dialogues.insert(position, dialogue)
-	emit_signal("dialogue_added", dialogue)
-	emit_signal("dialogue_changed")
+	dialogue_added.emit(dialogue)
+	dialogue_changed.emit()
 	select_dialogue(dialogue)
 
 func del_dialogue(dialogue) -> void:
@@ -267,8 +323,8 @@ func _del_dialogue(dialogue) -> void:
 	var index = dialogues.find(dialogue)
 	if index > -1:
 		dialogues.remove_at(index)
-		emit_signal("dialogue_removed", dialogue)
-		emit_signal("dialogue_changed")
+		dialogue_removed.emit(dialogue)
+		dialogue_changed.emit()
 		_dialogue_selected = null
 		var dialogue_selected = selected_dialogue()
 		select_dialogue(dialogue_selected)
@@ -286,7 +342,7 @@ func select_dialogue(dialogue: DialogueDialogue, emitSignal = true) -> void:
 	if _dialogue_selected:
 		setting_dialogues_selected_dialogue_put(_dialogue_selected.uuid)
 	if emitSignal:
-		emit_signal("dialogue_selection_changed", _dialogue_selected)
+		dialogue_selection_changed.emit(_dialogue_selected)
 
 # ***** LOAD SAVE *****
 func init_data() -> void:
@@ -460,7 +516,7 @@ func setting_dialogues_editor_type() -> String:
 func setting_dialogues_editor_type_put(type: String) -> void:
 	ProjectSettings.set_setting(SETTINGS_DIALOGUES_EDITOR_TYPE, type)
 	ProjectSettings.save()
-	emit_signal("dialogue_view_selection_changed")
+	dialogue_view_selection_changed.emit()
 
 func setting_display_size() -> Vector2:
 	var width = ProjectSettings.get_setting(SETTINGS_DISPLAY_WIDTH)
@@ -514,3 +570,12 @@ func resize_texture(t: Texture2D, size: Vector2) -> Texture:
 	var itex = ImageTexture.create_from_image(tx.get_image())
 	itex.set_size_override(size)
 	return itex
+
+func sort_dialogue_by_name() -> void:
+	dialogues.sort_custom(func(a, b): return a.name < b.name)
+
+func sort_actors_by_name() -> void:
+	actors.sort_custom(func(a, b): return a.name < b.name)
+
+func sort_scenes_by_name() -> void:
+	scenes.sort_custom(func(a, b): return filename_only(a.resource) < filename_only(b.resource))

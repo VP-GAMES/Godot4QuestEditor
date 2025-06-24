@@ -32,9 +32,10 @@ func _ready() -> void:
 	if not _data_loaded:
 		load_data()
 
-func load_data() -> void:
+func load_data() -> DialogueData:
 	if not _data_loaded:
 		_data = ResourceLoader.load(_data.PATH_TO_SAVE) as DialogueData
+	return _data
 
 func actual_dialogue() -> String:
 	return _dialogue.name
@@ -56,7 +57,7 @@ func start_dialogue(dialogue: String, direct: bool = false) -> void:
 	_node = _dialogue.node_start() as DialogueNode
 	if _node != null and started_from_editor or _node != null and direct:
 		_next_sentence(0)
-	emit_signal("dialogue_started", _dialogue)
+	dialogue_started.emit(_dialogue)
 
 func start_dialogue_by_uuid(dialogue_uuid: String, direct: bool = false) -> void:
 	if not _data.dialogue_exists_by_uuid(dialogue_uuid):
@@ -67,7 +68,7 @@ func start_dialogue_by_uuid(dialogue_uuid: String, direct: bool = false) -> void
 	_node = _dialogue.node_start() as DialogueNode
 	if _node != null and started_from_editor or _node != null and direct:
 		_next_sentence(0)
-	emit_signal("dialogue_started", _dialogue)
+	dialogue_started.emit(_dialogue)
 
 func start_dialogue_by_name(dialogue_name: String, direct: bool = false) -> void:
 	if not _data.dialogue_exists_by_name(dialogue_name):
@@ -78,7 +79,7 @@ func start_dialogue_by_name(dialogue_name: String, direct: bool = false) -> void
 	_node = _dialogue.node_start() as DialogueNode
 	if _node != null and started_from_editor or _node != null and direct:
 		_next_sentence(0)
-	emit_signal("dialogue_started", _dialogue)
+	dialogue_started.emit(_dialogue)
 
 func _input(event: InputEvent):
 	if started_from_editor:
@@ -96,7 +97,7 @@ func cancel_dialogue() -> void:
 		_clear_sentences()
 		var old_dialogue = _dialogue
 		_reset()
-		emit_signal("dialogue_canceled", old_dialogue)
+		dialogue_canceled.emit(old_dialogue)
 
 func _next_sentence_action() -> void:
 		var index = -1
@@ -115,10 +116,10 @@ func _next_sentence(index) -> void:
 		if _sentence.scene:
 			_draw_view()
 			_node = sentence_node
-			emit_signal("sentence_changed", _sentence)
+			sentence_changed.emit(_sentence)
 		else:
 			_clear_sentences()
-			emit_signal("dialogue_ended", _dialogue)
+			dialogue_ended.emit(_dialogue)
 			_reset()
 
 func _node_to_dialogue_sentence(node: DialogueNode):
@@ -162,7 +163,7 @@ func _draw_sentence() -> void:
 			if event_name:
 				var event_names = event_name.split(",")
 				for name in event_names:
-					emit_signal("dialogue_event", name)
+					dialogue_event.emit(name)
 		elif _sentence.texte_events.size() > 1:
 			_connect_buttons()
 
@@ -182,12 +183,13 @@ func _connect_buttons() -> void:
 		var index_reverse = buttons_array.size() - (index +1)
 		var button_ui = buttons_array[index] as Button
 		if not button_ui.pressed.is_connected(_on_button_pressed):
-			assert(button_ui.pressed.connect(_on_button_pressed.bind(index_reverse)) == OK)
+			button_ui.pressed.connect(_on_button_pressed.bind(index_reverse))
 
 func _on_button_pressed(button_index: int) -> void:
 	var event_name = _sentence.texte_events[button_index].event
+	var key_text = _sentence.texte_events[button_index].text
 	if event_name:
 		var event_names = event_name.split(",")
 		for name in event_names:
-			emit_signal("dialogue_event", name)
+			dialogue_event.emit(name)
 	_next_sentence(button_index)

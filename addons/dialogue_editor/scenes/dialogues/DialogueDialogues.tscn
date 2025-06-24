@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjql1jis11282"]
+[gd_scene load_steps=7 format=3 uid="uid://bjql1jis11282"]
 
 [ext_resource type="Texture2D" uid="uid://cu2mqtk8bruhb" path="res://addons/dialogue_editor/icons/Add.png" id="1"]
-[ext_resource type="Script" uid="uid://buxex4e53jwr3" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialogues.gd" id="2"]
+[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialogues.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://6qw5d51fgo8s" path="res://addons/dialogue_editor/icons/Nodes.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c6gbydj5yecrh" path="res://addons/dialogue_editor/icons/Copy.png" id="3_51ij5"]
 [ext_resource type="Texture2D" uid="uid://d20i4p406mdnt" path="res://addons/dialogue_editor/icons/Bricks.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://cdv72buvehi8b" path="res://addons/dialogue_editor/icons/Play.png" id="5"]
 
@@ -19,6 +20,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 3
@@ -28,46 +31,36 @@ theme_override_constants/margin_bottom = 3
 
 [node name="VBox" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 1149.0
-offset_bottom = 645.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBox" type="HBoxContainer" parent="Margin/VBox"]
 layout_mode = 2
-offset_right = 1146.0
-offset_bottom = 26.0
 
 [node name="Add" type="Button" parent="Margin/VBox/HBox"]
 layout_mode = 2
-offset_right = 18.0
-offset_bottom = 26.0
+tooltip_text = "Add dialogue"
 icon = ExtResource("1")
+icon_alignment = 1
+
+[node name="Copy" type="Button" parent="Margin/VBox/HBox"]
+layout_mode = 2
+tooltip_text = "Copy selected dialogue"
+icon = ExtResource("3_51ij5")
 icon_alignment = 1
 
 [node name="Label" type="Label" parent="Margin/VBox/HBox"]
 layout_mode = 2
-offset_left = 22.0
-offset_right = 1096.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
 text = "Dialogues"
 
 [node name="Play" type="Button" parent="Margin/VBox/HBox"]
 layout_mode = 2
-offset_left = 1100.0
-offset_right = 1118.0
-offset_bottom = 26.0
 icon = ExtResource("5")
 icon_alignment = 1
 
 [node name="Nodes" type="Button" parent="Margin/VBox/HBox"]
 layout_mode = 2
-offset_left = 1122.0
-offset_right = 1146.0
-offset_bottom = 26.0
 toggle_mode = true
 icon = ExtResource("3")
 icon_alignment = 1
@@ -80,21 +73,13 @@ icon = ExtResource("4")
 
 [node name="HSeparator" type="HSeparator" parent="Margin/VBox"]
 layout_mode = 2
-offset_top = 30.0
-offset_right = 1146.0
-offset_bottom = 34.0
 
 [node name="Scroll" type="ScrollContainer" parent="Margin/VBox"]
 layout_mode = 2
-offset_top = 38.0
-offset_right = 1146.0
-offset_bottom = 642.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Dialogues" type="VBoxContainer" parent="Margin/VBox/Scroll"]
 layout_mode = 2
-offset_right = 1146.0
-offset_bottom = 604.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

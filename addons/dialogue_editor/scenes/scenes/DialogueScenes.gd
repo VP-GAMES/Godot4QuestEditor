@@ -13,17 +13,18 @@ const DialogueSceneUI = preload("res://addons/dialogue_editor/scenes/scenes/Dial
 
 func set_data(data: DialogueData) -> void:
 	_data = data
+	_data.sort_scenes_by_name()
 	_scenes_ui.set_data(data)
 	_init_connections()
 	_update_view()
 
 func _init_connections() -> void:
 	if not _add_ui.pressed.is_connected(_add_pressed):
-		assert(_add_ui.pressed.connect(_add_pressed) == OK)
+		_add_ui.pressed.connect(_add_pressed)
 	if not _data.scene_added.is_connected(_on_scene_added):
-		assert(_data.scene_added.connect(_on_scene_added) == OK)
+		_data.scene_added.connect(_on_scene_added)
 	if not _data.scene_removed.is_connected(_on_scene_removed):
-		assert(_data.scene_removed.connect(_on_scene_removed) == OK)
+		_data.scene_removed.connect(_on_scene_removed)
 
 func _on_scene_added(scene) -> void:
 	_update_view()
@@ -54,8 +55,8 @@ func _add_pressed() -> void:
 	file_dialog.add_filter("*.tscn")
 	var root = get_tree().get_root()
 	root.add_child(file_dialog)
-	assert(file_dialog.file_selected.connect(_add_scene_resource) == OK)
-	assert(file_dialog.close_requested.connect(_on_popup_hide.bind(root, file_dialog)) == OK)
+	file_dialog.file_selected.connect(_add_scene_resource)
+	file_dialog.close_requested.connect(_on_popup_hide.bind(root, file_dialog))
 	file_dialog.popup_centered(Vector2i(500, 300))
 
 func _add_scene_resource(resource_value) -> void:

@@ -30,7 +30,7 @@ func _on_text_changed(new_text: String) -> void:
 func _on_delete_pressed() -> void:
 	if _scene.has("preview") and _scene["preview"].has("texts"):
 		_scene["preview"]["texts"].remove_at(_index)
-		emit_signal("delete_action")
+		delete_action.emit()
 
 func _draw_view() -> void:
 	if _scene.has("preview") and _scene["preview"].has("texts"):

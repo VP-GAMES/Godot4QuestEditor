@@ -25,31 +25,31 @@ func set_data(node: DialogueNode, dialogue: DialogueDialogue, data: DialogueData
 func _init_connections() -> void:
 	super._init_connections()
 	if not _scenes_ui.item_selected.is_connected(_on_item_scene_selected):
-		assert(_scenes_ui.item_selected.connect(_on_item_scene_selected) == OK)
+		_scenes_ui.item_selected.connect(_on_item_scene_selected)
 	if not _node.scene_selection_changed.is_connected(_on_scene_selection_changed):
-		assert(_node.scene_selection_changed.connect(_on_scene_selection_changed) == OK)
+		_node.scene_selection_changed.connect(_on_scene_selection_changed)
 	if not _actors_ui.item_selected.is_connected(_on_item_actor_selected):
-		assert(_actors_ui.item_selected.connect(_on_item_actor_selected) == OK)
+		_actors_ui.item_selected.connect(_on_item_actor_selected)
 	if not _node.actor_selection_changed.is_connected(_on_actor_selection_changed):
-		assert(_node.actor_selection_changed.connect(_on_actor_selection_changed) == OK)
+		_node.actor_selection_changed.connect(_on_actor_selection_changed)
 	if not _add_ui.pressed.is_connected(_on_add_sentence_pressed):
-		assert(_add_ui.pressed.connect(_on_add_sentence_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_sentence_pressed)
 	if not _node.sentence_added.is_connected(_on_sentence_added):
-		assert(_node.sentence_added.connect(_on_sentence_added) == OK)
+		_node.sentence_added.connect(_on_sentence_added)
 	if not _node.sentence_removed.is_connected(_on_sentence_removed):
-		assert(_node.sentence_removed.connect(_on_sentence_removed) == OK)
+		_node.sentence_removed.connect(_on_sentence_removed)
 	if not _textures_ui.item_selected.is_connected(_on_item_textures_selected):
-		assert(_textures_ui.item_selected.connect(_on_item_textures_selected) == OK)
+		_textures_ui.item_selected.connect(_on_item_textures_selected)
 	if not _node.texture_selection_changed.is_connected(_on_texture_selection_changed):
-		assert(_node.texture_selection_changed.connect(_on_texture_selection_changed) == OK)
+		_node.texture_selection_changed.connect(_on_texture_selection_changed)
 	if not _view_ui.pressed.is_connected(_on_view_pressed):
-		assert(_view_ui.pressed.connect(_on_view_pressed) == OK)
+		_view_ui.pressed.connect(_on_view_pressed)
 	if not _node.view_selection_changed.is_connected(_on_view_selection_changed):
-		assert(_node.view_selection_changed.connect(_on_view_selection_changed) == OK)
+		_node.view_selection_changed.connect(_on_view_selection_changed)
 	if not _node.sentence_event_visibility_changed.is_connected(_on_sentence_event_visibility_changed):
-		assert(_node.sentence_event_visibility_changed.connect(_on_sentence_event_visibility_changed) == OK)
+		_node.sentence_event_visibility_changed.connect(_on_sentence_event_visibility_changed)
 	if not _node.sentence_selection_changed.is_connected(_on_sentence_selection_changed):
-		assert(_node.sentence_selection_changed.connect(_on_sentence_selection_changed) == OK)
+		_node.sentence_selection_changed.connect(_on_sentence_selection_changed)
 
 func _on_item_scene_selected(index: int) -> void:
 	if index > 0:

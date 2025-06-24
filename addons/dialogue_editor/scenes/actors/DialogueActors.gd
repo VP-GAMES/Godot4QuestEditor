@@ -12,16 +12,17 @@ const DialogueActorUI = preload("res://addons/dialogue_editor/scenes/actors/Dial
 
 func set_data(data: DialogueData) -> void:
 	_data = data
+	_data.sort_actors_by_name()
 	_init_connections()
 	_update_view()
 
 func _init_connections() -> void:
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if not _data.actor_added.is_connected(_on_actor_added):
-		assert(_data.actor_added.connect(_on_actor_added) == OK)
+		_data.actor_added.connect(_on_actor_added)
 	if not _data.actor_removed.is_connected(_on_actor_removed):
-		assert(_data.actor_removed.connect(_on_actor_removed) == OK)
+		_data.actor_removed.connect(_on_actor_removed)
 
 func _on_add_pressed() -> void:
 	_data.add_actor()

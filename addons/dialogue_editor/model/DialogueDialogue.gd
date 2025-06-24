@@ -22,7 +22,7 @@ const UUID = preload("res://addons/dialogue_editor/uuid/uuid.gd")
 signal update_view()
 
 func emit_signal_update_view() -> void:
-	emit_signal("update_view")
+	update_view.emit()
 
 @export var uuid: String
 @export var name: String = ""
@@ -68,8 +68,8 @@ func add_node_end(position: Vector2) -> void:
 		var node = _create_node_end(position)
 		if _undo_redo != null:
 			_undo_redo.create_action("Add node end")
-			_undo_redo.add_do_method(self, "_add_node", node)
-			_undo_redo.add_undo_method(self, "_del_node", node)
+			_undo_redo.add_do_method(self, "_add_node", node, true)
+			_undo_redo.add_undo_method(self, "_del_node", node, true)
 			_undo_redo.commit_action()
 		else:
 			_add_node(node)
@@ -92,8 +92,8 @@ func _add_node(node: DialogueNode, emitSignal = true, sentences_to_connect = [])
 	for sentence in sentences_to_connect:
 		sentence.node_uuid = node.uuid
 	if emitSignal:
-		emit_signal("node_added", node)
-		emit_signal("update_view")
+		node_added.emit(node)
+		update_view.emit()
 
 # ***** DEL NODE *****
 signal node_removed(node)
@@ -103,8 +103,8 @@ func del_node(node: DialogueNode) -> void:
 	if _undo_redo != null:
 		var index = nodes.find(node)
 		_undo_redo.create_action("Del node")
-		_undo_redo.add_do_method(self, "_del_node", node, connected_to_sentences)
-		_undo_redo.add_undo_method(self, "_add_node", node, connected_to_sentences)
+		_undo_redo.add_do_method(self, "_del_node", node, true, connected_to_sentences)
+		_undo_redo.add_undo_method(self, "_add_node", node, true, connected_to_sentences)
 		_undo_redo.commit_action()
 	else:
 		_del_node(node)
@@ -116,8 +116,8 @@ func _del_node(node, emitSignal = true, sentences_to_disconnect = []) -> void:
 			sentence.node_uuid = ""
 		nodes.remove_at(index)
 		if emitSignal:
-			emit_signal("node_removed", node)
-			emit_signal("update_view")
+			node_removed.emit(node)
+			update_view.emit()
 
 # ***** DEL LIST OF NODES *****
 signal nodes_removed(nodes)
@@ -138,8 +138,8 @@ func del_nodes(nodes_to_delete = null) -> void:
 func _del_nodes(nodes_to_delete: Array) -> void:
 	for node in nodes_to_delete:
 		_del_node(node, false)
-	emit_signal("nodes_removed", nodes_to_delete)
-	emit_signal("update_view")
+	nodes_removed.emit(nodes_to_delete)
+	update_view.emit()
 
 # ***** ADD LIST OF NODES *****
 signal nodes_added(nodes)
@@ -147,8 +147,8 @@ signal nodes_added(nodes)
 func _add_nodes(nodes_to_add: Array) -> void:
 	for node in nodes_to_add:
 		_add_node(node, false)
-	emit_signal("nodes_added", nodes_to_add)
-	emit_signal("update_view")
+	nodes_added.emit(nodes_to_add)
+	update_view.emit()
 
 # ***** CONNECTION REQUEST *****
 signal nodes_connected(from, to)
@@ -175,8 +175,8 @@ func _node_connection_request(from_node, from_slot, to_node, to_slot, sentence =
 	if sentence:
 		sentence.node_uuid = ""
 	from_node.sentences[from_slot].node_uuid = to_node.uuid
-	emit_signal("nodes_connected", from_node, to_node)
-	emit_signal("update_view")
+	nodes_connected.emit(from_node, to_node)
+	update_view.emit()
 
 # ***** DISCONNECTION REQUEST *****
 signal nodes_disconnected(from, to)
@@ -196,8 +196,8 @@ func _node_disconnection_request(from_node, from_slot, to_node, to_slot, sentenc
 	if sentence:
 		sentence.node_uuid = to_node.uuid
 	from_node.sentences[from_slot].node_uuid = ""
-	emit_signal("nodes_disconnected", from_node, to_node)
-	emit_signal("update_view")
+	nodes_disconnected.emit(from_node, to_node)
+	update_view.emit()
 
 # ***** MOVE REQUEST *****
 func node_move_request(uuid, offset):

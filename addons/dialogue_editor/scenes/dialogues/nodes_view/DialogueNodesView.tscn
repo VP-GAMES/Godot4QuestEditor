@@ -1,23 +1,22 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhb4b1my6kgcx"]
 
-[ext_resource type="Script" uid="uid://b5ycfqiqnlwfl" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/DialogueNodesView.gd" id="1"]
+[ext_resource type="Script" uid="uid://do4euu2wncju0" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/DialogueNodesView.gd" id="1"]
 
 [node name="DialogueNodesView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1")
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Graph" type="GraphEdit" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 right_disconnects = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Popup" type="PopupMenu" parent="."]

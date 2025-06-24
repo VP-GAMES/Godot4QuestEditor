@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b0iaie40pu40l"]
+[gd_scene format=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://56fcpawr7nt6"]
 
 [ext_resource type="StyleBox" path="res://addons/dialogue_editor/default/styles/style_base.tres" id="2"]
-[ext_resource type="Script" uid="uid://dfahb5rt3xvhw" path="res://addons/dialogue_editor/model/DialogueDialog.gd" id="3"]
+[ext_resource type="Script" uid="uid://btopjdt75s82b" path="res://addons/dialogue_editor/model/DialogueDialog.gd" id="3"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

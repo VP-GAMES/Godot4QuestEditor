@@ -16,6 +16,7 @@ var _buttons_array = []
 @onready var _text_ui: Label = $Text
 @onready var _button_ui: Button = $Button
 
+
 func sentence() -> DialogueSentence:
 	return _sentence
 
@@ -25,8 +26,6 @@ func buttons() -> Array:
 func _ready() -> void:
 	if get_tree().get_root().has_node(_localizationManagerName):
 		_localizationManager = get_tree().get_root().get_node(_localizationManagerName)
-		if not _localizationManager.translation_changed.is_connected(_update_translation_from_manager):
-			_localizationManager.translation_changed.connect(_update_translation_from_manager)
 
 func _update_translation_from_manager() -> void:
 	_text()
@@ -50,7 +49,10 @@ func _name() -> void:
 	if show_name and _sentence and _sentence.actor:
 		var uiname = _sentence.actor.uiname
 		if uiname and not uiname.is_empty():
-			_name_ui.text = TranslationServer.tr(uiname)
+			if _localizationManager:
+				_name_ui.text = _localizationManager.tr_pl(uiname)
+			else:
+				_name_ui.text = TranslationServer.tr(uiname)
 		else:
 			_name_ui.text = _sentence.actor.name
 	else:
@@ -59,10 +61,11 @@ func _name() -> void:
 func _text() -> void:
 	if _sentence.text_exists():
 		_text_ui.visible = true
+		var key_text = _sentence.texte_events[0].text
 		if _localizationManager:
-			_text_ui.text = _localizationManager.tr(_sentence.texte_events[0].text)
+			_text_ui.text = _localizationManager.tr_pl(key_text)
 		else:
-			_text_ui.text = _sentence.texte_events[0].text
+			_text_ui.text = key_text
 	else:
 		_text_ui.visible = false
 
@@ -71,6 +74,7 @@ func _buttons() -> void:
 	if _sentence.buttons_exists():
 		_button_ui.visible = true
 		_buttons_generate()
+		_buttons_array[_buttons_array.size() - 1].grab_focus()
 	else:
 		_button_ui.visible = false
 
@@ -94,7 +98,7 @@ func _buttons_generate() -> void:
 		button_ui.anchor_top = _button_ui.anchor_top - offset * index
 		button_ui.anchor_bottom = _button_ui.anchor_bottom - offset * index
 		if _localizationManager:
-			button_ui.text = _localizationManager.tr(_sentence.texte_events[index_reverse].text)
+			button_ui.text = _localizationManager.tr_pl(_sentence.texte_events[index_reverse].text)
 		else:
 			button_ui.text = _sentence.texte_events[index_reverse].text
 	for child in get_children():

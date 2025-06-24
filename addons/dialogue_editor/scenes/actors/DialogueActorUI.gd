@@ -26,23 +26,23 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _data.actor_added.is_connected(_on_actor_added):
-		assert(_data.actor_added.connect(_on_actor_added) == OK)
+		_data.actor_added.connect(_on_actor_added)
 	if not _data.actor_removed.is_connected(_on_actor_removed):
-		assert(_data.actor_removed.connect(_on_actor_removed) == OK)
+		_data.actor_removed.connect(_on_actor_removed)
 	if not _data.actor_selection_changed.is_connected(_on_actor_selection_changed):
-		assert(_data.actor_selection_changed.connect(_on_actor_selection_changed) == OK)
+		_data.actor_selection_changed.connect(_on_actor_selection_changed)
 	if not _actor.resource_path_changed.is_connected(_on_resource_path_changed):
-		assert(_actor.resource_path_changed.connect(_on_resource_path_changed) == OK)
+		_actor.resource_path_changed.connect(_on_resource_path_changed)
 	if not _texture_ui.gui_input.is_connected(_on_gui_input):
-		assert(_texture_ui.gui_input.connect(_on_gui_input) == OK)
+		_texture_ui.gui_input.connect(_on_gui_input)
 	if not _name_ui.gui_input.is_connected(_on_gui_input):
-		assert(_name_ui.gui_input.connect(_on_gui_input) == OK)
+		_name_ui.gui_input.connect(_on_gui_input)
 	if not _name_ui.focus_exited.is_connected(_on_focus_exited):
-		assert(_name_ui.focus_exited.connect(_on_focus_exited) == OK)
+		_name_ui.focus_exited.connect(_on_focus_exited)
 	if not _name_ui.text_changed.is_connected(_on_text_changed):
-		assert(_name_ui.text_changed.connect(_on_text_changed) == OK)
+		_name_ui.text_changed.connect(_on_text_changed)
 	if not _del_ui.pressed.is_connected(_del_pressed):
-		assert(_del_ui.pressed.connect(_del_pressed) == OK)
+		_del_ui.pressed.connect(_del_pressed)
 
 func _on_actor_added(actor: DialogueActor) -> void:
 	_draw_style()

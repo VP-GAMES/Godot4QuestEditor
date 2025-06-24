@@ -17,9 +17,9 @@ func _ready() -> void:
 	if get_tree().get_root().has_node(DialogueManagerName):
 		dialogueManager = get_tree().get_root().get_node(DialogueManagerName)
 	if not body_entered.is_connected(_on_body_entered):
-		assert(body_entered.connect(_on_body_entered) == OK)
+		body_entered.connect(_on_body_entered)
 	if not body_exited.is_connected(_on_body_exited):
-		assert(body_exited.connect(_on_body_exited) == OK)
+		body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body: Node) -> void:
 	inside = true

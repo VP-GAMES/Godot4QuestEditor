@@ -10,7 +10,7 @@ func set_data(data: DialogueData) -> void:
 func _can_handle(object):
 	return object is Dialogue2D or object is Dialogue3D
 
-func _parse_property(object: Object, type, name: String, hint_type: int, hint_string: String, usage_flags: int, wide: bool) -> bool:
+func _parse_property(object: Object, type: Variant.Type, name: String, hint_type: PropertyHint, hint_string: String, usage_flags, wide: bool) -> bool:
 	if type == TYPE_STRING and name == "dialogue_name":
 		var dialogueDialogueInspectorEditor = DialogueDialogueInspectorEditor.new()
 		dialogueDialogueInspectorEditor.set_data(_data)

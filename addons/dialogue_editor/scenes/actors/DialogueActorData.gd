@@ -56,9 +56,9 @@ func _on_localization_data_changed() -> void:
 
 func _init_connections() -> void:
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if not _data.actor_selection_changed.is_connected(_on_actor_selection_changed):
-		assert(_data.actor_selection_changed.connect(_on_actor_selection_changed) == OK)
+		_data.actor_selection_changed.connect(_on_actor_selection_changed)
 
 func _on_add_pressed() -> void:
 	_actor.add_resource()
@@ -69,14 +69,14 @@ func _on_actor_selection_changed(actor: DialogueActor) -> void:
 
 func _init_actor_connections() -> void:
 	if not _actor.resource_added.is_connected(_on_resource_added):
-		assert(_actor.resource_added.connect(_on_resource_added) == OK)
+		_actor.resource_added.connect(_on_resource_added)
 	if not _actor.resource_removed.is_connected(_on_resource_removed):
-		assert(_actor.resource_removed.connect(_on_resource_removed) == OK)
+		_actor.resource_removed.connect(_on_resource_removed)
 	if not _uiname_ui.text_changed.is_connected(_on_uiname_changed):
-		assert(_uiname_ui.text_changed.connect(_on_uiname_changed) == OK)
+		_uiname_ui.text_changed.connect(_on_uiname_changed)
 	if _data.setting_localization_editor_enabled():
 		if not _dropdown_ui.selection_changed.is_connected(_on_selection_changed):
-			assert(_dropdown_ui.selection_changed.connect(_on_selection_changed) == OK)
+			_dropdown_ui.selection_changed.connect(_on_selection_changed)
 
 func _on_resource_added(resource) -> void:
 	_update_view()
@@ -116,10 +116,12 @@ func _uiname_ui_draw() -> void:
 func _dropdown_ui_draw() -> void:
 	_dropdown_ui.visible = _data.setting_localization_editor_enabled()
 	_dropdown_ui.set_disabled(false)
+	_dropdown_ui.set_selected_by_value(_actor.uiname)
 
 func _clear_view() -> void:
 	_uiname_ui.editable = false
 	_dropdown_ui.set_disabled(true)
+	_dropdown_ui.set_selected_index(-1)
 	_add_ui.disabled = true
 	for resource_ui in _resources_ui.get_children():
 		_resources_ui.remove_child(resource_ui)

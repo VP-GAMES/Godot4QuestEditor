@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy4b14hmqgsfh"]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource type="Script" uid="uid://chp573lo3tpt0" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataTexture.gd" id="1"]
+[ext_resource path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataTexture.gd" type="Script" id=1]
 
 [node name="Texture" type="TextureRect"]
 margin_top = 24.0
@@ -9,7 +9,7 @@ margin_bottom = 594.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch_mode = 4
-script = ExtResource("1")
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

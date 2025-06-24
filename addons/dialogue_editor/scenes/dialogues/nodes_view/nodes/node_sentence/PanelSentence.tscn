@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcx3xsm5yseo6"]
 
-[ext_resource type="Script" uid="uid://yhbupaarhkmm" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/nodes/node_sentence/PanelSentence.gd" id="1"]
+[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/nodes/node_sentence/PanelSentence.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_5si35"]
 
 [node name="PanelSentence" type="PanelContainer"]

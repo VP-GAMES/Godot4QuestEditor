@@ -68,20 +68,20 @@ func _on_localization_data_changed() -> void:
 
 func _init_connections() -> void:
 	if not _remove_ui.pressed.is_connected(_on_remove_sentence_pressed):
-		assert(_remove_ui.pressed.connect(_on_remove_sentence_pressed) == OK)
+		_remove_ui.pressed.connect(_on_remove_sentence_pressed)
 	if not _select_ui.pressed.is_connected(_on_select_sentence_pressed):
-		assert(_select_ui.pressed.connect(_on_select_sentence_pressed) == OK)
+		_select_ui.pressed.connect(_on_select_sentence_pressed)
 	if not _text_ui.text_changed.is_connected(_on_text_changed):
-		assert(_text_ui.text_changed.connect(_on_text_changed) == OK)
+		_text_ui.text_changed.connect(_on_text_changed)
 	if not _event_text_ui.text_changed.is_connected(_on_event_text_changed):
-		assert(_event_text_ui.text_changed.connect(_on_event_text_changed) == OK)
+		_event_text_ui.text_changed.connect(_on_event_text_changed)
 	if not _event_ui.pressed.is_connected(_on_select_event_pressed):
-		assert(_event_ui.pressed.connect(_on_select_event_pressed) == OK)
+		_event_ui.pressed.connect(_on_select_event_pressed)
 	if not _node.sentence_event_changed.is_connected(_on_sentence_event_changed):
-		assert(_node.sentence_event_changed.connect(_on_sentence_event_changed) == OK)
+		_node.sentence_event_changed.connect(_on_sentence_event_changed)
 	if _data.setting_localization_editor_enabled():
 		if not _dropdown_ui.selection_changed.is_connected(_on_selection_changed):
-			assert(_dropdown_ui.selection_changed.connect(_on_selection_changed) == OK)
+			_dropdown_ui.selection_changed.connect(_on_selection_changed)
 
 func _on_remove_sentence_pressed() -> void:
 	_node.del_sentence(_sentence)
