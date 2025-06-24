@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dnw1xbg83c5pu" path="res://addons/inventory_editor/icons/Add.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dhc2m24gbwp23" path="res://addons/inventory_editor/icons/Item.png" id="2"]
-[ext_resource type="Script" path="res://addons/inventory_editor/scenes/items/InventoryItemData.gd" id="3"]
+[ext_resource type="Script" uid="uid://dkt3eequbpgps" path="res://addons/inventory_editor/scenes/items/InventoryItemData.gd" id="3"]
 [ext_resource type="PackedScene" path="res://addons/inventory_editor/scenes/items/InventoryItemDataPath.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="5_ek66t"]
 [ext_resource type="PackedScene" uid="uid://coiuo7hagef4s" path="res://addons/inventory_editor/scenes/items/InventoryItemDataProperty.tscn" id="6"]

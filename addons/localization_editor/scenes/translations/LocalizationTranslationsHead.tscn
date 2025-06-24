@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cw7dhgvs4i257"]
 
-[ext_resource path="res://addons/localization_editor/scenes/translations/LocalizationTranslationsHead.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://dgiu6d1o8k1xm" path="res://addons/localization_editor/scenes/translations/LocalizationTranslationsHead.gd" id="1"]
 
 [node name="LocalizationHead" type="VBoxContainer"]
 margin_right = 344.0
 margin_bottom = 57.0
 size_flags_horizontal = 3
-script = ExtResource( 1 )
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -14,7 +14,7 @@ __meta__ = {
 [node name="TitleMargin" type="MarginContainer" parent="."]
 margin_right = 344.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 0, 26 )
+rect_min_size = Vector2(0, 26)
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_constants/margin_right = 3
@@ -40,7 +40,7 @@ align = 1
 margin_top = 30.0
 margin_right = 344.0
 margin_bottom = 57.0
-rect_min_size = Vector2( 0, 26 )
+rect_min_size = Vector2(0, 26)
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_constants/margin_right = 3

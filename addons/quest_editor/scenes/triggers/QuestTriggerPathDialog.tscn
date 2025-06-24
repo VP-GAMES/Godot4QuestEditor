@@ -1,9 +1,9 @@
-[gd_scene format=2]
+[gd_scene format=3 uid="uid://cfcuak7e3b0bk"]
 
 [node name="QuestPlayerPathDialog" type="FileDialog"]
 margin_right = 315.0
 margin_bottom = 130.0
-rect_min_size = Vector2( 600, 300 )
+rect_min_size = Vector2(600, 300)
 window_title = "Open a File"
 resizable = true
 mode = 0

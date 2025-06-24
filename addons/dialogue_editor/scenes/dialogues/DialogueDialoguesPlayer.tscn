@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds1gf34eapj3i"]
+[gd_scene load_steps=2 format=3 uid="uid://ds1gf34eapj3i"]
 
-[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialoguesPlayer.gd" id="1"]
+[ext_resource type="Script" uid="uid://xa3clnawtut8" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialoguesPlayer.gd" id="1"]
 
 [node name="DialogueDialoguesPlayer" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( "1" )
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }

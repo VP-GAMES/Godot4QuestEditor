@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsgwns04e41w7"]
+[gd_scene load_steps=4 format=3 uid="uid://dsgwns04e41w7"]
 
 [ext_resource type="Texture2D" uid="uid://cr1hvm6iy8dxl" path="res://addons/dialogue_editor/icons/Actor.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dj0dj3apfv7mo" path="res://addons/dialogue_editor/icons/Trash.png" id="2"]
-[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/actors/DialogueActorUI.gd" id="3"]
+[ext_resource type="Script" uid="uid://deb0vw1v3qcvs" path="res://addons/dialogue_editor/scenes/actors/DialogueActorUI.gd" id="3"]
 
 [node name="DialogueActorUI" type="MarginContainer"]
 anchors_preset = 15

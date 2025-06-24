@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://b7dpjrokji2pg"]
 
-[ext_resource type="Texture2D" uid="uid://dgp35gsev3h0u" path="res://addons/localization_editor/icons/Audio.svg" id="2_6uq4h"]
-[ext_resource type="Texture2D" uid="uid://0737j0gpu23r" path="res://addons/localization_editor/icons/Image.svg" id="3_aivuy"]
-[ext_resource type="Texture2D" uid="uid://djtpd7stomej7" path="res://addons/localization_editor/icons/Video.svg" id="4_mrycj"]
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeysHead.gd" id="5"]
-[ext_resource type="Texture2D" uid="uid://dyxcie626p7lk" path="res://addons/localization_editor/icons/Cancel.svg" id="5_ydycg"]
+[ext_resource type="Texture2D" uid="uid://bkeugb6vucegl" path="res://addons/localization_editor/icons/Audio.svg" id="2_6uq4h"]
+[ext_resource type="Texture2D" uid="uid://dl6cg75c815d8" path="res://addons/localization_editor/icons/Image.svg" id="3_aivuy"]
+[ext_resource type="Texture2D" uid="uid://oxmydroedm6f" path="res://addons/localization_editor/icons/Video.svg" id="4_mrycj"]
+[ext_resource type="Script" uid="uid://i7ditbc7nh8b" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeysHead.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://n1yxscibler4" path="res://addons/localization_editor/icons/Cancel.svg" id="5_ydycg"]
 
 [node name="Head" type="MarginContainer"]
 rect_min_size = Vector2(0, 57)
@@ -12,7 +12,7 @@ theme_override_constants/margin_right = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_bottom = 0
-script = ExtResource( "5" )
+script = ExtResource("5")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -34,7 +34,7 @@ offset_bottom = 29.0
 rect_min_size = Vector2(20, 20)
 hint_tooltip = "Audio filter"
 toggle_mode = true
-icon = ExtResource( "2_6uq4h" )
+icon = ExtResource("2_6uq4h")
 
 [node name="Image" type="Button" parent="VBox/HBoxTop"]
 offset_left = 32.0
@@ -43,7 +43,7 @@ offset_bottom = 29.0
 rect_min_size = Vector2(20, 20)
 hint_tooltip = "Texture filter"
 toggle_mode = true
-icon = ExtResource( "3_aivuy" )
+icon = ExtResource("3_aivuy")
 
 [node name="HBoxBottom" type="HBoxContainer" parent="VBox"]
 offset_top = 33.0
@@ -57,7 +57,7 @@ offset_bottom = 29.0
 rect_min_size = Vector2(20, 20)
 hint_tooltip = "Video filter"
 toggle_mode = true
-icon = ExtResource( "4_mrycj" )
+icon = ExtResource("4_mrycj")
 
 [node name="Reset" type="Button" parent="VBox/HBoxBottom"]
 offset_left = 32.0
@@ -65,4 +65,4 @@ offset_right = 60.0
 offset_bottom = 29.0
 rect_min_size = Vector2(20, 20)
 hint_tooltip = "Reset filters"
-icon = ExtResource( "5_ydycg" )
+icon = ExtResource("5_ydycg")

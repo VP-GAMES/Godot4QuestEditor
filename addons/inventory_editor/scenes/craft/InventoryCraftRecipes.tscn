@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dnw1xbg83c5pu" path="res://addons/inventory_editor/icons/Add.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://de2ruvheuuhvd" path="res://addons/inventory_editor/scenes/craft/InventoryCraftRecipeUI.tscn" id="2"]
-[ext_resource type="Script" path="res://addons/inventory_editor/scenes/craft/InventoryCraftRecipes.gd" id="3"]
+[ext_resource type="Script" uid="uid://dmovu2qm3krhw" path="res://addons/inventory_editor/scenes/craft/InventoryCraftRecipes.gd" id="3"]
 
 [node name="InventoryRecipes" type="Panel"]
 anchors_preset = 15

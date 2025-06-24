@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6chihgentd6b"]
 
-[ext_resource type="Script" path="res://addons/quest_editor/QuestEditor.gd" id="1"]
+[ext_resource type="Script" uid="uid://dctd4l2qvlawr" path="res://addons/quest_editor/QuestEditor.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ct2qv7a6ul2x2" path="res://addons/quest_editor/icons/Save.png" id="2"]
-[ext_resource type="PackedScene" path="res://addons/quest_editor/scenes/quests/QuestQuestsEditorView.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://addons/quest_editor/scenes/triggers/QuestTriggersEditorView.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://chbfytpq3gjer" path="res://addons/quest_editor/scenes/quests/QuestQuestsEditorView.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ctfvv5jp48xo0" path="res://addons/quest_editor/scenes/triggers/QuestTriggersEditorView.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://bcia7fs1y13ht" path="res://addons/quest_editor/icons/Trash.png" id="5"]
 
 [node name="QuestEditor" type="Control"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://1x3fsewlxha4"]
 
-[ext_resource type="Script" path="res://addons/inventory_editor/scenes/craft/InventoryCraftData.gd" id="2"]
+[ext_resource type="Script" uid="uid://icgitxg7l8dl" path="res://addons/inventory_editor/scenes/craft/InventoryCraftData.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://vm7tsyelpwqy" path="res://addons/inventory_editor/scenes/craft/InventoryCraftDataPath.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://dnw1xbg83c5pu" path="res://addons/inventory_editor/icons/Add.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="5_d7qex"]

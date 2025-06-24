@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dy2a2b505um0t"]
 
 [ext_resource type="Texture2D" uid="uid://dxq4nif21sbyw" path="res://quest_example/textures/InventoryBackground.png" id="1"]
-[ext_resource type="Script" path="res://quest_example/quest_ui/QuestUi.gd" id="2"]
+[ext_resource type="Script" uid="uid://coa2bgpska58n" path="res://quest_example/quest_ui/QuestUi.gd" id="2"]
 
 [node name="Quest" type="Control"]
 layout_mode = 3

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://gmpsh88x1lgp"]
 
-[ext_resource type="PackedScene" path="res://addons/localization_editor/scenes/translations/LocalizationTranslationsHead.tscn" id="1"]
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/translations/LocalizationTranslationsKeys.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://cw7dhgvs4i257" path="res://addons/localization_editor/scenes/translations/LocalizationTranslationsHead.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dkexlyawbme4w" path="res://addons/localization_editor/scenes/translations/LocalizationTranslationsKeys.gd" id="2"]
 
 [node name="LocalizationTranslationsKeys" type="Panel"]
 size_flags_horizontal = 3

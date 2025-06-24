@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/Translation.svg-9f5ec28f107710bd150b4822f6a76
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

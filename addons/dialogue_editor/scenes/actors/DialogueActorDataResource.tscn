@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5oapcp1mwwa1"]
+[gd_scene load_steps=4 format=3 uid="uid://c5oapcp1mwwa1"]
 
 [ext_resource type="Texture2D" uid="uid://dj0dj3apfv7mo" path="res://addons/dialogue_editor/icons/Trash.png" id="1"]
-[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataResource.gd" id="3"]
-[ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataPath.tscn" id="5"]
+[ext_resource type="Script" uid="uid://co6nr8tsjmskj" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataResource.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://bgtxd441yr5bj" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataPath.tscn" id="5"]
 
 [node name="DialogueActorDataResource" type="HBoxContainer"]
 anchors_preset = 10

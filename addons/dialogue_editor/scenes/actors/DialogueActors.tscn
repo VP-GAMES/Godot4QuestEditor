@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dsgwns04e41w7" path="res://addons/dialogue_editor/scenes/actors/DialogueActorUI.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://cu2mqtk8bruhb" path="res://addons/dialogue_editor/icons/Add.png" id="2"]
-[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/actors/DialogueActors.gd" id="3"]
+[ext_resource type="Script" uid="uid://m5tjrg4sww2m" path="res://addons/dialogue_editor/scenes/actors/DialogueActors.gd" id="3"]
 
 [node name="DialogueActors" type="Panel"]
 anchors_preset = 15

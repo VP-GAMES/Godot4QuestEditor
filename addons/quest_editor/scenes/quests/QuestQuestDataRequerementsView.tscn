@@ -1,17 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://be386vex5xwln"]
 
-[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRequerementsView.gd" id="1"]
+[ext_resource type="Script" uid="uid://b5ag11gxsg7jh" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRequerementsView.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cf1rpopspmecs" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRewardsViewItem.tscn" id="2"]
 
 [node name="VBoxRequerements" type="VBoxContainer"]
 anchor_right = 1.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
-script = ExtResource( "1" )
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Requerement" parent="." instance=ExtResource( "2" )]
+[node name="Requerement" parent="." instance=ExtResource("2")]
 offset_right = 1024.0
 offset_bottom = 31.0

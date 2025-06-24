@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf1rpopspmecs"]
 
 [ext_resource type="Texture2D" uid="uid://bcia7fs1y13ht" path="res://addons/quest_editor/icons/Trash.png" id="1"]
-[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRewardsViewItem.gd" id="2"]
+[ext_resource type="Script" uid="uid://dh2j4i1ki87gx" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRewardsViewItem.gd" id="2"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
 size_flags_horizontal = 3
-script = ExtResource( "2" )
+script = ExtResource("2")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,4 +44,4 @@ offset_left = 362.0
 offset_right = 382.0
 offset_bottom = 31.0
 rect_min_size = Vector2(20, 20)
-icon = ExtResource( "1" )
+icon = ExtResource("1")

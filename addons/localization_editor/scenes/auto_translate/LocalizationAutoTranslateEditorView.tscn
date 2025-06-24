@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://2e10hsy4f7ak"]
 
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/auto_translate/LocalizationAutoTranslateEditorView.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://d15n48edirewf" path="res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslate.tscn" id="2"]
+[ext_resource type="Script" uid="uid://f6l3cie4id7i" path="res://addons/localization_editor/scenes/auto_translate/LocalizationAutoTranslateEditorView.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bssdhtctthadv" path="res://addons/localization_editor/scenes/auto_translate/translator/LocalizationAutoTranslate.tscn" id="2"]
 
 [node name="LocalizationAutotranslateEditorView" type="VBoxContainer"]
 anchors_preset = 15

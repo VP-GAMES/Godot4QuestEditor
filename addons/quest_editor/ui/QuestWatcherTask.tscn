@@ -1,12 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://djmiucq527kwu"]
 
-[ext_resource path="res://addons/quest_editor/ui/QuestWatcherTask.gd" type="Script" id=2]
+[ext_resource type="Script" uid="uid://cb0q521ck1kup" path="res://addons/quest_editor/ui/QuestWatcherTask.gd" id="2"]
 
 [node name="HBoxTask" type="HBoxContainer"]
 margin_top = 136.0
 margin_right = 1024.0
 margin_bottom = 160.0
-script = ExtResource( 2 )
+script = ExtResource("2")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -15,7 +15,7 @@ __meta__ = {
 margin_top = 2.0
 margin_right = 150.0
 margin_bottom = 22.0
-rect_min_size = Vector2( 150, 0 )
+rect_min_size = Vector2(150, 0)
 text = "Name"
 
 [node name="Done" type="CheckBox" parent="."]
@@ -28,6 +28,6 @@ disabled = true
 margin_left = 182.0
 margin_right = 1024.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 0, 22 )
+rect_min_size = Vector2(0, 22)
 size_flags_horizontal = 3
 bbcode_enabled = true

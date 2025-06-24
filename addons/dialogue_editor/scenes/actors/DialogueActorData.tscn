@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cu2mqtk8bruhb" path="res://addons/dialogue_editor/icons/Add.png" id="1"]
 [ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataTexture.tscn" id="2"]
-[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/actors/DialogueActorData.gd" id="3"]
-[ext_resource type="PackedScene" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="3_3bh5s"]
+[ext_resource type="Script" uid="uid://covqyw588xgbi" path="res://addons/dialogue_editor/scenes/actors/DialogueActorData.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="3_3bh5s"]
 [ext_resource type="PackedScene" uid="uid://c5oapcp1mwwa1" path="res://addons/dialogue_editor/scenes/actors/DialogueActorDataResource.tscn" id="4"]
 [ext_resource type="FontFile" uid="uid://b70mxl2qgp5dt" path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" id="5"]
 

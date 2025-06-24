@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://wbd762rokpf8" path="res://addons/dialogue_editor/icons/Save.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://dagjo0f1e35mi" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialoguesEditorView.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://addons/dialogue_editor/scenes/actors/DialogueActorsEditorView.tscn" id="3"]
-[ext_resource type="Script" path="res://addons/dialogue_editor/DialogueEditor.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://bgrjcj1t7sp4o" path="res://addons/dialogue_editor/scenes/actors/DialogueActorsEditorView.tscn" id="3"]
+[ext_resource type="Script" uid="uid://bp5p4q4kuy6uq" path="res://addons/dialogue_editor/DialogueEditor.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://cwau5ilrs3ooc" path="res://addons/dialogue_editor/scenes/scenes/DialogueScenesEditorView.tscn" id="6"]
 
 [node name="Control" type="Control"]

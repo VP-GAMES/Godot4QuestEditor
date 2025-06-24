@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/QuestPath.png-4ecec406ac8d9c83f26168763eed98f
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

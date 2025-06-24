@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwsamhofo763c"]
 
 [ext_resource type="Texture2D" uid="uid://b6dj156g11bmf" path="res://addons/inventory_editor/icons/Type.png" id="1"]
-[ext_resource type="Script" path="res://addons/inventory_editor/scenes/items/InventoryTypeData.gd" id="2"]
+[ext_resource type="Script" uid="uid://ca1rm445ii3hr" path="res://addons/inventory_editor/scenes/items/InventoryTypeData.gd" id="2"]
 [ext_resource type="PackedScene" path="res://addons/inventory_editor/scenes/items/InventoryTypeDataPath.tscn" id="3"]
 
 [node name="InventoryTypeData" type="HBoxContainer"]

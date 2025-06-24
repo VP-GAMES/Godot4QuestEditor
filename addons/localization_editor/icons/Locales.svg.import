@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/Locales.svg-c42ca34b34b5efb78d3c4d7520a73237.
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

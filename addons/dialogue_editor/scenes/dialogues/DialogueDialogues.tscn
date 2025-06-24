@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bjql1jis11282"]
 
 [ext_resource type="Texture2D" uid="uid://cu2mqtk8bruhb" path="res://addons/dialogue_editor/icons/Add.png" id="1"]
-[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialogues.gd" id="2"]
+[ext_resource type="Script" uid="uid://buxex4e53jwr3" path="res://addons/dialogue_editor/scenes/dialogues/DialogueDialogues.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://6qw5d51fgo8s" path="res://addons/dialogue_editor/icons/Nodes.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://d20i4p406mdnt" path="res://addons/dialogue_editor/icons/Bricks.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://cdv72buvehi8b" path="res://addons/dialogue_editor/icons/Play.png" id="5"]

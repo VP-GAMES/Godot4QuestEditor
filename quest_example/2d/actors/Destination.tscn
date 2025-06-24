@@ -1,21 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://ctrtvn63dpa3r"]
 
-[ext_resource path="res://addons/quest_editor/use/2d/QuestDestination2D.gd" type="Script" id=1]
-[ext_resource path="res://quest_example/textures/Destination.png" type="Texture" id=2]
+[ext_resource type="Script" uid="uid://cv7rhp4y7xhb2" path="res://addons/quest_editor/use/2d/QuestDestination2D.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dida7dmgce7qj" path="res://quest_example/textures/Destination.png" id="2"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 249.249, 200.434 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(498.498, 400.868)
 
 [node name="Destination" type="Area2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -200 )
-shape = SubResource( 1 )
+position = Vector2(0, -200)
+shape = SubResource("1")
 
 [node name="Destination" type="Sprite" parent="."]
-position = Vector2( 0, -250 )
-texture = ExtResource( 2 )
-offset = Vector2( 0, 50 )
+position = Vector2(0, -250)
+texture = ExtResource("2")
+offset = Vector2(0, 50)
 
 [node name="QuestTriggerUUID_0576442f-a29f-44b0-9053-a4de02c6614f" type="Node" parent="."]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://g84e6kqpj6ij"]
 
-[ext_resource path="res://quest_example/textures/Item.png" type="Texture" id=1]
+[ext_resource type="Texture2D" uid="uid://wsm4swnvuhcn" path="res://quest_example/textures/Item.png" id="1"]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id="1"]
 radius = 21.3631
 height = 62.2801
 
@@ -11,9 +11,9 @@ height = 62.2801
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -0.921221, 3.8249 )
+position = Vector2(-0.921221, 3.8249)
 rotation = 0.610865
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="Health" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource("1")

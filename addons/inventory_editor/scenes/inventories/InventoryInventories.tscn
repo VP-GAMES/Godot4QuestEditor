@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8tf8qaytd6ks" path="res://addons/inventory_editor/scenes/inventories/InventoryInventoryUI.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://dnw1xbg83c5pu" path="res://addons/inventory_editor/icons/Add.png" id="2"]
-[ext_resource type="Script" path="res://addons/inventory_editor/scenes/inventories/InventoryInventories.gd" id="3"]
+[ext_resource type="Script" uid="uid://dqyrkfuwk2gg6" path="res://addons/inventory_editor/scenes/inventories/InventoryInventories.gd" id="3"]
 
 [node name="InventoryInventories" type="Panel"]
 anchors_preset = 15

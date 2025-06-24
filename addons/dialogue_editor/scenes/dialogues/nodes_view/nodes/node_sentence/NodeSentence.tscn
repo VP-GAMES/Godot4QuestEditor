@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dc7ym1pqb17mg"]
 
-[ext_resource type="Script" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/nodes/node_sentence/NodeSentence.gd" id="2"]
+[ext_resource type="Script" uid="uid://2fno6ebfdmb" path="res://addons/dialogue_editor/scenes/dialogues/nodes_view/nodes/node_sentence/NodeSentence.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://cr1hvm6iy8dxl" path="res://addons/dialogue_editor/icons/Actor.png" id="2_ba4ph"]
 
 [node name="NodeSentence" type="GraphNode"]

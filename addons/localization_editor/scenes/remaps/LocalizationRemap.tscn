@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqtiybaaxohvp"]
 
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/remaps/LocalizationRemap.gd" id="4"]
+[ext_resource type="Script" uid="uid://cqarmg7fusmh4" path="res://addons/localization_editor/scenes/remaps/LocalizationRemap.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://cconuf5kyyt8x" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapPath.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://bkeugb6vucegl" path="res://addons/localization_editor/icons/Audio.svg" id="5_84ecs"]
 [ext_resource type="Texture2D" uid="uid://oxmydroedm6f" path="res://addons/localization_editor/icons/Video.svg" id="6_uxbjg"]

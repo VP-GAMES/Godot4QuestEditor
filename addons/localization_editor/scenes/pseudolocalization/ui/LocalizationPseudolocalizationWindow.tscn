@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PseudolocalizationEditorView" parent="ScrollContainer" instance=ExtResource( "1_0aul8" )]
+[node name="PseudolocalizationEditorView" parent="ScrollContainer" instance=ExtResource("1_0aul8")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 1024.0

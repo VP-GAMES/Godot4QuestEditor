@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4lfjklyalnk7"]
 
-[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksViewItem.gd" id="1"]
+[ext_resource type="Script" uid="uid://6sf52u4mf8xn" path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksViewItem.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_62gy7"]
 [ext_resource type="Texture2D" uid="uid://bcia7fs1y13ht" path="res://addons/quest_editor/icons/Trash.png" id="3"]
 

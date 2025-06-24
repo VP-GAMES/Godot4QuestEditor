@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bt0r11jd8rtq6"]
 
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/pseudolocalization/LocalizationPseudolocalizationEditorView.gd" id="1_lb46l"]
+[ext_resource type="Script" uid="uid://dilh4j8yi8v14" path="res://addons/localization_editor/scenes/pseudolocalization/LocalizationPseudolocalizationEditorView.gd" id="1_lb46l"]
 [ext_resource type="PackedScene" uid="uid://b3jy757hoeaso" path="res://addons/localization_editor/scenes/pseudolocalization/control/LocalizationPseudolocalizationControl.tscn" id="2_s2t82"]
 
 [node name="PseudolocalizationEditorView" type="VBoxContainer"]
@@ -8,12 +8,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( "1_lb46l" )
+script = ExtResource("1_lb46l")
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LocalizationPseudolocalizationControl" parent="." instance=ExtResource( "2_s2t82" )]
+[node name="LocalizationPseudolocalizationControl" parent="." instance=ExtResource("2_s2t82")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 1024.0

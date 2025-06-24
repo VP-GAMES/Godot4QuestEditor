@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://o4igatbe5g7f"]
 
 [ext_resource type="Texture2D" uid="uid://byjsurute5gyq" path="res://quest_example/textures/Player.png" id="1"]
-[ext_resource type="Script" path="res://quest_example/2d/player/Player.gd" id="2"]
-[ext_resource type="PackedScene" path="res://quest_example/2d/actors/Weapon.tscn" id="3"]
+[ext_resource type="Script" uid="uid://d2hhu8rmgyrkn" path="res://quest_example/2d/player/Player.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bygtndlk6n3gi" path="res://quest_example/2d/actors/Weapon.tscn" id="3"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(400.948, 398.262)
@@ -77,7 +77,7 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource( "2" )
+script = ExtResource("2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -700)
@@ -86,19 +86,19 @@ limit_smoothed = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -200)
-shape = SubResource( "1" )
+shape = SubResource("1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource( "1" )
+texture = ExtResource("1")
 offset = Vector2(0, -220)
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Weapon" parent="." instance=ExtResource( "3" )]
+[node name="Weapon" parent="." instance=ExtResource("3")]
 rotation = -1.5708
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( "Animation_lgyrx" )
-anims/attack_left = SubResource( "2" )
-anims/attack_right = SubResource( "3" )
+anims/RESET = SubResource("Animation_lgyrx")
+anims/attack_left = SubResource("2")
+anims/attack_right = SubResource("3")

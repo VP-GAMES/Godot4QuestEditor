@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ov647hx6yjxa"]
 
-[ext_resource type="Script" path="res://addons/ui_extensions/dropdown/Dropdown.gd" id="1_ah183"]
+[ext_resource type="Script" uid="uid://b6dj3efoi2kcc" path="res://addons/ui_extensions/dropdown/Dropdown.gd" id="1_ah183"]
 [ext_resource type="Texture2D" uid="uid://btxlurvr45t4y" path="res://addons/ui_extensions/dropdown/Cancel.svg" id="1_l2sby"]
 [ext_resource type="Texture2D" uid="uid://bb76dl3aocsjo" path="res://addons/ui_extensions/dropdown/Arrow.svg" id="2_ims8p"]
 

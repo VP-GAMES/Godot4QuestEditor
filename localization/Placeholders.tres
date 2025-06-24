@@ -1,7 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d3gnj31ed64l3"]
+[gd_resource type="Resource" script_class="LocalizationPlaceholdersData" load_steps=2 format=3 uid="uid://d3gnj31ed64l3"]
 
-[ext_resource type="Script" path="res://addons/localization_editor/model/LocalizationPlaceholdersData.gd" id="1"]
+[ext_resource type="Script" uid="uid://c0334g4jw3uqt" path="res://addons/localization_editor/model/LocalizationPlaceholdersData.gd" id="1"]
 
 [resource]
-script = ExtResource( "1" )
+script = ExtResource("1")
 placeholders = {}

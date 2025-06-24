@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdva1wpl2lmoq"]
 
-[ext_resource type="Script" path="res://addons/inventory_editor/ui/PopupDescription.gd" id="1"]
+[ext_resource type="Script" uid="uid://c0gjj6p28dyhu" path="res://addons/inventory_editor/ui/PopupDescription.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://b70mxl2qgp5dt" path="res://addons/dialogue_editor/default/fonts/Pangolin-Regular.ttf" id="2_eyj12"]
 
 [node name="Popup" type="Popup"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfykqid37nnvl"]
 
-[ext_resource type="Script" path="res://addons/localization_editor/scenes/translations/LocalizationTranslations.gd" id="1"]
+[ext_resource type="Script" uid="uid://bhw6rgqe81pnn" path="res://addons/localization_editor/scenes/translations/LocalizationTranslations.gd" id="1"]
 
 [node name="LocalizationTranslations" type="Panel"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( "1" )
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }
