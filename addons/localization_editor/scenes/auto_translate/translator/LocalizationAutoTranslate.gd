@@ -48,6 +48,7 @@ var _to_code: String
 @onready var _amazon_secret_key: LineEdit = $Panel/VBox/VBoxAWS/HBoxSecretKey/SecretKey
 
 const Locales = preload("res://addons/localization_editor/model/LocalizationLocalesList.gd")
+const _request_timeout = 5
 
 func set_data(data: LocalizationData) -> void:
 	_data = data
@@ -67,7 +68,7 @@ func set_data(data: LocalizationData) -> void:
 
 func _init_connections() -> void:
 	if not _data.is_connected("data_changed", _update_view):
-		assert(_data.data_changed.connect(_update_view) == OK)
+		_data.data_changed.connect(_update_view)
 	if not _translator.is_connected("item_selected", _on_translator_selection_changed):
 		_translator.item_selected.connect(_on_translator_selection_changed)
 	if not _link.is_connected("pressed", _on_link_pressed):
@@ -75,7 +76,7 @@ func _init_connections() -> void:
 	if not _save_auth.toggled.is_connected(_on_save_auth_toggled):
 		_save_auth.toggled.connect(_on_save_auth_toggled)
 	if not _translate_ui.is_connected("pressed", _on_translate_pressed):
-		assert(_translate_ui.connect("pressed", _on_translate_pressed) == OK)
+		_translate_ui.connect("pressed", _on_translate_pressed)
 
 	if not _deepl_key.text_changed.is_connected(_deepl_key_text_changed):
 		_deepl_key.text_changed.connect(_deepl_key_text_changed)
@@ -147,7 +148,7 @@ func _update_view() -> void:
 func _init_from_language_ui() -> void:
 	_from_language_ui.clear()
 	if not _from_language_ui.is_connected("selection_changed", _check_translate_ui):
-		assert(_from_language_ui.connect("selection_changed", _check_translate_ui) == OK)
+		_from_language_ui.connect("selection_changed", _check_translate_ui)
 	for loc in _data.locales():
 		var label = Locales.label_by_code(loc)
 		if label != null and not label.is_empty():
@@ -156,7 +157,7 @@ func _init_from_language_ui() -> void:
 func _init_to_language_ui(locales: Dictionary) -> void:
 	_to_language_ui.clear()
 	if not _to_language_ui.is_connected("selection_changed", _check_translate_ui):
-		assert(_to_language_ui.connect("selection_changed", _check_translate_ui) == OK)
+		_to_language_ui.connect("selection_changed", _check_translate_ui)
 	for locale in locales:
 		if Locales.has_code(locale):
 			_to_language_ui.add_item(DropdownItem.new(locale, Locales.label_by_code(locale)))
@@ -173,7 +174,7 @@ func _check_translate_ui_disabled() -> void:
 	_translate_ui.set_disabled(_from_language_ui.get_selected_index() == -1 or _to_language_ui.get_selected_index() == -1)
 
 func _on_translator_selection_changed(index: int) -> void:
-	_to_language_ui.clear_selection()
+	_to_language_ui._clear_pressed()
 	_on_translator_selected(index)
 	_update_auth_settings()
 
@@ -217,16 +218,18 @@ func _translate() -> void:
 	var from_translation = _data.translation_by_locale(_data_keys[0], _from_code)
 	var to_translation = _data.translation_by_locale(_data_keys[0], _to_code)
 	_translate_ui.disabled = true
-	_progress_ui.max_value = _data.keys().size()
+	_progress_ui.max_value = _data_keys.size()
 	if not _data.locales().has(_to_code):
 		_data.add_locale(_to_code, false)
 	_create_requests()
 
 func _create_requests() -> void:
-	var space = IP.RESOLVER_MAX_QUERIES - _queries_count
-	for index in range(space):
-		if _data_keys.size() <= 0:
-			return
+	if _data_keys.size() <= 0:
+		return
+	for index in range(_data_keys.size() - 1):
+		var space = IP.RESOLVER_MAX_QUERIES - _queries_count
+		if space == 0:
+			await create_tween().tween_interval(_request_timeout).finished
 		var from_translation = _data.translation_by_locale(_data_keys[0], _from_code)
 		var to_translation = _data.translation_by_locale(_data_keys[0], _to_code)
 		if from_translation != null and not from_translation.value.is_empty() and (to_translation.value == null or to_translation.value.is_empty()):
@@ -250,9 +253,9 @@ func _create_requests() -> void:
 func _create_request_google(from_translation, to_translation) -> void:
 	var url = _create_url_google(from_translation, to_translation)
 	var http_request = HTTPRequest.new()
-	http_request.timeout = 5
+	http_request.timeout = _request_timeout
 	add_child(http_request)
-	assert(http_request.request_completed.connect(_http_request_completed_google.bind(http_request, to_translation)) == OK)
+	http_request.request_completed.connect(_http_request_completed_google.bind(http_request, to_translation))
 	http_request.request(url, [], HTTPClient.Method.METHOD_GET)
 
 func _create_url_google(from_translation, to_translation) -> String:
@@ -292,9 +295,9 @@ func _create_request_deepl(from_translation, to_translation) -> void:
 	var text = "text=" + from_translation.value.uri_encode() + "&target_lang=" + to_translation.locale
 	var url = "https://api-free.deepl.com/v2/translate"
 	var http_request = HTTPRequest.new()
-	http_request.timeout = 5
+	http_request.timeout = _request_timeout
 	add_child(http_request)
-	assert(http_request.request_completed.connect(_http_request_completed_deepl.bind(http_request, from_translation, to_translation)) == OK)
+	http_request.request_completed.connect(_http_request_completed_deepl.bind(http_request, from_translation, to_translation))
 	var custom_headers = [
 		"Host: api-free.deepl.com",
 		"Authorization: DeepL-Auth-Key " + key,
@@ -388,9 +391,9 @@ func _create_request_amazon(from_translation, to_translation) -> void:
 	var authorization_header = algorithm + " " + "Credential=" + access_key + "/" + credential_scope + ", " +  "SignedHeaders=" + signed_headers + ", " + "Signature=" + signature
 	
 	var http_request = HTTPRequest.new()
-	http_request.timeout = 5
+	http_request.timeout = _request_timeout
 	add_child(http_request)
-	assert(http_request.request_completed.connect(_http_request_completed_amazon.bind(http_request, from_translation, to_translation)) == OK)
+	http_request.request_completed.connect(_http_request_completed_amazon.bind(http_request, from_translation, to_translation))
 	var headers = [
 		"Content-type: application/x-amz-json-1.1",
 		"X-Amz-Date: " + amz_date,
@@ -406,14 +409,14 @@ func getSignatureKey(key, dateStamp, regionName, serviceName):
 	return signing(kService, "aws4_request")
 
 func signing(key: PackedByteArray, msg: String):
-	assert(ctx.start(HashingContext.HASH_SHA256, key) == OK)
-	assert(ctx.update(msg.to_utf8_buffer()) == OK)
+	ctx.start(HashingContext.HASH_SHA256, key)
+	ctx.update(msg.to_utf8_buffer())
 	var hmac = ctx.finish()
 	return hmac
 
 func signing_hex(key: PackedByteArray, msg: String) -> String:
-	assert(ctx.start(HashingContext.HASH_SHA256, key) == OK)
-	assert(ctx.update(msg.to_utf8_buffer()) == OK)
+	ctx.start(HashingContext.HASH_SHA256, key)
+	ctx.update(msg.to_utf8_buffer())
 	var hmac = ctx.finish()
 	return hmac.hex_encode()
 
@@ -445,9 +448,9 @@ func _create_request_microsoft(from_translation, to_translation) -> void:
 			endpoint = "https://api-nam.congnitive.microsofttranslator.com"
 	var route = "/translate?api-version=3.0&from=en&to=ru"
 	var http_request = HTTPRequest.new()
-	http_request.timeout = 5
+	http_request.timeout = _request_timeout
 	add_child(http_request)
-	assert(http_request.request_completed.connect(_http_request_completed_microsoft.bind(http_request, from_translation, to_translation)) == OK)
+	http_request.request_completed.connect(_http_request_completed_microsoft.bind(http_request, from_translation, to_translation))
 	var custom_headers = [
 		"Ocp-Apim-Subscription-Key: " + key,
 		"Ocp-Apim-Subscription-Region: " + location,

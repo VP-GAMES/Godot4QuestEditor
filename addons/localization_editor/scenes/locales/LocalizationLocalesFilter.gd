@@ -14,9 +14,9 @@ func set_data(data: LocalizationData) -> void:
 
 func _init_connections() -> void:
 	if not _filter_ui.is_connected("text_changed", _on_filter_changed):
-		assert(_filter_ui.text_changed.connect(_on_filter_changed) == OK)
+		_filter_ui.text_changed.connect(_on_filter_changed)
 	if not _selected_ui.is_connected("toggled", _on_selected_changed):
-		assert(_selected_ui.toggled.connect(_on_selected_changed) == OK)
+		_selected_ui.toggled.connect(_on_selected_changed)
 
 func _on_filter_changed(text: String) -> void:
 	_data.set_locales_filter(text)

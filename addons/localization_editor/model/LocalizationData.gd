@@ -18,7 +18,7 @@ func locales_filter() -> String:
 
 func set_locales_filter(text):
 		_locales_filter = text
-		emit_signal("data_changed")
+		data_changed.emit()
 
 var _locales_selected: bool
 
@@ -27,7 +27,7 @@ func locales_selected() ->  bool:
 
 func set_locales_selected(value):
 		_locales_selected = value
-		emit_signal("data_changed")
+		data_changed.emit()
 
 var data_remaps: Dictionary = {"remapkeys": []}
 var data_filter_remaps: Dictionary = {}
@@ -58,7 +58,7 @@ func undo_redo():
 	return _undo_redo
 
 func emit_signal_data_changed() -> void: 
-	emit_signal("data_changed")
+	data_changed.emit()
 
 func init_data_translations() -> void:
 	_init_data_translations_csv()
@@ -129,29 +129,19 @@ func _save_data_translations_keys() -> void:
 	file.store_string(source_code)
 
 func _save_data_translations_placeholders() -> void:
-	var placeholders = {}
-	var regex = RegEx.new()
-	regex.compile("{{(.+?)}}")
-	for key in data.keys:
-		var results = regex.search_all(key.translations[0].value)
-		for result in results:
-			var name = result.get_string()
-			var clean_name = name.replace("{{", "");
-			clean_name = clean_name.replace("}}", "");
-			if not placeholders.has(clean_name):
-				placeholders[clean_name] = name
+	init_data_placeholders()
 	var file = FileAccess.open(default_path + "LocalizationPlaceholders.gd", FileAccess.WRITE)
 	var source_code = "# Placeholders for LocalizationManger to use in source code: MIT License\n"
 	source_code += AUTHOR
 	source_code += "@tool\n"
 	source_code += "class_name LocalizationPlaceholders\n\n"
-	for placeholder_key in placeholders.keys():
-		source_code += "const " + placeholder_key + " = \"" + placeholders[placeholder_key] +"\"\n"
+	for placeholder_key in data_placeholders.keys():
+		source_code += "const " + placeholder_key + " = \"" + placeholder_key +"\"\n"
 	source_code += "\nconst PLACEHOLDERS = [\n"
 	var count = 0
-	for placeholder_key in placeholders.keys():
+	for placeholder_key in data_placeholders.keys():
 		source_code += " \"" + placeholder_key + "\""
-		if count != placeholders.size() - 1:
+		if count != data_placeholders.size() - 1:
 			source_code += ",\n"
 		count += 1
 	source_code += "\n]"
@@ -229,7 +219,7 @@ func _add_locale(locale, sendSignal: bool) -> void:
 		if not remapkey_has_locale(remapkey, locale):
 			remapkey.remaps.append({"locale": locale, "value": ""})
 	if sendSignal:
-		emit_signal("data_changed")
+		data_changed.emit()
 
 func del_locale(locale: String) -> void:
 	if data.locales.has(locale):
@@ -256,13 +246,13 @@ func _del_locale(locale: String) -> void:
 				var r = remapkey.remaps.find(remap)
 				remapkey.remaps.remove_at(r)
 				break
-	emit_signal("data_changed")
+	data_changed.emit()
 
 # ***** KEYS *****
 signal data_key_value_changed
 
 func emit_data_key_value_changed() -> void:
-	emit_signal("data_key_value_changed")
+	data_key_value_changed.emit()
 
 func keys() -> Array:
 	return data.keys
@@ -307,7 +297,7 @@ func add_key_object(key) -> void:
 func _add_key(uuid: String, emitSignal = true) -> void:
 	data.keys.append(_create_key(uuid))
 	if emitSignal:
-		emit_signal("data_changed")
+		data_changed.emit()
 
 func add_key_new_after_uuid(after_uuid: String, uuid = uuid()) -> void:
 	if _undo_redo != null:
@@ -322,7 +312,7 @@ func _add_key_after_uuid(after_uuid: String, key) -> void:
 	var position = _key_position(after_uuid)
 	if position != -1 and position < data.keys.size():
 		data.keys.insert(position + 1, key)
-		emit_signal("data_changed")
+		data_changed.emit()
 	else:
 		data.keys.append(key)
 
@@ -331,7 +321,7 @@ func _add_key_new_after_uuid(after_uuid: String, uuid = uuid()) -> void:
 	if position != -1 and position < data.keys.size():
 		var key = _create_key(uuid)
 		data.keys.insert(position + 1, key)
-		emit_signal("data_changed")
+		data_changed.emit()
 	else:
 		_add_key(uuid)
 
@@ -356,7 +346,7 @@ func del_key(uuid: String, emitSignal = true) -> void:
 func _del_key(uuid: String, emitSignal = true) -> void:
 	data.keys.remove_at(_key_position(uuid))
 	if emitSignal:
-		emit_signal("data_changed")
+		data_changed.emit()
 
 func after_uuid(uuid: String):
 	var position = _key_position(uuid)
@@ -462,21 +452,21 @@ func data_filter_by_type(type: String) -> String:
 
 func data_filter_put(type: String, filter: String) -> void:
 	data_filter[type] = filter
-	emit_signal("data_changed")
+	data_changed.emit()
 
 func data_filter_remaps_by_type(type: String) -> String:
 	return data_filter_remaps[type] if data_filter_remaps.has(type) else ""
 
 func data_filter_remaps_put(type: String, filter: String) -> void:
 	data_filter_remaps[type] = filter
-	emit_signal("data_changed")
+	data_changed.emit()
 
 func data_filter_placeholders_by_type(type: String) -> String:
 	return data_filter_placeholders[type] if data_filter_remaps.has(type) else ""
 
 func data_filter_placeholders_put(type: String, filter: String) -> void:
 	data_filter_placeholders[type] = filter
-	emit_signal("data_changed")
+	data_changed.emit()
 
 # ***** REMAPS *****
 func remaps() -> Array:
@@ -531,7 +521,7 @@ func _save_data_remaps() -> void:
 signal data_remapkey_value_changed
 
 func emit_data_remapkey_value_changed() -> void:
-	emit_signal("data_remapkey_value_changed")
+	data_remapkey_value_changed.emit()
 
 func remapkeys_filtered() -> Array:
 	var remapkeys = _filter_by_remapkeys()
@@ -580,7 +570,7 @@ func add_remapkey_object(remapkey) -> void:
 func _add_remapkey(uuid: String, emitSignal = true) -> void:
 	data_remaps.remapkeys.append(_create_remapkey(uuid))
 	if emitSignal:
-		emit_signal("data_changed")
+		data_changed.emit()
 
 func add_remapkey_new_after_uuid_remap(after_uuid_remap: String, uuid = uuid()) -> void:
 	if _undo_redo != null:
@@ -595,7 +585,7 @@ func _add_remapkey_after_uuid_remap(after_uuid_remap: String, remapkey) -> void:
 	var position = _remapkey_position(after_uuid_remap)
 	if position != -1 and position < data_remaps.remapkeys.size():
 		data_remaps.remapkeys.insert(position + 1, remapkey)
-		emit_signal("data_changed")
+		data_changed.emit()
 	else:
 		data_remaps.remapkeys.append(remapkey)
 
@@ -604,7 +594,7 @@ func _add_remapkey_new_after_uuid_remap(after_uuid_remap: String, uuid = uuid())
 	if position != -1 and position < data_remaps.remapkeys.size():
 		var remapkey = _create_remapkey(uuid)
 		data_remaps.remapkeys.insert(position + 1, remapkey)
-		emit_signal("data_changed")
+		data_changed.emit()
 	else:
 		_add_remapkey(uuid)
 
@@ -629,7 +619,7 @@ func del_remapkey(uuid: String, emitSignal = true) -> void:
 func _del_remapkey(uuid: String, emitSignal = true) -> void:
 	data_remaps.remapkeys.remove_at(_remapkey_position(uuid))
 	if emitSignal:
-		emit_signal("data_changed")
+		data_changed.emit()
 
 func after_uuid_remap(uuid: String):
 	var position = _remapkey_position(uuid)
@@ -762,12 +752,12 @@ func del_placeholder(key: String, emitSignal = true) -> void:
 func _del_placeholder(key: String, emitSignal = true) -> void:
 	data_placeholders.erase(key)
 	if emitSignal:
-		emit_signal("data_changed")
+		data_changed.emit()
 
 func _add_placeholder(key: String, placeholder, emitSignal = true):
 	data_placeholders[key] = placeholder
 	if emitSignal:
-		emit_signal("data_changed")
+		data_changed.emit()
 
 # ***** EDITOR SETTINGS *****
 signal settings_changed
@@ -780,7 +770,7 @@ func setting_path_to_file() -> String:
 	
 func setting_path_to_file_put(path: String) -> void:
 	ProjectSettings.set_setting(SETTINGS_PATH_TO_FILE, path)
-	emit_signal("settings_changed")
+	settings_changed.emit()
 
 func is_locale_visible(locale: String) -> bool:
 	if not ProjectSettings.has_setting(SETTINGS_LOCALES_VISIBILITY):
@@ -795,7 +785,7 @@ func setting_locales_visibility_put(locale: String) -> void:
 	if not locales.has(locale):
 		locales.append(locale)
 		ProjectSettings.set_setting(SETTINGS_LOCALES_VISIBILITY, locales)
-		emit_signal("data_changed")
+		data_changed.emit()
 
 func setting_locales_visibility_del(locale: String, emitSignal = true) -> void:
 	if ProjectSettings.has_setting(SETTINGS_LOCALES_VISIBILITY):
@@ -804,7 +794,7 @@ func setting_locales_visibility_del(locale: String, emitSignal = true) -> void:
 			locales.erase(locale)
 			ProjectSettings.set_setting(SETTINGS_LOCALES_VISIBILITY, locales)
 			if emitSignal:
-				emit_signal("data_changed")
+				data_changed.emit()
 
 func setting_translations_split_offset() -> int:
 	var offset = 350

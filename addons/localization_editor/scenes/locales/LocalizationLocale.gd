@@ -37,9 +37,9 @@ func _eye_ui_state() -> void:
 
 func _init_connections() -> void:
 	if not _selection_ui.is_connected("toggled", _on_selection_changed):
-		assert(_selection_ui.toggled.connect(_on_selection_changed) == OK)
+		_selection_ui.toggled.connect(_on_selection_changed)
 	if not _eye_ui.is_connected("toggled", _on_eye_changed):
-		assert(_eye_ui.toggled.connect(_on_eye_changed) == OK)
+		_eye_ui.toggled.connect(_on_eye_changed)
 
 func _on_selection_changed(value) -> void:
 	if value == true:
@@ -54,7 +54,7 @@ func _show_confirm_dialog() -> void:
 		confirm_dialog.title = "Confirm"
 		confirm_dialog.dialog_text = "Are you sure to delete locale with all translations and remaps?"
 		confirm_dialog.confirmed.connect(_on_confirm_dialog_ok.bind(root, confirm_dialog))
-		confirm_dialog.cancelled.connect(_on_confirm_dialog_cancelled.bind(root, confirm_dialog))
+		confirm_dialog.get_cancel_button().pressed.connect(_on_confirm_dialog_cancelled.bind(root, confirm_dialog))
 		root.add_child(confirm_dialog)
 		confirm_dialog.popup_centered()
 

@@ -19,13 +19,13 @@ func set_data(data: LocalizationData):
 
 func _init_connections() -> void:
 	if not _music_ui.is_connected("button_up", _filter_changed_action):
-		assert(_music_ui.button_up.connect(_filter_changed_action) == OK)
+		_music_ui.button_up.connect(_filter_changed_action)
 	if not _image_ui.is_connected("button_up", _filter_changed_action):
-		assert(_image_ui.button_up.connect(_filter_changed_action) == OK)
+		_image_ui.button_up.connect(_filter_changed_action)
 	if not _video_ui.is_connected("button_up", _filter_changed_action):
-		assert(_video_ui.button_up.connect(_filter_changed_action) == OK)
+		_video_ui.button_up.connect(_filter_changed_action)
 	if not _reset_ui.is_connected("button_up", _filter_reset_action):
-		assert(_reset_ui.button_up.connect(_filter_reset_action) == OK)
+		_reset_ui.button_up.connect(_filter_reset_action)
 
 func _filter_changed_action() -> void:
 	var new_filter = ""

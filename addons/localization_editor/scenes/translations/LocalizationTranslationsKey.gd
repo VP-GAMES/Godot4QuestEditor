@@ -32,13 +32,13 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _add_ui.is_connected("pressed", _add_pressed):
-		assert(_add_ui.connect("pressed", _add_pressed) == OK)
+		_add_ui.connect("pressed", _add_pressed)
 	if not _del_ui.is_connected("pressed", _del_pressed):
-		assert(_del_ui.connect("pressed", _del_pressed) == OK)
+		_del_ui.connect("pressed", _del_pressed)
 	if not _key_ui.is_connected("text_changed", _key_value_changed):
-		assert(_key_ui.text_changed.connect(_key_value_changed) == OK)
+		_key_ui.text_changed.connect(_key_value_changed)
 	if not _data.is_connected("data_key_value_changed", _check_key_ui):
-		assert(_data.connect("data_key_value_changed", _check_key_ui) == OK)
+		_data.connect("data_key_value_changed", _check_key_ui)
 
 func _draw_view() -> void:
 	_key_ui.text = _key.value

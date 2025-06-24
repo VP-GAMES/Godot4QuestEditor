@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c625mboir3l6b"]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource type="PackedScene" uid="uid://b7dpjrokji2pg" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeysHead.tscn" id="2"]
-[ext_resource type="Script" uid="uid://dwhefa1p4rv6t" path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeys.gd" id="3"]
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeysHead.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemapsKeys.gd" type="Script" id=3]
 
 [node name="LocalizationRemapsKeys" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("3")
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -22,7 +22,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Head" parent="VBox" instance=ExtResource("2")]
+[node name="Head" parent="VBox" instance=ExtResource( 2 )]
 
 [node name="Scroll" type="ScrollContainer" parent="VBox"]
 margin_top = 61.0

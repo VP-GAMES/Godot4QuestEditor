@@ -51,11 +51,11 @@ func set_editor(editor: EditorPlugin) -> void:
 
 func _init_connections() -> void:
 	if not _data.is_connected("settings_changed", _update_view):
-		assert(_data.connect("settings_changed", _update_view) == OK)
+		_data.connect("settings_changed", _update_view)
 	if not _save_ui.is_connected("pressed", _on_save_data):
-		assert(_save_ui.connect("pressed", _on_save_data) == OK)
+		_save_ui.connect("pressed", _on_save_data)
 	if not _open_ui.is_connected("pressed", _open_file):
-		assert(_open_ui.connect("pressed", _open_file) == OK)
+		_open_ui.connect("pressed", _open_file)
 
 func get_data() -> LocalizationData:
 	return _data
@@ -86,7 +86,7 @@ func _open_file() -> void:
 	var file_dialog: FileDialog = LocalizationEditorDialogFile.instantiate()
 	var root = get_tree().get_root()
 	root.add_child(file_dialog)
-	assert(file_dialog.file_selected.connect(_path_to_file_changed) == OK)
+	file_dialog.file_selected.connect(_path_to_file_changed)
 	file_dialog.popup_centered()
 
 func _path_to_file_changed(new_path) -> void:

@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvudy6p2tmf2a"]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource type="Script" uid="uid://dvcn5h12jlfuu" path="res://addons/localization_editor/scenes/locales/LocalizationLocalesFilter.gd" id="1"]
+[ext_resource path="res://addons/localization_editor/scenes/locales/LocalizationLocalesFilter.gd" type="Script" id=1]
 
 [node name="LocalizationLocalesFilter" type="MarginContainer"]
 margin_right = 1024.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
-script = ExtResource("1")
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

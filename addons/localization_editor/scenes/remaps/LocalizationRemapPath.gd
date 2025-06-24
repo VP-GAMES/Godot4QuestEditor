@@ -37,15 +37,15 @@ func _init_styles() -> void:
 	
 func _init_connections() -> void:
 	if not _data.is_connected("data_remapkey_value_changed", _draw_view):
-		assert(_data.data_remapkey_value_changed.connect(_draw_view) == OK)
+		_data.data_remapkey_value_changed.connect(_draw_view)
 	if not is_connected("focus_entered", _on_focus_entered):
-		assert(focus_entered.connect(_on_focus_entered) == OK)
+		focus_entered.connect(_on_focus_entered)
 	if not is_connected("focus_exited", _on_focus_exited):
-		assert(focus_exited.connect(_on_focus_exited) == OK)
+		focus_exited.connect(_on_focus_exited)
 	if not is_connected("text_changed", _remap_value_changed):
-		assert(text_changed.connect(_remap_value_changed) == OK)
+		text_changed.connect(_remap_value_changed)
 	if not is_connected("gui_input", _on_gui_input):
-		assert(gui_input.connect(_on_gui_input) == OK)
+		gui_input.connect(_on_gui_input)
 
 func _draw_view() -> void:
 	if has_focus():

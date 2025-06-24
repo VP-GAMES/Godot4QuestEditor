@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvfcmuubc6npi"]
 
-[ext_resource type="Script" uid="uid://bl72p0om6ym05" path="res://addons/localization_editor/scenes/pseudolocalization/control/LocalizationPseudolocalizationUI.gd" id="1_uf0s3"]
+[ext_resource type="Script" path="res://addons/localization_editor/scenes/pseudolocalization/control/LocalizationPseudolocalizationUI.gd" id="1_uf0s3"]
 
 [node name="PseudolocalizationEditorView" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_uf0s3")
+script = ExtResource( "1_uf0s3" )
 __meta__ = {
 "_edit_use_anchors_": false
 }

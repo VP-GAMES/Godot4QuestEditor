@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8jdbet30gbuk"]
 
-[ext_resource type="Script" uid="uid://cqyo1oywjwrnt" path="res://addons/localization_editor/scenes/locales/LocalizationLocale.gd" id="2"]
+[ext_resource type="Script" path="res://addons/localization_editor/scenes/locales/LocalizationLocale.gd" id="2"]
 
 [node name="Locale" type="MarginContainer"]
 anchor_right = 1.0
@@ -9,7 +9,7 @@ size_flags_horizontal = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_left = 3
-script = ExtResource("2")
+script = ExtResource( "2" )
 __meta__ = {
 "_edit_use_anchors_": false
 }

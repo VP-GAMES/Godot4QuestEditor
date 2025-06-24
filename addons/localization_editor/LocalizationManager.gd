@@ -13,6 +13,8 @@ var _placeholders_default: Dictionary = {}
 var _placeholders: Dictionary = {}
 var _data_remaps: Dictionary = {}
 
+var _localization_data_loaded: bool = false
+
 func _ready() -> void:
 	_load_pseudolocalization_control()
 	_load_localization()
@@ -58,7 +60,7 @@ func set_placeholder(name: String, value: String, locale: String = "", profile: 
 	if not _placeholders[profile].has(name):
 		_placeholders[profile][name] = {}
 	_placeholders[profile][name][loc] = value
-	emit_signal("translation_changed")
+	translation_changed.emit()
 
 func _load_data_remaps() -> void:
 	var internationalization_path = "internationalization/locale/translation_remaps"
@@ -84,7 +86,7 @@ func tr_remap(key: String) -> String:
 			return remap["value"]
 	return ""
 
-func tr(name: StringName, context: StringName = StringName("")) -> String:
+func tr_pl(name: StringName, context: StringName = StringName("")) -> String:
 	var tr_text = super.tr(name, context)
 	if _keys_with_placeholder.has(name):
 		for placeholder in _keys_with_placeholder[name]:
@@ -103,7 +105,7 @@ func _notification(what):
 	match what:
 		MainLoop.NOTIFICATION_TRANSLATION_CHANGED:
 			_save_localization()
-			emit_signal("translation_changed")
+			translation_changed.emit()
 
 func _load_localization():
 	if FileAccess.file_exists(_path_to_save):
@@ -114,9 +116,11 @@ func _load_localization():
 					_placeholders[key] = loaded_data.placeholders[key]
 			if loaded_data.locale and not loaded_data.locale.is_empty():
 				TranslationServer.set_locale(loaded_data.locale)
+	_localization_data_loaded = true
 
 func _save_localization() -> void:
-	var save_data = LocalizationSave.new()
-	save_data.locale = TranslationServer.get_locale()
-	save_data.placeholders = _placeholders
-	assert(ResourceSaver.save(save_data, _path_to_save) == OK)
+	if _localization_data_loaded:
+		var save_data = LocalizationSave.new()
+		save_data.locale = TranslationServer.get_locale()
+		save_data.placeholders = _placeholders
+		ResourceSaver.save(save_data, _path_to_save)

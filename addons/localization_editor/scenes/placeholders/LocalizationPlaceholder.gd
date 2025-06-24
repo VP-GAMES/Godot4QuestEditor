@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _init_connections() -> void:
 	if not _placeholder_ui.is_connected("text_changed", _on_text_changed):
-		assert(_placeholder_ui.text_changed.connect(_on_text_changed) == OK)
+		_placeholder_ui.text_changed.connect(_on_text_changed)
 
 func _draw_view() -> void:
 	_placeholder_ui.text = _data.data_placeholders[_key][_locale]

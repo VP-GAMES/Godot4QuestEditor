@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bovs5m87chrgk"]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource type="Script" uid="uid://bcaxls8vstwyj" path="res://addons/localization_editor/scenes/remaps/LocalizationRemaps.gd" id="2"]
+[ext_resource path="res://addons/localization_editor/scenes/remaps/LocalizationRemaps.gd" type="Script" id=2]
 
 [node name="LocalizationRemaps" type="Panel"]
 margin_left = 518.0
@@ -8,7 +8,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("2")
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

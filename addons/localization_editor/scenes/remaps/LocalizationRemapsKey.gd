@@ -19,9 +19,9 @@ func _ready() -> void:
 
 func _init_connections() -> void:
 	if not _add_ui.is_connected("pressed", _on_add_pressed):
-		assert(_add_ui.connect("pressed", _on_add_pressed) == OK)
+		_add_ui.connect("pressed", _on_add_pressed)
 	if not _del_ui.is_connected("pressed", _on_del_pressed):
-		assert(_del_ui.connect("pressed", _on_del_pressed) == OK)
+		_del_ui.connect("pressed", _on_del_pressed)
 
 func _draw_view() -> void:
 	_del_ui.disabled = _data.remaps().size() == 1

@@ -16,7 +16,7 @@ func set_data(data: LocalizationData) -> void:
 
 func _init_connections() -> void:
 	if not _data.is_connected("data_changed", _update_view):
-		assert(_data.data_changed.connect(_update_view) == OK)
+		_data.data_changed.connect(_update_view)
 
 func _update_view() -> void:
 	_clear_ui_remaps()

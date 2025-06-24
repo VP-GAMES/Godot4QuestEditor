@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0m0p02wuleun"]
 
-[ext_resource type="Script" uid="uid://cp0us105fy81w" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersKey.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://cnb7fnm4kvekf" path="res://addons/localization_editor/icons/Del.svg" id="2_gnca8"]
+[ext_resource type="Script" path="res://addons/localization_editor/scenes/placeholders/LocalizationPlaceholdersKey.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://caiapkr8oaqe6" path="res://addons/localization_editor/icons/Del.svg" id="2_gnca8"]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchor_right = 1.0
@@ -11,7 +11,7 @@ size_flags_vertical = 0
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_bottom = 3
-script = ExtResource("1")
+script = ExtResource( "1" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -27,7 +27,7 @@ size_flags_vertical = 3
 offset_right = 28.0
 offset_bottom = 597.0
 rect_min_size = Vector2(20, 20)
-icon = ExtResource("2_gnca8")
+icon = ExtResource( "2_gnca8" )
 
 [node name="Key" type="LineEdit" parent="HBoxContainer"]
 offset_left = 32.0

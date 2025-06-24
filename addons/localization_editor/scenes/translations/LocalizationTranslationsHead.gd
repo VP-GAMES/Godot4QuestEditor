@@ -20,7 +20,7 @@ func set_data(type: String, data: LocalizationData):
 
 func _init_connections() -> void:
 	if not _filter_ui.is_connected("text_changed", _filter_changed_action):
-		assert(_filter_ui.text_changed.connect(_filter_changed_action) == OK)
+		_filter_ui.text_changed.connect(_filter_changed_action)
 
 func _draw_view() -> void:
 	_filter_ui.text = _filter

@@ -30,7 +30,7 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _translation_ui.is_connected("text_changed", _on_text_changed):
-		assert(_translation_ui.text_changed.connect(_on_text_changed) == OK)
+		_translation_ui.text_changed.connect(_on_text_changed)
 
 func _draw_view() -> void:
 	_translation_ui.text = _translation.value
