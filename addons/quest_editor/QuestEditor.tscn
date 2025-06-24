@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6chihgentd6b"]
 
-[ext_resource type="Script" uid="uid://dctd4l2qvlawr" path="res://addons/quest_editor/QuestEditor.gd" id="1"]
+[ext_resource type="Script" path="res://addons/quest_editor/QuestEditor.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ct2qv7a6ul2x2" path="res://addons/quest_editor/icons/Save.png" id="2"]
-[ext_resource type="PackedScene" uid="uid://chbfytpq3gjer" path="res://addons/quest_editor/scenes/quests/QuestQuestsEditorView.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://ctfvv5jp48xo0" path="res://addons/quest_editor/scenes/triggers/QuestTriggersEditorView.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://addons/quest_editor/scenes/quests/QuestQuestsEditorView.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://addons/quest_editor/scenes/triggers/QuestTriggersEditorView.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://bcia7fs1y13ht" path="res://addons/quest_editor/icons/Trash.png" id="5"]
 
 [node name="QuestEditor" type="Control"]
@@ -29,8 +29,6 @@ size_flags_vertical = 3
 
 [node name="Margin" type="MarginContainer" parent="VBox"]
 layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 32.0
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
@@ -38,56 +36,31 @@ theme_override_constants/margin_bottom = 3
 
 [node name="HBox" type="HBoxContainer" parent="VBox/Margin"]
 layout_mode = 2
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 1917.0
-offset_bottom = 29.0
 size_flags_horizontal = 3
 
 [node name="Save" type="Button" parent="VBox/Margin/HBox"]
 layout_mode = 2
-offset_right = 18.0
-offset_bottom = 26.0
 icon = ExtResource("2")
 
 [node name="Reset" type="Button" parent="VBox/Margin/HBox"]
 layout_mode = 2
-offset_left = 22.0
-offset_right = 40.0
-offset_bottom = 26.0
 icon = ExtResource("5")
 
 [node name="Label" type="Label" parent="VBox/Margin/HBox"]
 layout_mode = 2
-offset_left = 44.0
-offset_right = 123.0
-offset_bottom = 26.0
 text = "Language:"
 
 [node name="Language" type="OptionButton" parent="VBox/Margin/HBox"]
 layout_mode = 2
-offset_left = 127.0
-offset_right = 141.0
-offset_bottom = 26.0
 
 [node name="Tabs" type="TabContainer" parent="VBox"]
 layout_mode = 2
-offset_top = 36.0
-offset_right = 1920.0
-offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Quests" parent="VBox/Tabs" instance=ExtResource("3")]
 layout_mode = 2
-anchors_preset = 15
-offset_top = 31.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Triggers" parent="VBox/Tabs" instance=ExtResource("4")]
 visible = false
 layout_mode = 2
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2

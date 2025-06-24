@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vydfqx7o80qw"]
 
 [ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_1msqi"]
-[ext_resource type="Script" uid="uid://pc26rccsw6g0" path="res://addons/quest_editor/scenes/quests/QuestQuestDataNameDescription.gd" id="3"]
+[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataNameDescription.gd" id="3"]
 
 [node name="QuestQuestNameDescription" type="VBoxContainer"]
 script = ExtResource("3")

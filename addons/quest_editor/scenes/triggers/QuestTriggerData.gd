@@ -22,11 +22,11 @@ func set_data(data: QuestData) -> void:
 
 func _init_connections() -> void:
 	if not _data.trigger_selection_changed.is_connected(_on_trigger_selection_changed):
-		assert(_data.trigger_selection_changed.connect(_on_trigger_selection_changed) == OK)
+		_data.trigger_selection_changed.connect(_on_trigger_selection_changed)
 	if not _open_ui.pressed.is_connected(_on_open_pressed):
-		assert(_open_ui.pressed.connect(_on_open_pressed) == OK)
+		_open_ui.pressed.connect(_on_open_pressed)
 	if not _preview_ui.resized.is_connected(_on_preview_ui_resized):
-		assert(_preview_ui.resized.connect(_on_preview_ui_resized) == OK)
+		_preview_ui.resized.connect(_on_preview_ui_resized)
 
 func _on_trigger_selection_changed(trigger: QuestTrigger) -> void:
 	_selection_changed()
@@ -48,7 +48,7 @@ func _selection_changed() -> void:
 
 func _init_connections_trigger() -> void:
 	if not _trigger.scene_changed.is_connected(_on_scene_changed):
-		assert(_trigger.scene_changed.connect(_on_scene_changed) == OK)
+		_trigger.scene_changed.connect(_on_scene_changed)
 
 func _on_scene_changed() -> void:
 	_draw_view()

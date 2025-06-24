@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://drrwtexdllnn1"]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource type="Script" uid="uid://bywhiahomhm5h" path="res://addons/quest_editor/ui/QuestWatcher.gd" id="1"]
+[ext_resource path="res://addons/quest_editor/ui/QuestWatcher.gd" type="Script" id=1]
 
 [node name="QuestWatcher" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource("1")
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -46,14 +46,14 @@ margin_bottom = 22.0
 margin_top = 1.0
 margin_right = 150.0
 margin_bottom = 21.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2( 150, 0 )
 text = "Name"
 
 [node name="Name" type="RichTextLabel" parent="Margin/VBox/HBoxName"]
 margin_left = 154.0
 margin_right = 1910.0
 margin_bottom = 22.0
-rect_min_size = Vector2(0, 22)
+rect_min_size = Vector2( 0, 22 )
 size_flags_horizontal = 3
 bbcode_enabled = true
 
@@ -65,7 +65,7 @@ margin_bottom = 86.0
 [node name="Label" type="Label" parent="Margin/VBox/HBoxDescription"]
 margin_right = 150.0
 margin_bottom = 60.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2( 150, 0 )
 size_flags_vertical = 5
 text = "Description"
 
@@ -73,7 +73,7 @@ text = "Description"
 margin_left = 154.0
 margin_right = 1910.0
 margin_bottom = 60.0
-rect_min_size = Vector2(0, 60)
+rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
 bbcode_enabled = true
 
@@ -86,14 +86,14 @@ margin_bottom = 112.0
 margin_top = 1.0
 margin_right = 150.0
 margin_bottom = 21.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2( 150, 0 )
 text = "Precompleted"
 
 [node name="Precompleted" type="RichTextLabel" parent="Margin/VBox/HBoxPrecompleted"]
 margin_left = 154.0
 margin_right = 1910.0
 margin_bottom = 22.0
-rect_min_size = Vector2(0, 22)
+rect_min_size = Vector2( 0, 22 )
 size_flags_horizontal = 3
 bbcode_enabled = true
 
@@ -105,7 +105,7 @@ margin_bottom = 136.0
 [node name="Label" type="Label" parent="Margin/VBox/HBoxContainer"]
 margin_right = 150.0
 margin_bottom = 20.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2( 150, 0 )
 text = "Tasks"
 
 [node name="VBoxTasks" type="VBoxContainer" parent="Margin/VBox"]

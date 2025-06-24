@@ -12,16 +12,17 @@ const QuestQuestUI = preload("res://addons/quest_editor/scenes/quests/QuestQuest
 
 func set_data(data: QuestData) -> void:
 	_data = data
+	_data.sort_quests_by_name()
 	_init_connections()
 	_update_view()
 
 func _init_connections() -> void:
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if not _data.quest_added.is_connected(_on_quest_added):
-		assert(_data.quest_added.connect(_on_quest_added) == OK)
+		_data.quest_added.connect(_on_quest_added)
 	if not _data.quest_removed.is_connected(_on_quest_removed):
-		assert(_data.quest_removed.connect(_on_quest_removed) == OK)
+		_data.quest_removed.connect(_on_quest_removed)
 
 func _on_add_pressed() -> void:
 	_data.add_quest()

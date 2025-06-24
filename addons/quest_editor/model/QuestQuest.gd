@@ -47,6 +47,7 @@ const UUID = preload("res://addons/quest_editor/uuid/uuid.gd")
 
 const QUESTSTATE_UNDEFINED ="UNDEFINED"
 const QUESTSTATE_STARTED ="STARTED"
+const QUESTSTATE_IN_PROGRESS ="IN_PROGRESS"
 const QUESTSTATE_DONE ="DONE"
 
 func _init() -> void:
@@ -55,21 +56,24 @@ func _init() -> void:
 
 func change_name(new_name: String):
 	name = new_name
-	emit_signal("name_changed")
+	name_changed.emit()
 
 func change_uiname(new_uiname: String):
 	uiname = new_uiname
-	emit_signal("uiname_changed")
+	uiname_changed.emit()
 
 func change_description(new_description: String):
 	description = new_description
-	emit_signal("description_changed")
+	description_changed.emit()
 
 func is_state_undefined() -> bool:
 	return state == QUESTSTATE_UNDEFINED
 
 func is_state_started() -> bool:
-	return state == QUESTSTATE_STARTED
+	return state == QUESTSTATE_STARTED or is_state_in_progress()
+
+func is_state_in_progress() -> bool:
+	return state == QUESTSTATE_IN_PROGRESS
 
 func is_state_done() -> bool:
 	return state == QUESTSTATE_DONE
@@ -114,7 +118,7 @@ func _add_requerement(requerement: Dictionary, position = requerements.size()) -
 	if requerements == null:
 		requerements = []
 	requerements.insert(position, requerement)
-	emit_signal("requerements_changed")
+	requerements_changed.emit()
 
 func del_requerement(requerement) -> void:
 	if _undo_redo != null:
@@ -130,7 +134,7 @@ func _del_requerement(requerement) -> void:
 	var index = requerements.find(requerement)
 	if index > -1:
 		requerements.remove_at(index)
-		emit_signal("requerements_changed")
+		requerements_changed.emit()
 
 # ***** TASKS *****
 signal tasks_changed
@@ -191,22 +195,30 @@ func get_task_state(trigger_uuid: String) -> bool:
 			return true
 	return false
 
-func update_task_state(trigger_uuid, add_quantity = 0):
+func update_task_state(trigger_uuid, add_quantity = 0, add_quantity_put = 0):
 	for task in tasks:
 		if task.trigger == trigger_uuid:
+			if not task.has("quantity_now"):
+				task["quantity_now"] = 0
+			if not task.has("quantity_put"):
+				task["quantity_put"] = 0
 			if task.quantity > 0:
-				if not task.has("quantity_now"):
-					task["quantity_now"] = 0
-				task.quantity_now += add_quantity
-				if task.quantity_now >= task.quantity:
+				if add_quantity > 0:
+					task.quantity_now += add_quantity
+				if add_quantity_put > 0:
+					task.quantity_put += add_quantity_put
+			if task.has("quantity_put_do") and task.quantity_put_do == true:
+				if task.quantity_now >= task.quantity and task.quantity_put >= task.quantity:
 					task.done = true
-			else:
+					state = QUESTSTATE_IN_PROGRESS
+			elif task.quantity_now >= task.quantity:
 				task.done = true
+				state = QUESTSTATE_IN_PROGRESS
 			return task
 	return null
 
 func add_task() -> void:
-	var task = {"trigger": "", "dialogue": "", "quantity": 0, "quantity_now": 0, "done": false }
+	var task = {"uuid": UUID.v4(), "trigger": "", "dialogue": "", "dialogue_done": "", "quantity": 0, "quantity_now": 0, "quantity_put_do": false, "quantity_put": 0, "done": false }
 	if _undo_redo != null:
 		_undo_redo.create_action("Add task")
 		_undo_redo.add_do_method(self, "_add_task", task)
@@ -219,7 +231,7 @@ func _add_task(task: Dictionary, position = tasks.size()) -> void:
 	if tasks == null:
 		tasks = []
 	tasks.insert(position, task)
-	emit_signal("tasks_changed")
+	tasks_changed.emit()
 
 func del_task(task) -> void:
 	if _undo_redo != null:
@@ -235,7 +247,7 @@ func _del_task(task) -> void:
 	var index = tasks.find(task)
 	if index > -1:
 		tasks.remove_at(index)
-		emit_signal("tasks_changed")
+		tasks_changed.emit()
 
 # ***** REWARD *****
 signal rewards_changed
@@ -258,7 +270,7 @@ func _add_reward(reward: Dictionary, position = rewards.size()) -> void:
 	if rewards == null:
 		rewards = []
 	rewards.insert(position, reward)
-	emit_signal("rewards_changed")
+	rewards_changed.emit()
 
 func del_reward(reward) -> void:
 	if _undo_redo != null:
@@ -274,12 +286,15 @@ func _del_reward(reward) -> void:
 	var index = rewards.find(reward)
 	if index > -1:
 		rewards.remove_at(index)
-		emit_signal("rewards_changed")
+		rewards_changed.emit()
 
 func reset() -> void:
 	state = QUESTSTATE_UNDEFINED
 	for task in tasks:
-		task.quantity_now = 0
+		if task.has("quantity_now"):
+			task.quantity_now = 0
+		if task.has("quantity_put"):
+			task.quantity_put = 0
 		task.done = false
 	delivery_done = false
 
@@ -295,7 +310,8 @@ func print_data() -> void:
 	print("QUEST START DIALOGUE: ", quest_start_dialogue)
 	print("QUEST RUNNING DIALOGUE: ", quest_running_dialogue)
 	print("** TASKS **")
-	print(tasks)
+	for task in tasks:
+		print(task)
 	print("** DELIVERY **")
 	print("DELIVERY: ", delivery)
 	print("DELIVERY DONE: ", delivery_done)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh5wk874835p3"]
 
-[ext_resource type="Script" uid="uid://lycfo08meoqq" path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksView.gd" id="1"]
+[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksView.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b4lfjklyalnk7" path="res://addons/quest_editor/scenes/quests/QuestQuestDataTasksViewItem.tscn" id="2"]
 
 [node name="VBoxTasksItems" type="VBoxContainer"]
@@ -8,5 +8,3 @@ script = ExtResource("1")
 
 [node name="HBoxContainer" parent="." instance=ExtResource("2")]
 layout_mode = 2
-offset_right = 344.0
-offset_bottom = 31.0

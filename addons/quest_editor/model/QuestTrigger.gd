@@ -14,7 +14,6 @@ func set_editor(editor) -> void:
 		_undo_redo = _editor.get_undo_redo()
 # ***** EDITOR_PLUGIN_END *****
 
-
 const TYPE_2D ="2D"
 const TYPE_3D ="3D"
 const DESTINATION = "DESTINATION"
@@ -38,19 +37,21 @@ var _loaded_scene
 func get_loaded_scene():
 	if scene != null:
 		if _loaded_scene == null:
-			_loaded_scene =  load(scene).instantiate()
+			var loaded_scene_resource = load(scene)
+			if loaded_scene_resource != null:
+				_loaded_scene =  loaded_scene_resource.instantiate()
 		return _loaded_scene
 
 func change_name(new_name: String):
 	name = new_name
-	emit_signal("name_changed")
+	name_changed.emit()
 
 func change_scene(new_scene: String) -> void:
 	scene = new_scene
 	var scene_new = load(scene).instantiate()
 	type = _scene_type(scene_new)
 	dimension = _scene_dimension(scene_new)
-	emit_signal("scene_changed")
+	scene_changed.emit()
 
 func scene_valide(scene_path) -> bool:
 	var scene = load(scene_path).instantiate()

@@ -21,7 +21,7 @@ func set_data(data: QuestData) -> void:
 
 func _init_connections() -> void:
 	if not _data.quest_selection_changed.is_connected(_on_quest_selection_changed):
-		assert(_data.quest_selection_changed.connect(_on_quest_selection_changed) == OK)
+		_data.quest_selection_changed.connect(_on_quest_selection_changed)
 
 func _on_quest_selection_changed(quest: QuestQuest) -> void:
 	_selection_changed()

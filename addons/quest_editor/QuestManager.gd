@@ -13,27 +13,26 @@ var _player
 var _data: = QuestData.new()
 var _data_loaded = false
 
-const _path_to_save = "user://QuestsSave.res"
+const PATH_DEFAULT_TO_SAVE = "user://QuestsSave.res"
+
+var _path_to_save = PATH_DEFAULT_TO_SAVE
+
+var player_inside_dialogue_area: bool = false
 
 func _init() -> void:
-	if FileAccess.file_exists(_path_to_save):
-		_data.PATH_TO_SAVE = _path_to_save
-	if not _data_loaded:
-		load_data()
+	load_data()
+
+func data() -> QuestData:
+	return _data
 
 func load_data() -> void:
-	_data = ResourceLoader.load(_data.PATH_TO_SAVE) as QuestData
-#	_data.quests[0].state = QuestQuest.QUESTSTATE_DONE
-#	_data.quests[1].state = QuestQuest.QUESTSTATE_STARTED
-#	_data.quests[2].state = QuestQuest.QUESTSTATE_DONE
-#	_data.quests[3].state = QuestQuest.QUESTSTATE_DONE
-#	_data.quests[4].state = QuestQuest.QUESTSTATE_DONE
-#	_data.quests[5].state = QuestQuest.QUESTSTATE_DONE
-#	_data.quests[6].tasks[0].done = true
-#	_data.quests[6].tasks[1].done = true
-#	_data.quests[6].tasks[2].done = true
-#	start_quest(_data.quests[6])
-	# Shem hier weiter
+	_data = QuestData.new()
+	if FileAccess.file_exists(_path_to_save):
+		_data.PATH_TO_SAVE = _path_to_save
+		_data.init_data()
+	else:
+		_data.init_data()
+		_data.PATH_TO_SAVE = _path_to_save
 
 func save_data() -> void:
 	_data.PATH_TO_SAVE = _path_to_save
@@ -46,7 +45,7 @@ func reset_data(save_data_too: bool = true) -> void:
 
 func set_player(player) -> void:
 	_player = player
-	emit_signal("player_changed")
+	player_changed.emit()
 
 func player():
 	if not _player:
@@ -55,41 +54,63 @@ func player():
 
 func is_quest_started() -> bool:
 	for quest in _data.quests:
-		if quest.state == QuestQuest.QUESTSTATE_STARTED:
+		if quest.state == QuestQuest.QUESTSTATE_STARTED or quest.state == QuestQuest.QUESTSTATE_IN_PROGRESS:
 			return true
 	return false
 
 func started_quest() -> QuestQuest:
 	for quest in _data.quests:
-		if quest.state == QuestQuest.QUESTSTATE_STARTED:
+		if quest.state == QuestQuest.QUESTSTATE_STARTED or quest.state == QuestQuest.QUESTSTATE_IN_PROGRESS:
 			return quest
 	return null
 
+#func started_quest_enum() -> QuestManagerQuests.QuestManagerQuestsEnum:
+	
+
 func start_quest(quest: QuestQuest) -> void:
 	quest.state = QuestQuest.QUESTSTATE_STARTED
-	emit_signal("quest_started", quest)
+	quest_started.emit(quest)
 
 func delivery_quest(quest: QuestQuest) -> void:
 	quest.delivery_done = true
-	emit_signal("quest_updated", quest)
+	quest_ended.emit(quest)
 
 func end_quest(quest: QuestQuest) -> void:
 	quest.state = QuestQuest.QUESTSTATE_DONE
-	print(quest.uiname)
-	emit_signal("quest_ended", quest)
+	quest_ended.emit(quest)
+
+func update_quest() -> void:
+	quest_updated.emit(started_quest())
 
 func get_quest_by_uuid(uuid: String) -> QuestQuest:
 	return _data.get_quest_by_uuid(uuid)
 
-func get_task_and_update_quest_state(quest: QuestQuest, trigger_uuid: String, add_quantity = 0):
-	var task = quest.update_task_state(trigger_uuid, add_quantity)
-	if task != null and task.done == true:
-		quest.check_state()
-		if quest.state == QuestQuest.QUESTSTATE_DONE:
-			call_rewards_methods(quest)
-			emit_signal("quest_ended", quest)
+func get_task_and_update_quest_state(quest: QuestQuest, trigger_uuid: String, add_quantity = 0, add_quantity_put = 0, ignore_linear: bool = false):
+	var task = quest.get_task_available_by_trigger(trigger_uuid)
+	var quest_updated_state = false
+	if not quest.linear or ignore_linear:
+		task = quest.update_task_state(trigger_uuid, add_quantity, add_quantity_put)
+		if task != null:
+			quest_updated_state = true
+	else:
+		var first_task = quest.get_task_first()
+		if first_task != null and first_task.trigger == trigger_uuid:
+			if first_task.done != true:
+				task = quest.update_task_state(trigger_uuid, add_quantity, add_quantity_put)
+				quest_updated_state = true
 		else:
-			emit_signal("quest_updated", quest)
+			var task_bevore = quest.get_task_bevore(trigger_uuid)
+			if task_bevore != null and task_bevore.done == true:
+				task = quest.update_task_state(trigger_uuid, add_quantity, add_quantity_put)
+				quest_updated_state = true
+
+	if quest_updated_state == true:
+		if task.done == true:
+			quest.check_state()
+			if quest.state == QuestQuest.QUESTSTATE_DONE:
+				call_rewards_methods(quest)
+				end_quest(quest)
+		quest_updated.emit(quest)
 	return task
 
 func get_quest_trigger_by_ui_uuid(trigger_ui: String) -> QuestTrigger:
@@ -108,14 +129,12 @@ func get_trigger_by_ui_uuid(trigger_ui: String) -> QuestTrigger:
 func print_triggers() -> void:
 	for trigger in _data.triggers:
 		var scene =  trigger.get_loaded_scene()
-		if scene.has_method('get_uuid'):
-			print(scene.get_uuid())
 
 func get_quest_available_by_start_trigger(quest_trigger: String) -> QuestQuest:
 	var response_quest = null
 	for quest in _data.quests:
 		if quest.quest_trigger == quest_trigger:
-			if quest.state == QuestQuest.QUESTSTATE_STARTED:
+			if quest.state == QuestQuest.QUESTSTATE_STARTED or quest.state == QuestQuest.QUESTSTATE_IN_PROGRESS:
 				response_quest = quest
 			if quest.state == QuestQuest.QUESTSTATE_UNDEFINED:
 				if _precompleted_quest_done(quest):
@@ -127,7 +146,7 @@ func get_quest_available_by_delivery_trigger(delivery_trigger: String) -> QuestQ
 	var response_quest = null
 	for quest in _data.quests:
 		if quest.delivery_trigger == delivery_trigger:
-			if quest.state == QuestQuest.QUESTSTATE_STARTED and quest.tasks_done():
+			if quest.state == QuestQuest.QUESTSTATE_STARTED or quest.state == QuestQuest.QUESTSTATE_IN_PROGRESS and quest.tasks_done():
 				response_quest = quest
 	return response_quest
 

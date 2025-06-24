@@ -28,21 +28,21 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _data.quest_added.is_connected(_on_quest_added):
-		assert(_data.quest_added.connect(_on_quest_added) == OK)
+		_data.quest_added.connect(_on_quest_added)
 	if not _data.quest_removed.is_connected(_on_quest_removed):
-		assert(_data.quest_removed.connect(_on_quest_removed) == OK)
+		_data.quest_removed.connect(_on_quest_removed)
 	if not _data.quest_selection_changed.is_connected(_on_quest_selection_changed):
-		assert(_data.quest_selection_changed.connect(_on_quest_selection_changed) == OK)
+		_data.quest_selection_changed.connect(_on_quest_selection_changed)
 	if not _texture_ui.gui_input.is_connected(_on_gui_input):
-		assert(_texture_ui.gui_input.connect(_on_gui_input) == OK)
+		_texture_ui.gui_input.connect(_on_gui_input)
 	if not _name_ui.gui_input.is_connected(_on_gui_input):
-		assert(_name_ui.gui_input.connect(_on_gui_input) == OK)
+		_name_ui.gui_input.connect(_on_gui_input)
 	if not _name_ui.focus_exited.is_connected(_on_focus_exited):
-		assert(_name_ui.focus_exited.connect(_on_focus_exited) == OK)
+		_name_ui.focus_exited.connect(_on_focus_exited)
 	if not _name_ui.text_changed.is_connected(_on_text_changed):
-		assert(_name_ui.text_changed.connect(_on_text_changed) == OK)
+		_name_ui.text_changed.connect(_on_text_changed)
 	if not _del_ui.pressed.is_connected(_del_pressed):
-		assert(_del_ui.pressed.connect(_del_pressed) == OK)
+		_del_ui.pressed.connect(_del_pressed)
 
 func _on_quest_added(quest: QuestQuest) -> void:
 	_draw_style()

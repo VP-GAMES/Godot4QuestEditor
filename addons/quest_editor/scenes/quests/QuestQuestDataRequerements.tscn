@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://1lj4cxqo7geh" path="res://addons/quest_editor/icons/Add.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_gahax"]
-[ext_resource type="Script" uid="uid://dp8clnt6pjf5p" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRequerements.gd" id="3"]
+[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRequerements.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://be386vex5xwln" path="res://addons/quest_editor/scenes/quests/QuestQuestDataRequerementsView.tscn" id="4"]
 
 [node name="VBoxRequerements" type="VBoxContainer"]

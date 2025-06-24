@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpgn2f70ekq1j"]
 
-[ext_resource type="Script" uid="uid://bdfw318o1rvrc" path="res://addons/quest_editor/scenes/quests/QuestQuestDataStart.gd" id="2"]
+[ext_resource type="Script" path="res://addons/quest_editor/scenes/quests/QuestQuestDataStart.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://ov647hx6yjxa" path="res://addons/ui_extensions/dropdown/Dropdown.tscn" id="2_kkdiv"]
 
 [node name="QuestQuestStart" type="VBoxContainer"]

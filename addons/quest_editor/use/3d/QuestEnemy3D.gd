@@ -35,7 +35,7 @@ func _ready() -> void:
 	if get_tree().get_root().has_node(questManagerName):
 		questManager = get_tree().get_root().get_node(questManagerName)
 	if not body_entered.is_connected(_on_body_entered):
-		assert(body_entered.connect(_on_body_entered) == OK)
+		body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node) -> void:
 	if questManager and questManager.is_quest_started():

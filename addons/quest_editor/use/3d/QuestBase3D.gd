@@ -49,17 +49,17 @@ func _ready() -> void:
 	if get_tree().get_root().has_node(questManagerName):
 		questManager = get_tree().get_root().get_node(questManagerName)
 	if not body_entered.is_connected(_on_body_entered):
-		assert(body_entered.connect(_on_body_entered) == OK)
+		body_entered.connect(_on_body_entered)
 	if not body_exited.is_connected(_on_body_exited):
-		assert(body_exited.connect(_on_body_exited) == OK)
+		body_exited.connect(_on_body_exited)
 
 func is_quest_available() -> bool:
 	var trigger = questManager.get_trigger_by_ui_uuid(get_uuid())
 	if not trigger:
 		push_warning(str("No trigger specified for ", get_uuid(), " and NPC: ", get_parent().name))
 		return false
-	var quest = questManager.get_quest_available_by_start_trigger(trigger.uuid)
-	return quest != null
+	var quest: QuestQuest = questManager.get_quest_available_by_start_trigger(trigger.uuid)
+	return quest != null and quest.state == QuestQuest.QUESTSTATE_UNDEFINED
 
 func is_quest_delivery_available() -> bool:
 	var trigger = questManager.get_trigger_by_ui_uuid(get_uuid())
@@ -72,10 +72,12 @@ func is_quest_delivery_available() -> bool:
 func _on_body_entered(body: Node) -> void:
 	if body == questManager.player():
 		inside = true
+		QuestManager.player_inside_dialogue_area = true
 
 func _on_body_exited(body: Node) -> void:
 	if body == questManager.player():
 		inside = false
+		QuestManager.player_inside_dialogue_area = false
 		if dialogueManager:
 			if dialogueManager.is_started():
 				dialogueManager.cancel_dialogue()
@@ -85,6 +87,9 @@ func _input(event: InputEvent):
 		if event.is_action_released(activate):
 			if not dialogueManager.is_started():
 				var trigger = questManager.get_trigger_by_ui_uuid(get_uuid())
+				if trigger == null:
+					push_error("Trigger not configured for: ", get_parent().name)
+					return
 				_quest = questManager.get_quest_available_by_start_trigger(trigger.uuid)
 				if not questManager.is_quest_started():
 					if _quest:
@@ -95,6 +100,8 @@ func _input(event: InputEvent):
 					if _quest == null:
 						_quest = questManager.started_quest()
 					if _quest:
+						var task_trigger = questManager.get_trigger_by_ui_uuid(_uuid)
+						var quest_task = _quest.get_task(task_trigger.uuid)
 						if _quest.tasks_done():
 							if _quest.is_quest_delivery_dialogue() and not dialogueManager.is_started() and _quest.delivery_trigger == trigger.uuid:
 								dialogueManager.start_dialogue(_quest.delivery_dialogue)
@@ -103,18 +110,46 @@ func _input(event: InputEvent):
 								questManager.end_quest(_quest)
 							elif _quest and _quest.quest_trigger == trigger.uuid and _quest.is_quest_running_dialogue() and not dialogueManager.is_started():
 								dialogueManager.start_dialogue(_quest.quest_running_dialogue)
+							elif quest_task != null and quest_task.dialogue_done and not quest_task.dialogue_done.is_empty():
+								dialogueManager.start_dialogue(quest_task.dialogue_done)
 							else:
 								_start_dialogue()
 						elif _quest and _quest.quest_trigger == trigger.uuid and _quest.is_quest_running_dialogue() and not dialogueManager.is_started():
 							dialogueManager.start_dialogue(_quest.quest_running_dialogue)
 						else:
-							var task_trigger = questManager.get_trigger_by_ui_uuid(_uuid)
-							var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
-							if task and task.dialogue and not task.dialogue.is_empty():
-								dialogueManager.start_dialogue(task.dialogue)
+							if quest_task != null and quest_task.done == false:
+								if not _quest.linear:
+									var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
+									if task != null and task.dialogue and not task.dialogue.is_empty():
+										dialogueManager.start_dialogue(task.dialogue)
+									else:
+										_start_dialogue()
+								else:
+									var first_task = _quest.get_task_first()
+									if first_task != null and first_task.trigger == task_trigger.uuid:
+										if first_task.done != true:
+											var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
+											if task != null and task.dialogue and not task.dialogue.is_empty():
+												dialogueManager.start_dialogue(task.dialogue)
+										else:
+											_start_dialogue()
+									else:
+										var task_bevore = _quest.get_task_bevore(task_trigger.uuid)
+										if task_bevore != null and task_bevore.done == true:
+											var task = questManager.get_task_and_update_quest_state(_quest, task_trigger.uuid)
+											if task != null and task.dialogue and not task.dialogue.is_empty():
+												dialogueManager.start_dialogue(task.dialogue)
+										else:
+											_start_dialogue()
 							else:
-								_start_dialogue()
-			dialogueManager.next_sentence()
+								if quest_task != null and quest_task.dialogue_done and not quest_task.dialogue_done.is_empty():
+									dialogueManager.start_dialogue(quest_task.dialogue_done)
+								else:
+									_start_dialogue()
+
+				dialogueManager.next_sentence()
+			else:
+				dialogueManager.next_sentence()
 		if event.is_action_released(cancel):
 			dialogueManager.cancel_dialogue()
 

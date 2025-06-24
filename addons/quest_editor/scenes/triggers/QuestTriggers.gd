@@ -12,16 +12,17 @@ const QuestTriggerUI = preload("res://addons/quest_editor/scenes/triggers/QuestT
 
 func set_data(data: QuestData) -> void:
 	_data = data
+	_data.sort_triggers_by_name()
 	_init_connections()
 	_update_view()
 
 func _init_connections() -> void:
 	if not _add_ui.pressed.is_connected(_on_add_pressed):
-		assert(_add_ui.pressed.connect(_on_add_pressed) == OK)
+		_add_ui.pressed.connect(_on_add_pressed)
 	if not _data.trigger_added.is_connected(_on_trigger_added):
-		assert(_data.trigger_added.connect(_on_trigger_added) == OK)
+		_data.trigger_added.connect(_on_trigger_added)
 	if not _data.trigger_removed.is_connected(_on_trigger_removed):
-		assert(_data.trigger_removed.connect(_on_trigger_removed) == OK)
+		_data.trigger_removed.connect(_on_trigger_removed)
 
 func _on_add_pressed() -> void:
 	_data.add_trigger()

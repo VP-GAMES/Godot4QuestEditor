@@ -64,14 +64,14 @@ func _fill_dropdown_description_ui() -> void:
 
 func _init_connections() -> void:
 	if not _uiname_ui.text_changed.is_connected(_on_uiname_changed):
-		assert(_uiname_ui.text_changed.connect(_on_uiname_changed) == OK)
+		_uiname_ui.text_changed.connect(_on_uiname_changed)
 	if not _description_ui.text_changed.is_connected(_on_description_changed):
-		assert(_description_ui.text_changed.connect(_on_description_changed) == OK)
+		_description_ui.text_changed.connect(_on_description_changed)
 	if _data.setting_localization_editor_enabled():
 		if not _dropdown_name_ui.selection_changed.is_connected(_on_selection_changed_name):
-			assert(_dropdown_name_ui.selection_changed.connect(_on_selection_changed_name) == OK)
+			_dropdown_name_ui.selection_changed.connect(_on_selection_changed_name)
 		if not _dropdown_description_ui.selection_changed.is_connected(_on_selection_changed_description):
-			assert(_dropdown_description_ui.selection_changed.connect(_on_selection_changed_description) == OK)
+			_dropdown_description_ui.selection_changed.connect(_on_selection_changed_description)
 
 func _on_uiname_changed(new_text: String) -> void:
 	_quest.change_uiname(new_text)

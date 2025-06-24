@@ -37,7 +37,7 @@ func set_locale(locale: String) -> void:
 	_locale = locale
 	setting_dialogue_editor_locale_put(_locale)
 	TranslationServer.set_locale(_locale)
-	emit_signal("locale_changed", _locale)
+	locale_changed.emit(_locale)
 
 # ***** QUEST *****
 signal quest_added(quest)
@@ -48,14 +48,15 @@ signal quest_icon_changed(quest)
 signal quest_scene_changed(quest)
 
 func emit_quest_stacks_changed(quest: QuestQuest) -> void:
-	emit_signal("quest_stacks_changed", quest)
+	quest_stacks_changed.emit(quest)
 
 func emit_quest_icon_changed(quest: QuestQuest) -> void:
-	emit_signal("quest_icon_changed", quest)
+	quest_icon_changed.emit(quest)
 
 func emit_quest_scene_changed(quest: QuestQuest) -> void:
-	emit_signal("quest_scene_changed", quest)
-
+	quest_scene_changed.emit(quest)
+	
+@export var version: String
 @export var quests: Array = [_create_quest()]
 var _quest_selected: QuestQuest
 
@@ -104,7 +105,7 @@ func _add_quest(quest: QuestQuest, sendSignal = true, position = quests.size()) 
 	if quests == null:
 		quests = []
 	quests.insert(position, quest)
-	emit_signal("quest_added", quest)
+	quest_added.emit(quest)
 	select_quest(quest)
 
 func del_quest(quest) -> void:
@@ -121,7 +122,7 @@ func _del_quest(quest) -> void:
 	var index = quests.find(quest)
 	if index > -1:
 		quests.remove_at(index)
-		emit_signal("quest_removed", quest)
+		quest_removed.emit(quest)
 		_quest_selected = null
 		var quest_selected = selected_quest()
 		select_quest(quest_selected)
@@ -133,7 +134,7 @@ func selected_quest() -> QuestQuest:
 
 func select_quest(quest: QuestQuest) -> void:
 	_quest_selected = quest
-	emit_signal("quest_selection_changed", _quest_selected)
+	quest_selection_changed.emit(_quest_selected)
 
 func get_quest_by_uuid(uuid: String) -> QuestQuest:
 	for quest in quests:
@@ -156,13 +157,13 @@ signal trigger_icon_changed(trigger)
 signal trigger_scene_changed(trigger)
 
 func emit_trigger_stacks_changed(trigger: QuestTrigger) -> void:
-	emit_signal("trigger_stacks_changed", trigger)
+	trigger_stacks_changed.emit(trigger)
 
 func emit_trigger_icon_changed(trigger: QuestTrigger) -> void:
-	emit_signal("trigger_icon_changed", trigger)
+	trigger_icon_changed.emit(trigger)
 
 func emit_trigger_scene_changed(trigger: QuestTrigger) -> void:
-	emit_signal("trigger_scene_changed", trigger)
+	trigger_scene_changed.emit(trigger)
 
 @export var triggers: Array = [_create_trigger()]
 var _trigger_selected: QuestTrigger
@@ -212,7 +213,7 @@ func _add_trigger(trigger: QuestTrigger, sendSignal = true, position = triggers.
 	if triggers == null:
 		triggers = []
 	triggers.insert(position, trigger)
-	emit_signal("trigger_added", trigger)
+	trigger_added.emit(trigger)
 	select_trigger(trigger)
 
 func del_trigger(trigger) -> void:
@@ -229,7 +230,7 @@ func _del_trigger(trigger) -> void:
 	var index = triggers.find(trigger)
 	if index > -1:
 		triggers.remove_at(index)
-		emit_signal("trigger_removed", trigger)
+		trigger_removed.emit(trigger)
 		_trigger_selected = null
 		var trigger_selected = selected_trigger()
 		select_trigger(trigger_selected)
@@ -241,7 +242,7 @@ func selected_trigger() -> QuestTrigger:
 
 func select_trigger(trigger: QuestTrigger) -> void:
 	_trigger_selected = trigger
-	emit_signal("trigger_selection_changed", _trigger_selected)
+	trigger_selection_changed.emit(_trigger_selected)
 
 func get_trigger_by_uuid(uuid: String) -> QuestTrigger:
 	for trigger in triggers:
@@ -294,15 +295,24 @@ func reset() -> void:
 	for quest in quests:
 		quest.reset()
 
-# ***** LOAD SAVE *****
+# ***** LOAD SAVED DATA *****
 func init_data() -> void:
 	if FileAccess.file_exists(PATH_TO_SAVE):
 		var resource = ResourceLoader.load(PATH_TO_SAVE) as QuestData
+		version = resource.version
 		if resource.quests and not resource.quests.is_empty():
 			quests = resource.quests
 		if resource.triggers and not resource.triggers.is_empty():
 			triggers = resource.triggers
+		_update_changed_quest_data()
 
+
+# Update dictionary data changed on updates
+func _update_changed_quest_data() -> void:
+	for quest in quests:
+		for task in quest.tasks:
+			if not task.has("dialogue_done"):
+				task["dialogue_done"] = ""
 
 var _path_to_save = "user://QuestsSave.res"
 
@@ -311,11 +321,21 @@ func reset_saved_user_data() -> void:
 		var directory:= DirAccess.open("user://")
 		directory.remove(_path_to_save)
 
-func save(update_script_classes = false) -> void:	
-	ResourceSaver.save(self, PATH_TO_SAVE)
-	_save_data_quests()
-	_save_data_triggers()
+func save(update_script_classes = false) -> void:
 	if update_script_classes:
+		self.version = UUID.v4()
+	for quest in quests:
+		if update_script_classes:
+			quest.state = QuestQuest.QUESTSTATE_UNDEFINED
+		for task in quest.tasks:
+			if update_script_classes:
+				task.done = false
+			if not task.has("uuid"):
+				task.uuid = UUID.v4()
+	ResourceSaver.save(self, PATH_TO_SAVE)
+	if update_script_classes:
+		_save_data_quests()
+		_save_data_triggers()
 		_editor.get_editor_interface().get_resource_filesystem().scan()
 
 func _save_data_quests() -> void:
@@ -327,6 +347,12 @@ func _save_data_quests() -> void:
 	source_code += AUTHOR
 	source_code += "@tool\n"
 	source_code += "class_name QuestManagerQuests\n\n"
+	source_code += "\nenum QuestManagerQuestsEnum { NONE, "
+	for index in range(quests.size()):
+		source_code += " " + quests[index].name
+		if index != quests.size() - 1:
+			source_code += ","
+	source_code += "}\n\n"
 	for quest in quests:
 		var namePrepared = quest.name.replace(" ", "")
 		namePrepared = namePrepared.to_upper()
@@ -449,3 +475,9 @@ func resize_texture(t: Texture, size: Vector2):
 		itex = ImageTexture.new()
 		itex.create_from_image(texture)
 	return itex
+
+func sort_quests_by_name() -> void:
+	quests.sort_custom(func(a, b): return a.name < b.name)
+
+func sort_triggers_by_name() -> void:
+	triggers.sort_custom(func(a, b): return a.name < b.name)

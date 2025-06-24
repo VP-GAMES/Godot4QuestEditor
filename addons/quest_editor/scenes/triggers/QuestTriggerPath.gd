@@ -23,13 +23,13 @@ func _init_styles() -> void:
 
 func _init_connections() -> void:
 	if not _trigger.scene_changed.is_connected(on_scene_changed):
-		assert(_trigger.scene_changed.connect(on_scene_changed) == OK)
+		_trigger.scene_changed.connect(on_scene_changed)
 	if not focus_entered.is_connected(_on_focus_entered):
-		assert(focus_entered.connect(_on_focus_entered) == OK)
+		focus_entered.connect(_on_focus_entered)
 	if not focus_exited.is_connected(_on_focus_exited):
-		assert(focus_exited.connect(_on_focus_exited) == OK)
+		focus_exited.connect(_on_focus_exited)
 	if not text_changed.is_connected(_path_value_changed):
-		assert(text_changed.connect(_path_value_changed) == OK)
+		text_changed.connect(_path_value_changed)
 
 func on_scene_changed() -> void:
 	_draw_view()
