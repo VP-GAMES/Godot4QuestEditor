@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://1txirr45vbrf"]
 
-[ext_resource type="Script" path="res://addons/inventory_editor/ui/InventoryItemUIIcon.gd" id="1"]
+[ext_resource type="Script" uid="uid://bo5orx63pl40q" path="res://addons/inventory_editor/ui/InventoryItemUIIcon.gd" id="1"]
 
 [node name="Icon" type="TextureRect"]
 anchors_preset = 15
@@ -10,7 +10,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch_mode = 5
 script = ExtResource("1")
-inventory = "f2639393-731e-48d4-bd6a-b558d1e1000a"
+inventory = "8e526c15-dfbe-478b-b0c9-a05aa8722cb0"
 
 [node name="Quantity" type="Label" parent="."]
 layout_mode = 1

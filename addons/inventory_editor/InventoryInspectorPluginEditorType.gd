@@ -13,7 +13,8 @@ func set_data(data: InventoryData) -> void:
 	_data = data
 	_data.type_added.connect(_update_dropdown)
 	_data.type_removed.connect(_update_dropdown)
-	
+	_update_dropdown()
+
 func _init():
 	add_child(dropdown)
 	add_focusable(dropdown)
@@ -38,4 +39,3 @@ func _update_property():
 	updating = true
 	dropdown.set_selected_by_value(new_value)
 	updating = false
-
